@@ -13,195 +13,111 @@ import javax.persistence.Table;
 @Table(name = "sceance")
 
 public class Sceance implements Serializable{
+	   private int idSeance;
+	   private String disponibilite;
+	   private boolean stop;
+	   private int heureDebut;
+	   private int heureFin;
+	   
+	   public java.util.Collection<Fiche> fiche;
+	   public java.util.Collection<RattrapageSeance> rattrapageSeance;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<Fiche> getFiche() {
+	      if (fiche == null)
+	         fiche = new java.util.HashSet<Fiche>();
+	      return fiche;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorFiche() {
+	      if (fiche == null)
+	         fiche = new java.util.HashSet<Fiche>();
+	      return fiche.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newFiche */
+	   public void setFiche(java.util.Collection<Fiche> newFiche) {
+	      removeAllFiche();
+	      for (java.util.Iterator iter = newFiche.iterator(); iter.hasNext();)
+	         addFiche((Fiche)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newFiche */
+	   public void addFiche(Fiche newFiche) {
+	      if (newFiche == null)
+	         return;
+	      if (this.fiche == null)
+	         this.fiche = new java.util.HashSet<Fiche>();
+	      if (!this.fiche.contains(newFiche))
+	         this.fiche.add(newFiche);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldFiche */
+	   public void removeFiche(Fiche oldFiche) {
+	      if (oldFiche == null)
+	         return;
+	      if (this.fiche != null)
+	         if (this.fiche.contains(oldFiche))
+	            this.fiche.remove(oldFiche);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllFiche() {
+	      if (fiche != null)
+	         fiche.clear();
+	   }
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<RattrapageSeance> getRattrapageSeance() {
+	      if (rattrapageSeance == null)
+	         rattrapageSeance = new java.util.HashSet<RattrapageSeance>();
+	      return rattrapageSeance;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorRattrapageSeance() {
+	      if (rattrapageSeance == null)
+	         rattrapageSeance = new java.util.HashSet<RattrapageSeance>();
+	      return rattrapageSeance.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newRattrapageSeance */
+	   public void setRattrapageSeance(java.util.Collection<RattrapageSeance> newRattrapageSeance) {
+	      removeAllRattrapageSeance();
+	      for (java.util.Iterator iter = newRattrapageSeance.iterator(); iter.hasNext();)
+	         addRattrapageSeance((RattrapageSeance)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newRattrapageSeance */
+	   public void addRattrapageSeance(RattrapageSeance newRattrapageSeance) {
+	      if (newRattrapageSeance == null)
+	         return;
+	      if (this.rattrapageSeance == null)
+	         this.rattrapageSeance = new java.util.HashSet<RattrapageSeance>();
+	      if (!this.rattrapageSeance.contains(newRattrapageSeance))
+	         this.rattrapageSeance.add(newRattrapageSeance);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldRattrapageSeance */
+	   public void removeRattrapageSeance(RattrapageSeance oldRattrapageSeance) {
+	      if (oldRattrapageSeance == null)
+	         return;
+	      if (this.rattrapageSeance != null)
+	         if (this.rattrapageSeance.contains(oldRattrapageSeance))
+	            this.rattrapageSeance.remove(oldRattrapageSeance);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllRattrapageSeance() {
+	      if (rattrapageSeance != null)
+	         rattrapageSeance.clear();
+	   }
 
-	@Id
-	@GeneratedValue
-	private Long idSc;
-	private String date;
-	private String hr_db;
-	private String hr_fin;
-	private String jour;
-	private String duree;
-	private Double heure;
-	private String type;
-	private String nomNiv;
-	private String codeOpt;
-	private String codeSem;
-	private String nomGr;
-	private String nomSousGr;
-	private String prof;
-	private String nomMod;
-	private String nomMat;
-	private String salle;
-	private String disponibilite;
-	
-	@OneToMany(mappedBy = "sceance")
-	List<Fiche> fiche;
-	
-	public Sceance() {
-		
-	}
-
-	public Long getIdSc() {
-		return idSc;
-	}
-
-
-	public void setIdSc(Long idSc) {
-		this.idSc = idSc;
-	}
-
-
-	public String getDate() {
-		return date;
-	}
-
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-
-	public String getHr_db() {
-		return hr_db;
-	}
-
-
-	public void setHr_db(String hr_db) {
-		this.hr_db = hr_db;
-	}
-
-
-	public String getHr_fin() {
-		return hr_fin;
-	}
-
-
-	public void setHr_fin(String hr_fin) {
-		this.hr_fin = hr_fin;
-	}
-
-
-	public String getDuree() {
-		return duree;
-	}
-
-
-	public void setDuree(String duree) {
-		this.duree = duree;
-	}
-
-
-	public String getType() {
-		return type;
-	}
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getJour() {
-		return jour;
-	}
-
-	public void setJour(String jour) {
-		this.jour = jour;
-	}
-
-	public String getNomNiv() {
-		return nomNiv;
-	}
-
-	public void setNomNiv(String nomNiv) {
-		this.nomNiv = nomNiv;
-	}
-
-	public String getCodeOpt() {
-		return codeOpt;
-	}
-
-	public void setCodeOpt(String codeOpt) {
-		this.codeOpt = codeOpt;
-	}
-
-	public String getCodeSem() {
-		return codeSem;
-	}
-
-	public void setCodeSem(String codeSem) {
-		this.codeSem = codeSem;
-	}
-
-	public String getNomGr() {
-		return nomGr;
-	}
-
-	public void setNomGr(String nomGr) {
-		this.nomGr = nomGr;
-	}
-
-	public String getNomSousGr() {
-		return nomSousGr;
-	}
-
-	public void setNomSousGr(String nomSousGr) {
-		this.nomSousGr = nomSousGr;
-	}
-
-	public String getProf() {
-		return prof;
-	}
-
-	public void setProf(String prof) {
-		this.prof = prof;
-	}
-
-	public String getNomMod() {
-		return nomMod;
-	}
-
-	public void setNomMod(String nomMod) {
-		this.nomMod = nomMod;
-	}
-
-	public String getNomMat() {
-		return nomMat;
-	}
-
-	public void setNomMat(String nomMat) {
-		this.nomMat = nomMat;
-	}
-
-	public String getSalle() {
-		return salle;
-	}
-
-	public void setSalle(String salle) {
-		this.salle = salle;
-	}
-
-	public String getDisponibilite() {
-		return disponibilite;
-	}
-
-	public void setDisponibilite(String disponibilite) {
-		this.disponibilite = disponibilite;
-	}
-
-	public List<Fiche> getFiche() {
-		return fiche;
-	}
-
-	public void setFiche(List<Fiche> fiche) {
-		this.fiche = fiche;
-	}
-
-	public Double getHeure() {
-		return heure;
-	}
-
-	public void setHeure(Double heure) {
-		this.heure = heure;
-	}
 }

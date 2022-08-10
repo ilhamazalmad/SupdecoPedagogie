@@ -12,59 +12,62 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur implements Serializable{
+	   private int idUtilisateur;
+	   private String nom;
+	   private String prenom;
+	   private String motDePasse;
+	   private boolean active;
+	   
+	   public java.util.Collection<RoleUtilisateur> roleUtilisateur;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<RoleUtilisateur> getRoleUtilisateur() {
+	      if (roleUtilisateur == null)
+	         roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
+	      return roleUtilisateur;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorRoleUtilisateur() {
+	      if (roleUtilisateur == null)
+	         roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
+	      return roleUtilisateur.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newRoleUtilisateur */
+	   public void setRoleUtilisateur(java.util.Collection<RoleUtilisateur> newRoleUtilisateur) {
+	      removeAllRoleUtilisateur();
+	      for (java.util.Iterator iter = newRoleUtilisateur.iterator(); iter.hasNext();)
+	         addRoleUtilisateur((RoleUtilisateur)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newRoleUtilisateur */
+	   public void addRoleUtilisateur(RoleUtilisateur newRoleUtilisateur) {
+	      if (newRoleUtilisateur == null)
+	         return;
+	      if (this.roleUtilisateur == null)
+	         this.roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
+	      if (!this.roleUtilisateur.contains(newRoleUtilisateur))
+	         this.roleUtilisateur.add(newRoleUtilisateur);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldRoleUtilisateur */
+	   public void removeRoleUtilisateur(RoleUtilisateur oldRoleUtilisateur) {
+	      if (oldRoleUtilisateur == null)
+	         return;
+	      if (this.roleUtilisateur != null)
+	         if (this.roleUtilisateur.contains(oldRoleUtilisateur))
+	            this.roleUtilisateur.remove(oldRoleUtilisateur);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllRoleUtilisateur() {
+	      if (roleUtilisateur != null)
+	         roleUtilisateur.clear();
+	   }
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idUtilisateur;
-	private String nom;
-	private String prenom;
-	private String email;
-	private String mdp;
-	private boolean actived;
-	
-	@OneToMany(mappedBy = "utilisateur")
-	List<Role> role;
-	
-	public Long getIdUtilisateur() {
-		return idUtilisateur;
-	}
-	public void setIdUtilisateur(Long idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getMdp() {
-		return mdp;
-	}
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-	public boolean isActived() {
-		return actived;
-	}
-	public void setActived(boolean actived) {
-		this.actived = actived;
-	}
-	public List<Role> getRoles() {
-		return role;
-	}
-	public void setRoles(List<Role> role) {
-		this.role = role;
-	}
 }

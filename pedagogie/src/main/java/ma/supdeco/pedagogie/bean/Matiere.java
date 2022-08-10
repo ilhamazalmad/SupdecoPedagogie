@@ -10,93 +10,58 @@ import javax.persistence.Table;
 @Table(name = "matiere")
 
 public class Matiere implements Serializable{
-
-	@Id
-	@GeneratedValue
-	
-	private Long idMat;
-	private String codeMat;
-	private String nomMat;
-	private String codeMod;
-	private String nomMod;
-	private String nomNiv;
-	private String codeSem;
-	
-	public Matiere() {
-		
-	}
-	
-	public Matiere(String nomNiv,String codeSem,String nomMat,String nomMod) {
-		super();
-        this.nomNiv = nomNiv;
-        this.codeSem = codeSem;
-        this.nomMat = nomMat;
-        this.nomMod = nomMod;
-	}
-
-	public Matiere(String nomNiv,String codeSem,String nomMat,String nomMod,String codeMat) {
-		super();
-        this.nomNiv = nomNiv;
-        this.codeSem = codeSem;
-        this.nomMat = nomMat;
-        this.nomMod = nomMod;
-        this.codeMat = codeMat;
-	}
-	
-	public Long getIdMat() {
-		return idMat;
-	}
-
-	public void setIdMat(Long idMat) {
-		this.idMat = idMat;
-	}
-
-	public String getCodeMat() {
-		return codeMat;
-	}
-
-	public void setCodeMat(String codeMat) {
-		this.codeMat = codeMat;
-	}
-
-	public String getNomMat() {
-		return nomMat;
-	}
-
-	public void setNomMat(String nomMat) {
-		this.nomMat = nomMat;
-	}
-
-	public String getCodeMod() {
-		return codeMod;
-	}
-
-	public void setCodeMod(String codeMod) {
-		this.codeMod = codeMod;
-	}
-
-	public String getNomNiv() {
-		return nomNiv;
-	}
-
-	public void setNomNiv(String nomNiv) {
-		this.nomNiv = nomNiv;
-	}
-
-	public String getCodeSem() {
-		return codeSem;
-	}
-
-	public void setCodeSem(String codeSem) {
-		this.codeSem = codeSem;
-	}
-
-	public String getNomMod() {
-		return nomMod;
-	}
-
-	public void setNomMod(String nomMod) {
-		this.nomMod = nomMod;
-	}
-
+	private String codeMatiere;
+	   private String titreMatiere;
+	   
+	   public java.util.Collection<MatiereAnnee> matiereAnnee;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<MatiereAnnee> getMatiereAnnee() {
+	      if (matiereAnnee == null)
+	         matiereAnnee = new java.util.HashSet<MatiereAnnee>();
+	      return matiereAnnee;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorMatiereAnnee() {
+	      if (matiereAnnee == null)
+	         matiereAnnee = new java.util.HashSet<MatiereAnnee>();
+	      return matiereAnnee.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newMatiereAnnee */
+	   public void setMatiereAnnee(java.util.Collection<MatiereAnnee> newMatiereAnnee) {
+	      removeAllMatiereAnnee();
+	      for (java.util.Iterator iter = newMatiereAnnee.iterator(); iter.hasNext();)
+	         addMatiereAnnee((MatiereAnnee)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newMatiereAnnee */
+	   public void addMatiereAnnee(MatiereAnnee newMatiereAnnee) {
+	      if (newMatiereAnnee == null)
+	         return;
+	      if (this.matiereAnnee == null)
+	         this.matiereAnnee = new java.util.HashSet<MatiereAnnee>();
+	      if (!this.matiereAnnee.contains(newMatiereAnnee))
+	         this.matiereAnnee.add(newMatiereAnnee);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldMatiereAnnee */
+	   public void removeMatiereAnnee(MatiereAnnee oldMatiereAnnee) {
+	      if (oldMatiereAnnee == null)
+	         return;
+	      if (this.matiereAnnee != null)
+	         if (this.matiereAnnee.contains(oldMatiereAnnee))
+	            this.matiereAnnee.remove(oldMatiereAnnee);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllMatiereAnnee() {
+	      if (matiereAnnee != null)
+	         matiereAnnee.clear();
+	   }
 }

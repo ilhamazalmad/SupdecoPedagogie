@@ -13,58 +13,109 @@ import javax.persistence.Table;
 @Table(name = "salle")
 
 public class Salle implements Serializable{
-
-	@Id
-	@GeneratedValue
-	
-	private Long id;
-	private String codeSalle;
-	private String nomSalle;
-	private String type;
-	private int nbTables;
-	private int nbPlaces;
-	
-	
-	
-	public Salle() {
-		
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getCodeSalle() {
-		return codeSalle;
-	}
-	public void setCodeSalle(String codeSalle) {
-		this.codeSalle = codeSalle;
-	}
-	public String getNomSalle() {
-		return nomSalle;
-	}
-	public void setNomSalle(String nomSalle) {
-		this.nomSalle = nomSalle;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public int getNbTables() {
-		return nbTables;
-	}
-	public void setNbTables(int nbTables) {
-		this.nbTables = nbTables;
-	}
-	public int getNbPlaces() {
-		return nbPlaces;
-	}
-	public void setNbPlaces(int nbPlaces) {
-		this.nbPlaces = nbPlaces;
-	}
-
+	   private int codeSalle;
+	   private String nom;
+	   private int type;
+	   private int nbrTables;
+	   
+	   public java.util.Collection<Seance> seance;
+	   public java.util.Collection<Numerotation> numerotation;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<Seance> getSeance() {
+	      if (seance == null)
+	         seance = new java.util.HashSet<Seance>();
+	      return seance;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorSeance() {
+	      if (seance == null)
+	         seance = new java.util.HashSet<Seance>();
+	      return seance.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newSeance */
+	   public void setSeance(java.util.Collection<Seance> newSeance) {
+	      removeAllSeance();
+	      for (java.util.Iterator iter = newSeance.iterator(); iter.hasNext();)
+	         addSeance((Seance)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newSeance */
+	   public void addSeance(Seance newSeance) {
+	      if (newSeance == null)
+	         return;
+	      if (this.seance == null)
+	         this.seance = new java.util.HashSet<Seance>();
+	      if (!this.seance.contains(newSeance))
+	         this.seance.add(newSeance);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldSeance */
+	   public void removeSeance(Seance oldSeance) {
+	      if (oldSeance == null)
+	         return;
+	      if (this.seance != null)
+	         if (this.seance.contains(oldSeance))
+	            this.seance.remove(oldSeance);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllSeance() {
+	      if (seance != null)
+	         seance.clear();
+	   }
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<Numerotation> getNumerotation() {
+	      if (numerotation == null)
+	         numerotation = new java.util.HashSet<Numerotation>();
+	      return numerotation;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorNumerotation() {
+	      if (numerotation == null)
+	         numerotation = new java.util.HashSet<Numerotation>();
+	      return numerotation.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newNumerotation */
+	   public void setNumerotation(java.util.Collection<Numerotation> newNumerotation) {
+	      removeAllNumerotation();
+	      for (java.util.Iterator iter = newNumerotation.iterator(); iter.hasNext();)
+	         addNumerotation((Numerotation)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newNumerotation */
+	   public void addNumerotation(Numerotation newNumerotation) {
+	      if (newNumerotation == null)
+	         return;
+	      if (this.numerotation == null)
+	         this.numerotation = new java.util.HashSet<Numerotation>();
+	      if (!this.numerotation.contains(newNumerotation))
+	         this.numerotation.add(newNumerotation);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldNumerotation */
+	   public void removeNumerotation(Numerotation oldNumerotation) {
+	      if (oldNumerotation == null)
+	         return;
+	      if (this.numerotation != null)
+	         if (this.numerotation.contains(oldNumerotation))
+	            this.numerotation.remove(oldNumerotation);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllNumerotation() {
+	      if (numerotation != null)
+	         numerotation.clear();
+	   }
 }

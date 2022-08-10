@@ -11,44 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tauxProf")
 public class TauxProfesseur implements Serializable{
-	
-	@Id
-	@GeneratedValue
-	private Long idTauxProf;
-	private String nomNiv;
-	private double tauxProf;
-	private String typeSc;
-	private String prof;
-	
-	public Long getIdTauxProf() {
-		return idTauxProf;
-	}
-	public void setIdTauxProf(Long idTauxProf) {
-		this.idTauxProf = idTauxProf;
-	}
-	public String getNomNiv() {
-		return nomNiv;
-	}
-	public void setNomNiv(String nomNiv) {
-		this.nomNiv = nomNiv;
-	}
-	public double getTauxProf() {
-		return tauxProf;
-	}
-	public void setTauxProf(double tauxProf) {
-		this.tauxProf = tauxProf;
-	}
-	public String getTypeSc() {
-		return typeSc;
-	}
-	public void setTypeSc(String typeSc) {
-		this.typeSc = typeSc;
-	}
-	public String getProf() {
-		return prof;
-	}
-	public void setProf(String prof) {
-		this.prof = prof;
-	}
-	
+	   private int idTaux;
+	   private float taux;
+	   private int idNiveau;
+	   private int idProfesseur;
+	   private int idTypeSeance;
+
 }

@@ -10,58 +10,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "optionn")
 public class Option implements Serializable{
-	
-	@Id
-	@GeneratedValue
-	private Long idOpt;
-	
-	private String codeOpt;
-	private String nomOpt;
-	private String nomNiv;
-	
-	public Option() {
-		
-	}
-	
-	public Option(Long idOpt, String codeOpt, String nomOpt, String nomNiv) {
-		super();
-		this.idOpt = idOpt;
-		this.codeOpt = codeOpt;
-		this.nomOpt = nomOpt;
-		this.nomNiv = nomNiv;
-	}
-
-
-
-	public Long getIdOpt() {
-		return idOpt;
-	}
-
-	public void setIdOpt(Long idOpt) {
-		this.idOpt = idOpt;
-	}
-
-	public String getCodeOpt() {
-		return codeOpt;
-	}
-
-	public void setCodeOpt(String codeOpt) {
-		this.codeOpt = codeOpt;
-	}
-
-	public String getNomOpt() {
-		return nomOpt;
-	}
-
-	public void setNomOpt(String nomOpt) {
-		this.nomOpt = nomOpt;
-	}
-
-	public String getNomNiv() {
-		return nomNiv;
-	}
-
-	public void setNomNiv(String nomNiv) {
-		this.nomNiv = nomNiv;
-	}
+	   private int id;
+	   private String codeOption;
+	   private String titreOption;
+	   
+	   public java.util.Collection<OptionAnnee> optionAnnee;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<OptionAnnee> getOptionAnnee() {
+	      if (optionAnnee == null)
+	         optionAnnee = new java.util.HashSet<OptionAnnee>();
+	      return optionAnnee;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorOptionAnnee() {
+	      if (optionAnnee == null)
+	         optionAnnee = new java.util.HashSet<OptionAnnee>();
+	      return optionAnnee.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newOptionAnnee */
+	   public void setOptionAnnee(java.util.Collection<OptionAnnee> newOptionAnnee) {
+	      removeAllOptionAnnee();
+	      for (java.util.Iterator iter = newOptionAnnee.iterator(); iter.hasNext();)
+	         addOptionAnnee((OptionAnnee)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newOptionAnnee */
+	   public void addOptionAnnee(OptionAnnee newOptionAnnee) {
+	      if (newOptionAnnee == null)
+	         return;
+	      if (this.optionAnnee == null)
+	         this.optionAnnee = new java.util.HashSet<OptionAnnee>();
+	      if (!this.optionAnnee.contains(newOptionAnnee))
+	         this.optionAnnee.add(newOptionAnnee);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldOptionAnnee */
+	   public void removeOptionAnnee(OptionAnnee oldOptionAnnee) {
+	      if (oldOptionAnnee == null)
+	         return;
+	      if (this.optionAnnee != null)
+	         if (this.optionAnnee.contains(oldOptionAnnee))
+	            this.optionAnnee.remove(oldOptionAnnee);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllOptionAnnee() {
+	      if (optionAnnee != null)
+	         optionAnnee.clear();
+	   }
 }

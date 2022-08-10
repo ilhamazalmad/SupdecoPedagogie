@@ -9,58 +9,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sousGroupe")
 public class SousGroupe implements Serializable{
-	
-	@Id
-	@GeneratedValue
-	private Long idSousGr;
-	
-	private String codeSousGr;
-	private String nomSousGr;
-	private String nomNiv;
-	private String nomGr;
-	
-	public SousGroupe() {
-		
-	}
-
-	public Long getIdSousGr() {
-		return idSousGr;
-	}
-
-	public void setIdSousGr(Long idSousGr) {
-		this.idSousGr = idSousGr;
-	}
-
-	public String getCodeSousGr() {
-		return codeSousGr;
-	}
-
-	public void setCodeSousGr(String codeSousGr) {
-		this.codeSousGr = codeSousGr;
-	}
-
-	public String getNomSousGr() {
-		return nomSousGr;
-	}
-
-	public void setNomSousGr(String nomSousGr) {
-		this.nomSousGr = nomSousGr;
-	}
-
-	public String getNomNiv() {
-		return nomNiv;
-	}
-
-	public void setNomNiv(String nomNiv) {
-		this.nomNiv = nomNiv;
-	}
-
-	public String getNomGr() {
-		return nomGr;
-	}
-
-	public void setNomGr(String nomGr) {
-		this.nomGr = nomGr;
-	}
+	   private int idSsGroupe;
+	   private String ssGroupe;
+	   
+	   public java.util.Collection<SousGroupeAnnee> sousGroupeAnnee;
+	   
+	   
+	   /** @pdGenerated default getter */
+	   public java.util.Collection<SousGroupeAnnee> getSousGroupeAnnee() {
+	      if (sousGroupeAnnee == null)
+	         sousGroupeAnnee = new java.util.HashSet<SousGroupeAnnee>();
+	      return sousGroupeAnnee;
+	   }
+	   
+	   /** @pdGenerated default iterator getter */
+	   public java.util.Iterator getIteratorSousGroupeAnnee() {
+	      if (sousGroupeAnnee == null)
+	         sousGroupeAnnee = new java.util.HashSet<SousGroupeAnnee>();
+	      return sousGroupeAnnee.iterator();
+	   }
+	   
+	   /** @pdGenerated default setter
+	     * @param newSousGroupeAnnee */
+	   public void setSousGroupeAnnee(java.util.Collection<SousGroupeAnnee> newSousGroupeAnnee) {
+	      removeAllSousGroupeAnnee();
+	      for (java.util.Iterator iter = newSousGroupeAnnee.iterator(); iter.hasNext();)
+	         addSousGroupeAnnee((SousGroupeAnnee)iter.next());
+	   }
+	   
+	   /** @pdGenerated default add
+	     * @param newSousGroupeAnnee */
+	   public void addSousGroupeAnnee(SousGroupeAnnee newSousGroupeAnnee) {
+	      if (newSousGroupeAnnee == null)
+	         return;
+	      if (this.sousGroupeAnnee == null)
+	         this.sousGroupeAnnee = new java.util.HashSet<SousGroupeAnnee>();
+	      if (!this.sousGroupeAnnee.contains(newSousGroupeAnnee))
+	         this.sousGroupeAnnee.add(newSousGroupeAnnee);
+	   }
+	   
+	   /** @pdGenerated default remove
+	     * @param oldSousGroupeAnnee */
+	   public void removeSousGroupeAnnee(SousGroupeAnnee oldSousGroupeAnnee) {
+	      if (oldSousGroupeAnnee == null)
+	         return;
+	      if (this.sousGroupeAnnee != null)
+	         if (this.sousGroupeAnnee.contains(oldSousGroupeAnnee))
+	            this.sousGroupeAnnee.remove(oldSousGroupeAnnee);
+	   }
+	   
+	   /** @pdGenerated default removeAll */
+	   public void removeAllSousGroupeAnnee() {
+	      if (sousGroupeAnnee != null)
+	         sousGroupeAnnee.clear();
+	   }
 
 }

@@ -1,17 +1,9 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ville")
-public class Ville implements Serializable{
-	   private int idVille;
-	   private String ville;
+public class SerieBac {
+	   private int idSerie;
+	   private String serieBac;
+	   private String description;
 	   
 	   public java.util.Collection<Etudiant> etudiant;
 	   
