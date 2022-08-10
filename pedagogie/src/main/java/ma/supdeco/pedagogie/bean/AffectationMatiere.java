@@ -1,6 +1,18 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
 public class AffectationMatiere {
+
+	public AffectationMatiere() {
+		super();
+	}
+
+	public AffectationMatiere(int idAffectation, Collection<Seance> seance) {
+		super();
+		this.idAffectation = idAffectation;
+		this.seance = seance;
+	}
 
 	private int idAffectation;
 	   
@@ -55,4 +67,12 @@ public class AffectationMatiere {
 	      if (seance != null)
 	         seance.clear();
 	   }
+
+	public int getIdAffectation() {
+		return idAffectation;
+	}
+
+	public void setIdAffectation(int idAffectation) {
+		this.idAffectation = idAffectation;
+	}
 }

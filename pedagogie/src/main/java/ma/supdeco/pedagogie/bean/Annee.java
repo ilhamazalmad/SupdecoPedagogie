@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,43 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "annee")
 public class Annee implements Serializable{
+	public Annee(String annee, boolean active, Collection<ProfesseurAnnee> professeurAnnee,
+			Collection<EtudiantAnnee> etudiantAnnee, Collection<GroupeAnnee> groupeAnnee,
+			Collection<SousGroupeAnnee> sousGroupeAnnee, Collection<OptionAnnee> optionAnnee,
+			Collection<ModuleAnnee> moduleAnnee, Collection<MatiereAnnee> matiereAnnee) {
+		super();
+		this.annee = annee;
+		this.active = active;
+		this.professeurAnnee = professeurAnnee;
+		this.etudiantAnnee = etudiantAnnee;
+		this.groupeAnnee = groupeAnnee;
+		this.sousGroupeAnnee = sousGroupeAnnee;
+		this.optionAnnee = optionAnnee;
+		this.moduleAnnee = moduleAnnee;
+		this.matiereAnnee = matiereAnnee;
+	}
+
+	public Annee() {
+		super();
+	}
+
+	public Annee(int idAnnee, String annee, boolean active, Collection<ProfesseurAnnee> professeurAnnee,
+			Collection<EtudiantAnnee> etudiantAnnee, Collection<GroupeAnnee> groupeAnnee,
+			Collection<SousGroupeAnnee> sousGroupeAnnee, Collection<OptionAnnee> optionAnnee,
+			Collection<ModuleAnnee> moduleAnnee, Collection<MatiereAnnee> matiereAnnee) {
+		super();
+		this.idAnnee = idAnnee;
+		this.annee = annee;
+		this.active = active;
+		this.professeurAnnee = professeurAnnee;
+		this.etudiantAnnee = etudiantAnnee;
+		this.groupeAnnee = groupeAnnee;
+		this.sousGroupeAnnee = sousGroupeAnnee;
+		this.optionAnnee = optionAnnee;
+		this.moduleAnnee = moduleAnnee;
+		this.matiereAnnee = matiereAnnee;
+	}
+
 	private int idAnnee;
 	   private String annee;
 	   private boolean active;
@@ -359,4 +397,28 @@ public class Annee implements Serializable{
 	      if (matiereAnnee != null)
 	         matiereAnnee.clear();
 	   }
+
+	public int getIdAnnee() {
+		return idAnnee;
+	}
+
+	public void setIdAnnee(int idAnnee) {
+		this.idAnnee = idAnnee;
+	}
+
+	public String getAnnee() {
+		return annee;
+	}
+
+	public void setAnnee(String annee) {
+		this.annee = annee;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }
