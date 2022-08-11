@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ville")
 public class Ville implements Serializable{
-	   private int idVille;
+	   public Ville() {
+		super();
+	}
+
+	public Ville(int idVille, String ville, Collection<Etudiant> etudiant) {
+		super();
+		this.idVille = idVille;
+		this.ville = ville;
+		this.etudiant = etudiant;
+	}
+
+	private int idVille;
 	   private String ville;
 	   
 	   public java.util.Collection<Etudiant> etudiant;
@@ -64,5 +76,21 @@ public class Ville implements Serializable{
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdVille() {
+		return idVille;
+	}
+
+	public void setIdVille(int idVille) {
+		this.idVille = idVille;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
 
 }

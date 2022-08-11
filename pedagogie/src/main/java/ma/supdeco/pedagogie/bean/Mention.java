@@ -1,6 +1,26 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="mention")
+
 public class Mention {
+	public Mention() {
+		super();
+	}
+
+	public Mention(int idMention, String codeMention, String mention, Collection<Etudiant> etudiant) {
+		super();
+		this.idMention = idMention;
+		this.codeMention = codeMention;
+		this.mention = mention;
+		this.etudiant = etudiant;
+	}
+
 	private int idMention;
 	   private String codeMention;
 	   private String mention;
@@ -56,4 +76,28 @@ public class Mention {
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdMention() {
+		return idMention;
+	}
+
+	public void setIdMention(int idMention) {
+		this.idMention = idMention;
+	}
+
+	public String getCodeMention() {
+		return codeMention;
+	}
+
+	public void setCodeMention(String codeMention) {
+		this.codeMention = codeMention;
+	}
+
+	public String getMention() {
+		return mention;
+	}
+
+	public void setMention(String mention) {
+		this.mention = mention;
+	}
 }

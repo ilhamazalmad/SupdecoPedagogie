@@ -1,6 +1,8 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +11,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "groupe")
 public class Groupe implements Serializable{
-	   private int idGroupe;
+	   public Groupe() {
+		super();
+	}
+
+	public Groupe(int idGroupe, String nomGroupe, Collection<GroupeAnnee> groupeAnnee) {
+		super();
+		this.idGroupe = idGroupe;
+		this.nomGroupe = nomGroupe;
+		this.groupeAnnee = groupeAnnee;
+	}
+
+	private int idGroupe;
 	   private String nomGroupe;
 	   
 	   public java.util.Collection<GroupeAnnee> groupeAnnee;
@@ -63,5 +76,21 @@ public class Groupe implements Serializable{
 	      if (groupeAnnee != null)
 	         groupeAnnee.clear();
 	   }
+
+	public int getIdGroupe() {
+		return idGroupe;
+	}
+
+	public void setIdGroupe(int idGroupe) {
+		this.idGroupe = idGroupe;
+	}
+
+	public String getNomGroupe() {
+		return nomGroupe;
+	}
+
+	public void setNomGroupe(String nomGroupe) {
+		this.nomGroupe = nomGroupe;
+	}
 
 }

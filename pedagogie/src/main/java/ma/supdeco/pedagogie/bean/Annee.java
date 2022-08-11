@@ -11,6 +11,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "annee")
 public class Annee implements Serializable{
+	private int idAnnee;
+	   private String annee;
+	   private boolean active;
+	   
+	   public java.util.Collection<ProfesseurAnnee> professeurAnnee;
+	   public java.util.Collection<EtudiantAnnee> etudiantAnnee;
+	   public java.util.Collection<GroupeAnnee> groupeAnnee;
+	   public java.util.Collection<SousGroupeAnnee> sousGroupeAnnee;
+	   public java.util.Collection<OptionAnnee> optionAnnee;
+	   public java.util.Collection<ModuleAnnee> moduleAnnee;
+	   public java.util.Collection<MatiereAnnee> matiereAnnee;
+	   
 	public Annee(String annee, boolean active, Collection<ProfesseurAnnee> professeurAnnee,
 			Collection<EtudiantAnnee> etudiantAnnee, Collection<GroupeAnnee> groupeAnnee,
 			Collection<SousGroupeAnnee> sousGroupeAnnee, Collection<OptionAnnee> optionAnnee,
@@ -48,18 +60,7 @@ public class Annee implements Serializable{
 		this.matiereAnnee = matiereAnnee;
 	}
 
-	private int idAnnee;
-	   private String annee;
-	   private boolean active;
-	   
-	   public java.util.Collection<ProfesseurAnnee> professeurAnnee;
-	   public java.util.Collection<EtudiantAnnee> etudiantAnnee;
-	   public java.util.Collection<GroupeAnnee> groupeAnnee;
-	   public java.util.Collection<SousGroupeAnnee> sousGroupeAnnee;
-	   public java.util.Collection<OptionAnnee> optionAnnee;
-	   public java.util.Collection<ModuleAnnee> moduleAnnee;
-	   public java.util.Collection<MatiereAnnee> matiereAnnee;
-	   
+	
 	   
 	   /** @pdGenerated default getter */
 	   public java.util.Collection<ProfesseurAnnee> getProfesseurAnnee() {

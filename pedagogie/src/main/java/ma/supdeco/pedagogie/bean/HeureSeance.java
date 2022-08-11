@@ -1,13 +1,26 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "grProf")
+@Table(name = "heureSeance")
 public class HeureSeance {
+
+	public HeureSeance() {
+		super();
+	}
+
+	public HeureSeance(int idHeure, String heure, Collection<Seance> seance) {
+		super();
+		this.idHeure = idHeure;
+		this.heure = heure;
+		this.seance = seance;
+	}
 
 	private int idHeure;
 	   private String heure;
@@ -63,4 +76,20 @@ public class HeureSeance {
 	      if (seance != null)
 	         seance.clear();
 	   }
+
+	public int getIdHeure() {
+		return idHeure;
+	}
+
+	public void setIdHeure(int idHeure) {
+		this.idHeure = idHeure;
+	}
+
+	public String getHeure() {
+		return heure;
+	}
+
+	public void setHeure(String heure) {
+		this.heure = heure;
+	}
 }

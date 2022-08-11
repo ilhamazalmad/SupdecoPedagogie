@@ -6,10 +6,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="role")
+
 public class Role {
-	   private int idRole;
+	   public Role() {
+		super();
+	}
+	public Role(int idRole, String role) {
+		super();
+		this.idRole = idRole;
+		this.role = role;
+	}
+	private int idRole;
 	   private String role;
+	public int getIdRole() {
+		return idRole;
+	}
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	  
 }

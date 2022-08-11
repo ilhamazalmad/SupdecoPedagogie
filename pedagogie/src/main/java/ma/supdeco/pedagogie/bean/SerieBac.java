@@ -1,7 +1,27 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="serieBac")
+
 public class SerieBac {
-	   private int idSerie;
+	   public SerieBac() {
+		super();
+	}
+
+	public SerieBac(int idSerie, String serieBac, String description, Collection<Etudiant> etudiant) {
+		super();
+		this.idSerie = idSerie;
+		this.serieBac = serieBac;
+		this.description = description;
+		this.etudiant = etudiant;
+	}
+
+	private int idSerie;
 	   private String serieBac;
 	   private String description;
 	   
@@ -56,5 +76,29 @@ public class SerieBac {
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdSerie() {
+		return idSerie;
+	}
+
+	public void setIdSerie(int idSerie) {
+		this.idSerie = idSerie;
+	}
+
+	public String getSerieBac() {
+		return serieBac;
+	}
+
+	public void setSerieBac(String serieBac) {
+		this.serieBac = serieBac;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

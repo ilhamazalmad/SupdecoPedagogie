@@ -1,6 +1,25 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="niveauAdmission")
+
 public class NiveauAdmission {
+	public NiveauAdmission() {
+		super();
+	}
+
+	public NiveauAdmission(int idAdmission, String niveauAdmission, Collection<Etudiant> etudiant) {
+		super();
+		this.idAdmission = idAdmission;
+		this.niveauAdmission = niveauAdmission;
+		this.etudiant = etudiant;
+	}
+
 	private int idAdmission;
 	   private String niveauAdmission;
 	   
@@ -55,4 +74,20 @@ public class NiveauAdmission {
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdAdmission() {
+		return idAdmission;
+	}
+
+	public void setIdAdmission(int idAdmission) {
+		this.idAdmission = idAdmission;
+	}
+
+	public String getNiveauAdmission() {
+		return niveauAdmission;
+	}
+
+	public void setNiveauAdmission(String niveauAdmission) {
+		this.niveauAdmission = niveauAdmission;
+	}
 }

@@ -1,7 +1,25 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="diplome")
 public class Diplome {
-	   private int idDiplome;
+	   public Diplome() {
+		super();
+	}
+
+	public Diplome(int idDiplome, String titreDiplome, Collection<Etudiant> etudiant) {
+		super();
+		this.idDiplome = idDiplome;
+		this.titreDiplome = titreDiplome;
+		this.etudiant = etudiant;
+	}
+
+	private int idDiplome;
 	   private String titreDiplome;
 	   
 	   public java.util.Collection<Etudiant> etudiant;
@@ -55,5 +73,21 @@ public class Diplome {
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdDiplome() {
+		return idDiplome;
+	}
+
+	public void setIdDiplome(int idDiplome) {
+		this.idDiplome = idDiplome;
+	}
+
+	public String getTitreDiplome() {
+		return titreDiplome;
+	}
+
+	public void setTitreDiplome(String titreDiplome) {
+		this.titreDiplome = titreDiplome;
+	}
 
 }

@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,10 +11,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sceance")
+@Table(name = "seance")
 
-public class Sceance implements Serializable{
-	   private int idSeance;
+public class Seance implements Serializable{
+	   public Seance() {
+		super();
+	}
+
+	public Seance(int idSeance, String disponibilite, boolean stop, int heureDebut, int heureFin,
+			Collection<Fiche> fiche, Collection<RattrapageSeance> rattrapageSeance) {
+		super();
+		this.idSeance = idSeance;
+		this.disponibilite = disponibilite;
+		this.stop = stop;
+		this.heureDebut = heureDebut;
+		this.heureFin = heureFin;
+		this.fiche = fiche;
+		this.rattrapageSeance = rattrapageSeance;
+	}
+
+	private int idSeance;
 	   private String disponibilite;
 	   private boolean stop;
 	   private int heureDebut;
@@ -119,5 +136,45 @@ public class Sceance implements Serializable{
 	      if (rattrapageSeance != null)
 	         rattrapageSeance.clear();
 	   }
+
+	public int getIdSeance() {
+		return idSeance;
+	}
+
+	public void setIdSeance(int idSeance) {
+		this.idSeance = idSeance;
+	}
+
+	public String getDisponibilite() {
+		return disponibilite;
+	}
+
+	public void setDisponibilite(String disponibilite) {
+		this.disponibilite = disponibilite;
+	}
+
+	public boolean isStop() {
+		return stop;
+	}
+
+	public void setStop(boolean stop) {
+		this.stop = stop;
+	}
+
+	public int getHeureDebut() {
+		return heureDebut;
+	}
+
+	public void setHeureDebut(int heureDebut) {
+		this.heureDebut = heureDebut;
+	}
+
+	public int getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(int heureFin) {
+		this.heureFin = heureFin;
+	}
 
 }

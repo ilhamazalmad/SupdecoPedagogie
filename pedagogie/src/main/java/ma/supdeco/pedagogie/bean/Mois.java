@@ -1,6 +1,25 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="mois")
+
 public class Mois {
+	public Mois() {
+		super();
+	}
+
+	public Mois(int idMois, String mois, Collection<Etudiant> etudiant) {
+		super();
+		this.idMois = idMois;
+		this.mois = mois;
+		this.etudiant = etudiant;
+	}
+
 	private int idMois;
 	   private String mois;
 	   
@@ -55,4 +74,20 @@ public class Mois {
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdMois() {
+		return idMois;
+	}
+
+	public void setIdMois(int idMois) {
+		this.idMois = idMois;
+	}
+
+	public String getMois() {
+		return mois;
+	}
+
+	public void setMois(String mois) {
+		this.mois = mois;
+	}
 }

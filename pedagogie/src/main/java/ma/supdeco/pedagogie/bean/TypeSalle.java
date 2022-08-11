@@ -1,7 +1,26 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="typeSalle")
+
 public class TypeSalle {
-	  private int idType;
+	  public TypeSalle(int idType, String typeSalle, Collection<Salle> salle) {
+		super();
+		this.idType = idType;
+		this.typeSalle = typeSalle;
+		this.salle = salle;
+	}
+
+	public TypeSalle() {
+		super();
+	}
+
+	private int idType;
 	   private String typeSalle;
 	   
 	   public java.util.Collection<Salle> salle;
@@ -55,5 +74,21 @@ public class TypeSalle {
 	      if (salle != null)
 	         salle.clear();
 	   }
+
+	public int getIdType() {
+		return idType;
+	}
+
+	public void setIdType(int idType) {
+		this.idType = idType;
+	}
+
+	public String getTypeSalle() {
+		return typeSalle;
+	}
+
+	public void setTypeSalle(String typeSalle) {
+		this.typeSalle = typeSalle;
+	}
 
 }

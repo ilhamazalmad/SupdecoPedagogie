@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "absenceMat")
+@Table(name = "absenceProfesseur")
 public class AbsenceProfesseur implements Serializable{
 
 	   public AbsenceProfesseur(boolean absent, int idProfesseur, int codeFiche) {

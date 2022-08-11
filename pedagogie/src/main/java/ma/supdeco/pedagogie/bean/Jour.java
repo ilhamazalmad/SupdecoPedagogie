@@ -1,6 +1,25 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="jour")
+
 public class Jour {
+	public Jour() {
+		super();
+	}
+
+	public Jour(int idJour, String jour, Collection<Seance> seance) {
+		super();
+		this.idJour = idJour;
+		this.jour = jour;
+		this.seance = seance;
+	}
+
 	private int idJour;
 	   private String jour;
 	   
@@ -55,4 +74,20 @@ public class Jour {
 	      if (seance != null)
 	         seance.clear();
 	   }
+
+	public int getIdJour() {
+		return idJour;
+	}
+
+	public void setIdJour(int idJour) {
+		this.idJour = idJour;
+	}
+
+	public String getJour() {
+		return jour;
+	}
+
+	public void setJour(String jour) {
+		this.jour = jour;
+	}
 }

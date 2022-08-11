@@ -1,7 +1,26 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="typeSeance")
+
 public class TypeSeance {
-	   private int codeType;
+	   public TypeSeance() {
+		super();
+	}
+
+	public TypeSeance(int codeType, String typeSeance, Collection<Seance> seance) {
+		super();
+		this.codeType = codeType;
+		this.typeSeance = typeSeance;
+		this.seance = seance;
+	}
+
+	private int codeType;
 	   private String typeSeance;
 	   
 	   public java.util.Collection<Seance> seance;
@@ -55,5 +74,21 @@ public class TypeSeance {
 	      if (seance != null)
 	         seance.clear();
 	   }
+
+	public int getCodeType() {
+		return codeType;
+	}
+
+	public void setCodeType(int codeType) {
+		this.codeType = codeType;
+	}
+
+	public String getTypeSeance() {
+		return typeSeance;
+	}
+
+	public void setTypeSeance(String typeSeance) {
+		this.typeSeance = typeSeance;
+	}
 
 }

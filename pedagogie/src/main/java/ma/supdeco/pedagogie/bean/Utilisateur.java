@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur implements Serializable{
-	   private int idUtilisateur;
+	   public Utilisateur() {
+		super();
+	}
+
+	public Utilisateur(int idUtilisateur, String nom, String prenom, String motDePasse, boolean active,
+			Collection<RoleUtilisateur> roleUtilisateur) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.motDePasse = motDePasse;
+		this.active = active;
+		this.roleUtilisateur = roleUtilisateur;
+	}
+
+	private int idUtilisateur;
 	   private String nom;
 	   private String prenom;
 	   private String motDePasse;
@@ -69,5 +85,45 @@ public class Utilisateur implements Serializable{
 	      if (roleUtilisateur != null)
 	         roleUtilisateur.clear();
 	   }
+
+	public int getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 }

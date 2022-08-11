@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "session")
 public class Session implements Serializable{
-	   private int idSession;
+	   public Session() {
+		super();
+	}
+
+	public Session(int idSession, String session, boolean active, Collection<Examen> examen,
+			Collection<Rachetage> rachetage, Collection<Numerotation> numerotation) {
+		super();
+		this.idSession = idSession;
+		this.session = session;
+		this.active = active;
+		this.examen = examen;
+		this.rachetage = rachetage;
+		this.numerotation = numerotation;
+	}
+
+	private int idSession;
 	   private String session;
 	   private boolean active;
 	   
@@ -163,5 +179,29 @@ public class Session implements Serializable{
 	      if (numerotation != null)
 	         numerotation.clear();
 	   }
+
+	public int getIdSession() {
+		return idSession;
+	}
+
+	public void setIdSession(int idSession) {
+		this.idSession = idSession;
+	}
+
+	public String getSession() {
+		return session;
+	}
+
+	public void setSession(String session) {
+		this.session = session;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 }

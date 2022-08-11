@@ -2,6 +2,12 @@ package ma.supdeco.pedagogie.bean;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="affectationMatiere")
+
 public class AffectationMatiere {
 
 	public AffectationMatiere() {

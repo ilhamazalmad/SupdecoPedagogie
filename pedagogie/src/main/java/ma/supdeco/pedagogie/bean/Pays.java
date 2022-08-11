@@ -1,6 +1,8 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +11,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pays")
 public class Pays implements Serializable{
-	   private int idPays;
+	   public Pays() {
+		super();
+	}
+
+	public Pays(int idPays, String pays, String codeIso3, Collection<Ville> ville, Collection<Etudiant> etudiant) {
+		super();
+		this.idPays = idPays;
+		this.pays = pays;
+		this.codeIso3 = codeIso3;
+		this.ville = ville;
+		this.etudiant = etudiant;
+	}
+
+	private int idPays;
 	   private String pays;
 	   private String codeIso3;
 	   
@@ -113,5 +128,29 @@ public class Pays implements Serializable{
 	      if (etudiant != null)
 	         etudiant.clear();
 	   }
+
+	public int getIdPays() {
+		return idPays;
+	}
+
+	public void setIdPays(int idPays) {
+		this.idPays = idPays;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+
+	public String getCodeIso3() {
+		return codeIso3;
+	}
+
+	public void setCodeIso3(String codeIso3) {
+		this.codeIso3 = codeIso3;
+	}
 
 }

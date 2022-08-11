@@ -1,6 +1,8 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +13,17 @@ import javax.persistence.Table;
 @Table(name = "module")
 
 public class Module implements Serializable{
+	public Module() {
+		super();
+	}
+
+	public Module(String codeModule, String nomModule, Collection<ModuleAnnee> moduleAnnee) {
+		super();
+		this.codeModule = codeModule;
+		this.nomModule = nomModule;
+		this.moduleAnnee = moduleAnnee;
+	}
+
 	private String codeModule;
 	   private String nomModule;
 	   
@@ -65,4 +78,20 @@ public class Module implements Serializable{
 	      if (moduleAnnee != null)
 	         moduleAnnee.clear();
 	   }
+
+	public String getCodeModule() {
+		return codeModule;
+	}
+
+	public void setCodeModule(String codeModule) {
+		this.codeModule = codeModule;
+	}
+
+	public String getNomModule() {
+		return nomModule;
+	}
+
+	public void setNomModule(String nomModule) {
+		this.nomModule = nomModule;
+	}
 }

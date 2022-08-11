@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,8 +12,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "niveau")
-
 public class Niveau implements Serializable{
+
+	public Niveau() {
+		super();
+	}
+
+	public Niveau(int idNiveau, String niveau, SemestreNiveau[] semestreNiveau, Collection<EtudiantAnnee> etudiantAnnee,
+			Collection<SousGroupeAnnee> sousGroupeAnnee, Collection<GroupeAnnee> groupeAnnee) {
+		super();
+		this.idNiveau = idNiveau;
+		this.niveau = niveau;
+		this.semestreNiveau = semestreNiveau;
+		this.etudiantAnnee = etudiantAnnee;
+		this.sousGroupeAnnee = sousGroupeAnnee;
+		this.groupeAnnee = groupeAnnee;
+	}
 
 	private int idNiveau;
 	   private String niveau;
@@ -167,4 +182,28 @@ public class Niveau implements Serializable{
 	      if (groupeAnnee != null)
 	         groupeAnnee.clear();
 	   }
+
+	public int getIdNiveau() {
+		return idNiveau;
+	}
+
+	public void setIdNiveau(int idNiveau) {
+		this.idNiveau = idNiveau;
+	}
+
+	public String getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(String niveau) {
+		this.niveau = niveau;
+	}
+
+	public SemestreNiveau[] getSemestreNiveau() {
+		return semestreNiveau;
+	}
+
+	public void setSemestreNiveau(SemestreNiveau[] semestreNiveau) {
+		this.semestreNiveau = semestreNiveau;
+	}
 }

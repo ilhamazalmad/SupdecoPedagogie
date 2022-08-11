@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "optionn")
+@Table(name = "option")
 public class Option implements Serializable{
-	   private int id;
+	   public Option() {
+		super();
+	}
+
+	public Option(int id, String codeOption, String titreOption, Collection<OptionAnnee> optionAnnee) {
+		super();
+		this.id = id;
+		this.codeOption = codeOption;
+		this.titreOption = titreOption;
+		this.optionAnnee = optionAnnee;
+	}
+
+	private int id;
 	   private String codeOption;
 	   private String titreOption;
 	   
@@ -65,4 +78,28 @@ public class Option implements Serializable{
 	      if (optionAnnee != null)
 	         optionAnnee.clear();
 	   }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCodeOption() {
+		return codeOption;
+	}
+
+	public void setCodeOption(String codeOption) {
+		this.codeOption = codeOption;
+	}
+
+	public String getTitreOption() {
+		return titreOption;
+	}
+
+	public void setTitreOption(String titreOption) {
+		this.titreOption = titreOption;
+	}
 }

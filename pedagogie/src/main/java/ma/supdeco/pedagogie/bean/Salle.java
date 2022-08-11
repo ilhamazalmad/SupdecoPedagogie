@@ -1,6 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +14,22 @@ import javax.persistence.Table;
 @Table(name = "salle")
 
 public class Salle implements Serializable{
-	   private int codeSalle;
+	   public Salle() {
+		super();
+	}
+
+	public Salle(int codeSalle, String nom, int type, int nbrTables, Collection<Seance> seance,
+			Collection<Numerotation> numerotation) {
+		super();
+		this.codeSalle = codeSalle;
+		this.nom = nom;
+		this.type = type;
+		this.nbrTables = nbrTables;
+		this.seance = seance;
+		this.numerotation = numerotation;
+	}
+
+	private int codeSalle;
 	   private String nom;
 	   private int type;
 	   private int nbrTables;
@@ -118,4 +134,36 @@ public class Salle implements Serializable{
 	      if (numerotation != null)
 	         numerotation.clear();
 	   }
+
+	public int getCodeSalle() {
+		return codeSalle;
+	}
+
+	public void setCodeSalle(int codeSalle) {
+		this.codeSalle = codeSalle;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getNbrTables() {
+		return nbrTables;
+	}
+
+	public void setNbrTables(int nbrTables) {
+		this.nbrTables = nbrTables;
+	}
 }
