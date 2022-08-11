@@ -1,13 +1,24 @@
 package ma.supdeco.pedagogie.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="responsableInscription")
+@Table(name = "responsableInscription")
 
 public class ResponsableInscription {
-	  public ResponsableInscription() {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idResponsable;
+	private String nom;
+
+	public Etudiant[] etudiant;
+
+	public ResponsableInscription() {
 		super();
 	}
 
@@ -17,11 +28,6 @@ public class ResponsableInscription {
 		this.nom = nom;
 		this.etudiant = etudiant;
 	}
-
-	private int idResponsable;
-	   private String nom;
-	   
-	   public Etudiant[] etudiant;
 
 	public int getIdResponsable() {
 		return idResponsable;

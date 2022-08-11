@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -11,8 +12,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "semestre")
 
-public class Semestre implements Serializable{
-	   public Semestre() {
+public class Semestre implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idSemestre;
+	private String codeSemestre;
+	private String titreSemestre;
+
+	public SemestreNiveau[] semestreNiveau;
+
+	public Semestre() {
 		super();
 	}
 
@@ -23,12 +33,6 @@ public class Semestre implements Serializable{
 		this.titreSemestre = titreSemestre;
 		this.semestreNiveau = semestreNiveau;
 	}
-
-	private int idSemestre;
-	   private String codeSemestre;
-	   private String titreSemestre;
-	   
-	   public SemestreNiveau[] semestreNiveau;
 
 	public int getIdSemestre() {
 		return idSemestre;
@@ -61,5 +65,5 @@ public class Semestre implements Serializable{
 	public void setSemestreNiveau(SemestreNiveau[] semestreNiveau) {
 		this.semestreNiveau = semestreNiveau;
 	}
-	
+
 }
