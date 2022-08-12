@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "typeSeance")
-
 public class TypeSeance {
 
 	@Id

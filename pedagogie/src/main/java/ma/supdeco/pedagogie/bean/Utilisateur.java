@@ -1,18 +1,22 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur implements Serializable {
+public class Utilisateur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,76 +26,32 @@ public class Utilisateur implements Serializable {
 	private String motDePasse;
 	private boolean active;
 
-	public java.util.Collection<RoleUtilisateur> roleUtilisateur;
+	@ManyToMany
+	@JoinTable(name = "roleUtilisateur", joinColumns = @JoinColumn(name = "idUtilisateur"), inverseJoinColumns = @JoinColumn(name = "idRole"))
+	public List<Role> roles = new ArrayList<>();
 
 	public Utilisateur() {
 		super();
 	}
 
 	public Utilisateur(int idUtilisateur, String nom, String prenom, String motDePasse, boolean active,
-			Collection<RoleUtilisateur> roleUtilisateur) {
+			List<Role> roles) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.motDePasse = motDePasse;
 		this.active = active;
-		this.roleUtilisateur = roleUtilisateur;
+		this.roles = roles;
 	}
 
-	/** @pdGenerated default getter */
-	public java.util.Collection<RoleUtilisateur> getRoleUtilisateur() {
-		if (roleUtilisateur == null)
-			roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
-		return roleUtilisateur;
-	}
-
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorRoleUtilisateur() {
-		if (roleUtilisateur == null)
-			roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
-		return roleUtilisateur.iterator();
-	}
-
-	/**
-	 * @pdGenerated default setter
-	 * @param newRoleUtilisateur
-	 */
-	public void setRoleUtilisateur(java.util.Collection<RoleUtilisateur> newRoleUtilisateur) {
-		removeAllRoleUtilisateur();
-		for (java.util.Iterator iter = newRoleUtilisateur.iterator(); iter.hasNext();)
-			addRoleUtilisateur((RoleUtilisateur) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newRoleUtilisateur
-	 */
-	public void addRoleUtilisateur(RoleUtilisateur newRoleUtilisateur) {
-		if (newRoleUtilisateur == null)
-			return;
-		if (this.roleUtilisateur == null)
-			this.roleUtilisateur = new java.util.HashSet<RoleUtilisateur>();
-		if (!this.roleUtilisateur.contains(newRoleUtilisateur))
-			this.roleUtilisateur.add(newRoleUtilisateur);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldRoleUtilisateur
-	 */
-	public void removeRoleUtilisateur(RoleUtilisateur oldRoleUtilisateur) {
-		if (oldRoleUtilisateur == null)
-			return;
-		if (this.roleUtilisateur != null)
-			if (this.roleUtilisateur.contains(oldRoleUtilisateur))
-				this.roleUtilisateur.remove(oldRoleUtilisateur);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllRoleUtilisateur() {
-		if (roleUtilisateur != null)
-			roleUtilisateur.clear();
+	public Utilisateur(int idUtilisateur, String nom, String prenom, String motDePasse, boolean active) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.motDePasse = motDePasse;
+		this.active = active;
 	}
 
 	public int getIdUtilisateur() {
@@ -132,6 +92,14 @@ public class Utilisateur implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

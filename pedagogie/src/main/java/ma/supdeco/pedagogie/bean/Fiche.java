@@ -11,10 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "fiche")
-public class Fiche implements Serializable {
+public class Fiche {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

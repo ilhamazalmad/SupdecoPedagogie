@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "sousGroupe")
-public class SousGroupe implements Serializable {
+public class SousGroupe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

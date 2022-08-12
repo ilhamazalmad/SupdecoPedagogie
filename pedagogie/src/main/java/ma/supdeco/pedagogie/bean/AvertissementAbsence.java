@@ -9,10 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "avertissementAbsence")
-public class AvertissementAbsence implements Serializable {
+public class AvertissementAbsence {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

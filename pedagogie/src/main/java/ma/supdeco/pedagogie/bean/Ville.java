@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ville")
-public class Ville implements Serializable {
+public class Ville {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

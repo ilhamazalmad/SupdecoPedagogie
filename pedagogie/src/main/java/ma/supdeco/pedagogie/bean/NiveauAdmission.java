@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "niveauAdmission")
-
 public class NiveauAdmission {
 
 	@Id

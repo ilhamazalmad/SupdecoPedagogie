@@ -8,7 +8,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "responsableInscription")
-
 public class ResponsableInscription {
 
 	@Id

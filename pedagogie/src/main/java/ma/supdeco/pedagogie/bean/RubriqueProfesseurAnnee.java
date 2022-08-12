@@ -8,7 +8,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rubriqueProfesseurAnnee")
-
 public class RubriqueProfesseurAnnee {
 
 	@Id

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rubriqueProfesseur")
-public class RubriqueProfesseur implements Serializable {
+public class RubriqueProfesseur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

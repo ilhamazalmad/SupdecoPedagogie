@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "mention")
-
 public class Mention {
 
 	@Id

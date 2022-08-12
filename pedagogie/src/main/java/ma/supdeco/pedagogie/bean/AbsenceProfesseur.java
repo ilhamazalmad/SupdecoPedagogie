@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "absenceProfesseur")
-public class AbsenceProfesseur implements Serializable {
+public class AbsenceProfesseur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

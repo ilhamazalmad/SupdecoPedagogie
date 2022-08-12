@@ -1,7 +1,7 @@
 package ma.supdeco.pedagogie.bean;
 
 import java.io.Serializable;
-
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "arretCours")
-public class ArretCours implements Serializable {
+public class ArretCours {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
