@@ -1,6 +1,5 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "absenceEtudiant")
-public class AbsenceEtudiant implements Serializable {
+public class AbsenceEtudiant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,34 +19,29 @@ public class AbsenceEtudiant implements Serializable {
 	private boolean justifiee;
 	private String cause1;
 	private String cause2;
-	private int idEtudiant;
-	private int codeFiche;
+
+	@ManyToOne
+	@JoinColumn(name = "idEtudiant", nullable = false)
+	private EtudiantAnnee etudiant;
+
+	@ManyToOne
+	@JoinColumn(name = "codeFiche", nullable = false)
+	private Fiche fiche;
 
 	public AbsenceEtudiant() {
 		super();
 	}
 
-	public AbsenceEtudiant(boolean absent, boolean justifiee, String cause1, String cause2, int idEtudiant,
-			int codeFiche) {
-		super();
-		this.absent = absent;
-		this.justifiee = justifiee;
-		this.cause1 = cause1;
-		this.cause2 = cause2;
-		this.idEtudiant = idEtudiant;
-		this.codeFiche = codeFiche;
-	}
-
 	public AbsenceEtudiant(int idAbsence, boolean absent, boolean justifiee, String cause1, String cause2,
-			int idEtudiant, int codeFiche) {
+			EtudiantAnnee etudiant, Fiche fiche) {
 		super();
 		this.idAbsence = idAbsence;
 		this.absent = absent;
 		this.justifiee = justifiee;
 		this.cause1 = cause1;
 		this.cause2 = cause2;
-		this.idEtudiant = idEtudiant;
-		this.codeFiche = codeFiche;
+		this.etudiant = etudiant;
+		this.fiche = fiche;
 	}
 
 	public int getIdAbsence() {
@@ -90,27 +84,20 @@ public class AbsenceEtudiant implements Serializable {
 		this.cause2 = cause2;
 	}
 
-	public int getIdEtudiant() {
-		return idEtudiant;
+	public EtudiantAnnee getEtudiant() {
+		return etudiant;
 	}
 
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
+	public void setEtudiant(EtudiantAnnee etudiant) {
+		this.etudiant = etudiant;
 	}
 
-	public int getCodeFiche() {
-		return codeFiche;
+	public Fiche getFiche() {
+		return fiche;
 	}
 
-	public void setCodeFiche(int codeFiche) {
-		this.codeFiche = codeFiche;
-	}
-
-	@Override
-	public String toString() {
-		return "AbsenceEtudiant [idAbsence=" + idAbsence + ", absent=" + absent + ", justifiee=" + justifiee
-				+ ", cause1=" + cause1 + ", cause2=" + cause2 + ", idEtudiant=" + idEtudiant + ", codeFiche="
-				+ codeFiche + "]";
+	public void setFiche(Fiche fiche) {
+		this.fiche = fiche;
 	}
 
 }

@@ -12,26 +12,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
+
 @Entity
 @Table(name = "fiche")
-public class Fiche implements Serializable {
+public class Fiche {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codeFiche;
 	private String message;
 	private Date dateFiche;
+	private Boolean absenceProf;
 
 	public Fiche() {
 		super();
 	}
 
-	public Fiche(int codeFiche, String message, Date dateFiche) {
+	public Fiche(int codeFiche, String message, Date dateFiche, Boolean absenceProf) {
 		super();
 		this.codeFiche = codeFiche;
 		this.message = message;
 		this.dateFiche = dateFiche;
-	}
+		this.absenceProf = absenceProf;
+	}	
 
 	public int getCodeFiche() {
 		return codeFiche;
@@ -55,6 +61,14 @@ public class Fiche implements Serializable {
 
 	public void setDateFiche(Date dateFiche) {
 		this.dateFiche = dateFiche;
+	}
+
+	public Boolean getAbsenceProf() {
+		return absenceProf;
+	}
+
+	public void setAbsenceProf(Boolean absenceProf) {
+		this.absenceProf = absenceProf;
 	}
 
 }

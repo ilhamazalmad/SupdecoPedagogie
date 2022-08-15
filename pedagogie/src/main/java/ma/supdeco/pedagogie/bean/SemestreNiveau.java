@@ -1,7 +1,6 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,24 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "module")
-public class Module {
+@Table(name = "semestreNiveau")
+public class SemestreNiveau {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String codeModule;
-	private String nomModule;
+	private int idSemestreNiveau;
 
 	public java.util.Collection<ModuleAnnee> moduleAnnee;
 
-	public Module() {
+	public SemestreNiveau() {
 		super();
 	}
 
-	public Module(String codeModule, String nomModule, Collection<ModuleAnnee> moduleAnnee) {
+	public SemestreNiveau(int idSemestreNiveau, Collection<ModuleAnnee> moduleAnnee) {
 		super();
-		this.codeModule = codeModule;
-		this.nomModule = nomModule;
+		this.idSemestreNiveau = idSemestreNiveau;
 		this.moduleAnnee = moduleAnnee;
 	}
 
@@ -86,19 +83,12 @@ public class Module {
 			moduleAnnee.clear();
 	}
 
-	public String getCodeModule() {
-		return codeModule;
+	public int getIdSemestreNiveau() {
+		return idSemestreNiveau;
 	}
 
-	public void setCodeModule(String codeModule) {
-		this.codeModule = codeModule;
+	public void setIdSemestreNiveau(int idSemestreNiveau) {
+		this.idSemestreNiveau = idSemestreNiveau;
 	}
 
-	public String getNomModule() {
-		return nomModule;
-	}
-
-	public void setNomModule(String nomModule) {
-		this.nomModule = nomModule;
-	}
 }

@@ -1,7 +1,6 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,32 +11,41 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "arretCours")
-public class ArretCours implements Serializable {
+public class ArretCours {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idArret;
 	private Date dateDebut;
 	private Date dateFin;
-	private int motif;
 	private boolean active;
-	private int idEtudiant;
-	private int responsable;
+
+	@ManyToOne
+	@JoinColumn(name = "idMotif", nullable = false)
+	private MotifArret motifArret;
+
+	@ManyToOne
+	@JoinColumn(name = "idEtudiant", nullable = false)
+	private EtudiantAnnee etudiant;
+
+	@ManyToOne
+	@JoinColumn(name = "idUtilisateur", nullable = false)
+	private Utilisateur utilisateur;
 
 	public ArretCours() {
 		super();
 	}
 
-	public ArretCours(int idArret, Date dateDebut, Date dateFin, int motif, boolean active, int idEtudiant,
-			int responsable) {
+	public ArretCours(int idArret, Date dateDebut, Date dateFin, boolean active, MotifArret motifArret,
+			EtudiantAnnee etudiant, Utilisateur utilisateur) {
 		super();
 		this.idArret = idArret;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.motif = motif;
 		this.active = active;
-		this.idEtudiant = idEtudiant;
-		this.responsable = responsable;
+		this.motifArret = motifArret;
+		this.etudiant = etudiant;
+		this.utilisateur = utilisateur;
 	}
 
 	public int getIdArret() {
@@ -64,14 +72,6 @@ public class ArretCours implements Serializable {
 		this.dateFin = dateFin;
 	}
 
-	public int getMotif() {
-		return motif;
-	}
-
-	public void setMotif(int motif) {
-		this.motif = motif;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
@@ -80,19 +80,28 @@ public class ArretCours implements Serializable {
 		this.active = active;
 	}
 
-	public int getIdEtudiant() {
-		return idEtudiant;
+	public MotifArret getMotifArret() {
+		return motifArret;
 	}
 
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
+	public void setMotifArret(MotifArret motifArret) {
+		this.motifArret = motifArret;
 	}
 
-	public int getResponsable() {
-		return responsable;
+	public EtudiantAnnee getEtudiant() {
+		return etudiant;
 	}
 
-	public void setResponsable(int responsable) {
-		this.responsable = responsable;
+	public void setEtudiant(EtudiantAnnee etudiant) {
+		this.etudiant = etudiant;
 	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
 }

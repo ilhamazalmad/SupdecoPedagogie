@@ -1,88 +1,47 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "affectationMatiere")
-
 public class AffectationMatiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAffectation;
 
-	public AffectationMatiere() {
-		super();
-	}
+	@OneToMany(mappedBy = "affecationMatiere", cascade = CascadeType.MERGE)
+	private List<Seance> seances;
 
-	public AffectationMatiere(int idAffectation, Collection<Seance> seance) {
-		super();
-		this.idAffectation = idAffectation;
-		this.seance = seance;
-	}
+	@ManyToOne
+	@JoinColumn(name = "idGroupe", nullable = false)
+	private GroupeAnnee groupeAnnee;
 
-	public java.util.Collection<Seance> seance;
+	@ManyToOne
+	@JoinColumn(name = "idProfesseur", nullable = false)
+	private ProfesseurAnnee professeurAnnee;
 
-	/** @pdGenerated default getter */
-	public java.util.Collection<Seance> getSeance() {
-		if (seance == null)
-			seance = new java.util.HashSet<Seance>();
-		return seance;
-	}
+	@ManyToOne
+	@JoinColumn(name = "idOption", nullable = false)
+	private OptionAnnee optionAnnee;
 
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorSeance() {
-		if (seance == null)
-			seance = new java.util.HashSet<Seance>();
-		return seance.iterator();
-	}
+	@ManyToOne
+	@JoinColumn(name = "idSousGroupe", nullable = false)
+	private SousGroupeAnnee sousGroupeAnnee;
 
-	/**
-	 * @pdGenerated default setter
-	 * @param newSeance
-	 */
-	public void setSeance(java.util.Collection<Seance> newSeance) {
-		removeAllSeance();
-		for (java.util.Iterator iter = newSeance.iterator(); iter.hasNext();)
-			addSeance((Seance) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newSeance
-	 */
-	public void addSeance(Seance newSeance) {
-		if (newSeance == null)
-			return;
-		if (this.seance == null)
-			this.seance = new java.util.HashSet<Seance>();
-		if (!this.seance.contains(newSeance))
-			this.seance.add(newSeance);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldSeance
-	 */
-	public void removeSeance(Seance oldSeance) {
-		if (oldSeance == null)
-			return;
-		if (this.seance != null)
-			if (this.seance.contains(oldSeance))
-				this.seance.remove(oldSeance);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllSeance() {
-		if (seance != null)
-			seance.clear();
-	}
+	@ManyToOne
+	@JoinColumn(name = "idMatiere", nullable = false)
+	private MatiereAnnee matiereAnnee;
 
 	public int getIdAffectation() {
 		return idAffectation;
@@ -91,4 +50,70 @@ public class AffectationMatiere {
 	public void setIdAffectation(int idAffectation) {
 		this.idAffectation = idAffectation;
 	}
+
+	public List<Seance> getSeances() {
+		return seances;
+	}
+
+	public void setSeances(List<Seance> seances) {
+		this.seances = seances;
+	}
+
+	public GroupeAnnee getGroupeAnnee() {
+		return groupeAnnee;
+	}
+
+	public void setGroupeAnnee(GroupeAnnee groupeAnnee) {
+		this.groupeAnnee = groupeAnnee;
+	}
+
+	public ProfesseurAnnee getProfesseurAnnee() {
+		return professeurAnnee;
+	}
+
+	public void setProfesseurAnnee(ProfesseurAnnee professeurAnnee) {
+		this.professeurAnnee = professeurAnnee;
+	}
+
+	public OptionAnnee getOptionAnnee() {
+		return optionAnnee;
+	}
+
+	public void setOptionAnnee(OptionAnnee optionAnnee) {
+		this.optionAnnee = optionAnnee;
+	}
+
+	public SousGroupeAnnee getSousGroupeAnnee() {
+		return sousGroupeAnnee;
+	}
+
+	public void setSousGroupeAnnee(SousGroupeAnnee sousGroupeAnnee) {
+		this.sousGroupeAnnee = sousGroupeAnnee;
+	}
+
+	public MatiereAnnee getMatiereAnnee() {
+		return matiereAnnee;
+	}
+
+	public void setMatiereAnnee(MatiereAnnee matiereAnnee) {
+		this.matiereAnnee = matiereAnnee;
+	}
+
+	public AffectationMatiere(int idAffectation, List<Seance> seances, GroupeAnnee groupeAnnee,
+			ProfesseurAnnee professeurAnnee, OptionAnnee optionAnnee, SousGroupeAnnee sousGroupeAnnee,
+			MatiereAnnee matiereAnnee) {
+		super();
+		this.idAffectation = idAffectation;
+		this.seances = seances;
+		this.groupeAnnee = groupeAnnee;
+		this.professeurAnnee = professeurAnnee;
+		this.optionAnnee = optionAnnee;
+		this.sousGroupeAnnee = sousGroupeAnnee;
+		this.matiereAnnee = matiereAnnee;
+	}
+
+	public AffectationMatiere() {
+		super();
+	}
+
 }

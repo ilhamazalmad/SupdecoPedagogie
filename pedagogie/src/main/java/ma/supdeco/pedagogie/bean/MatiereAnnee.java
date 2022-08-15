@@ -1,7 +1,6 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,32 +9,90 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "session")
-public class Session {
+@Table(name = "matiereAnnee")
+public class MatiereAnnee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSession;
-	private String session;
-	private boolean active;
+	private int idMatiereAnnee;
+	private String codeMatiere;
 
+	public java.util.Collection<Controle> controle;
 	public java.util.Collection<Examen> examen;
 	public java.util.Collection<Rachetage> rachetage;
+	public java.util.Collection<AffectationMatiere> affectationMatiere;
 	public java.util.Collection<Numerotation> numerotation;
 
-	public Session() {
+	public MatiereAnnee() {
 		super();
 	}
 
-	public Session(int idSession, String session, boolean active, Collection<Examen> examen,
-			Collection<Rachetage> rachetage, Collection<Numerotation> numerotation) {
+	public MatiereAnnee(int idMatiereAnnee, String codeMatiere, Collection<Controle> controle,
+			Collection<Examen> examen, Collection<Rachetage> rachetage,
+			Collection<AffectationMatiere> affectationMatiere, Collection<Numerotation> numerotation) {
 		super();
-		this.idSession = idSession;
-		this.session = session;
-		this.active = active;
+		this.idMatiereAnnee = idMatiereAnnee;
+		this.codeMatiere = codeMatiere;
+		this.controle = controle;
 		this.examen = examen;
 		this.rachetage = rachetage;
+		this.affectationMatiere = affectationMatiere;
 		this.numerotation = numerotation;
+	}
+
+	/** @pdGenerated default getter */
+	public java.util.Collection<Controle> getControle() {
+		if (controle == null)
+			controle = new java.util.HashSet<Controle>();
+		return controle;
+	}
+
+	/** @pdGenerated default iterator getter */
+	public java.util.Iterator getIteratorControle() {
+		if (controle == null)
+			controle = new java.util.HashSet<Controle>();
+		return controle.iterator();
+	}
+
+	/**
+	 * @pdGenerated default setter
+	 * @param newControle
+	 */
+	public void setControle(java.util.Collection<Controle> newControle) {
+		removeAllControle();
+		for (java.util.Iterator iter = newControle.iterator(); iter.hasNext();)
+			addControle((Controle) iter.next());
+	}
+
+	/**
+	 * @pdGenerated default add
+	 * @param newControle
+	 */
+	public void addControle(Controle newControle) {
+		if (newControle == null)
+			return;
+		if (this.controle == null)
+			this.controle = new java.util.HashSet<Controle>();
+		if (!this.controle.contains(newControle))
+			this.controle.add(newControle);
+	}
+
+	/**
+	 * @pdGenerated default remove
+	 * @param oldControle
+	 */
+	public void removeControle(Controle oldControle) {
+		if (oldControle == null)
+			return;
+		if (this.controle != null)
+			if (this.controle.contains(oldControle))
+				this.controle.remove(oldControle);
+	}
+
+	/** @pdGenerated default removeAll */
+	public void removeAllControle() {
+		if (controle != null)
+			controle.clear();
 	}
 
 	/** @pdGenerated default getter */
@@ -149,6 +206,61 @@ public class Session {
 	}
 
 	/** @pdGenerated default getter */
+	public java.util.Collection<AffectationMatiere> getAffectationMatiere() {
+		if (affectationMatiere == null)
+			affectationMatiere = new java.util.HashSet<AffectationMatiere>();
+		return affectationMatiere;
+	}
+
+	/** @pdGenerated default iterator getter */
+	public java.util.Iterator getIteratorAffectationMatiere() {
+		if (affectationMatiere == null)
+			affectationMatiere = new java.util.HashSet<AffectationMatiere>();
+		return affectationMatiere.iterator();
+	}
+
+	/**
+	 * @pdGenerated default setter
+	 * @param newAffectationMatiere
+	 */
+	public void setAffectationMatiere(java.util.Collection<AffectationMatiere> newAffectationMatiere) {
+		removeAllAffectationMatiere();
+		for (java.util.Iterator iter = newAffectationMatiere.iterator(); iter.hasNext();)
+			addAffectationMatiere((AffectationMatiere) iter.next());
+	}
+
+	/**
+	 * @pdGenerated default add
+	 * @param newAffectationMatiere
+	 */
+	public void addAffectationMatiere(AffectationMatiere newAffectationMatiere) {
+		if (newAffectationMatiere == null)
+			return;
+		if (this.affectationMatiere == null)
+			this.affectationMatiere = new java.util.HashSet<AffectationMatiere>();
+		if (!this.affectationMatiere.contains(newAffectationMatiere))
+			this.affectationMatiere.add(newAffectationMatiere);
+	}
+
+	/**
+	 * @pdGenerated default remove
+	 * @param oldAffectationMatiere
+	 */
+	public void removeAffectationMatiere(AffectationMatiere oldAffectationMatiere) {
+		if (oldAffectationMatiere == null)
+			return;
+		if (this.affectationMatiere != null)
+			if (this.affectationMatiere.contains(oldAffectationMatiere))
+				this.affectationMatiere.remove(oldAffectationMatiere);
+	}
+
+	/** @pdGenerated default removeAll */
+	public void removeAllAffectationMatiere() {
+		if (affectationMatiere != null)
+			affectationMatiere.clear();
+	}
+
+	/** @pdGenerated default getter */
 	public java.util.Collection<Numerotation> getNumerotation() {
 		if (numerotation == null)
 			numerotation = new java.util.HashSet<Numerotation>();
@@ -203,28 +315,20 @@ public class Session {
 			numerotation.clear();
 	}
 
-	public int getIdSession() {
-		return idSession;
+	public int getIdMatiereAnnee() {
+		return idMatiereAnnee;
 	}
 
-	public void setIdSession(int idSession) {
-		this.idSession = idSession;
+	public void setIdMatiereAnnee(int idMatiereAnnee) {
+		this.idMatiereAnnee = idMatiereAnnee;
 	}
 
-	public String getSession() {
-		return session;
+	public String getCodeMatiere() {
+		return codeMatiere;
 	}
 
-	public void setSession(String session) {
-		this.session = session;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setCodeMatiere(String codeMatiere) {
+		this.codeMatiere = codeMatiere;
 	}
 
 }

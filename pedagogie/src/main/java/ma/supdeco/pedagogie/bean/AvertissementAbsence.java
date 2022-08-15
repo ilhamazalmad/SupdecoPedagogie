@@ -1,7 +1,5 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,17 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "avertissementAbsence")
-public class AvertissementAbsence implements Serializable {
+public class AvertissementAbsence {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAvertissement;
-	private int absAvertissement;
-	private int absConseil;
-	private int absEngage;
 	private boolean avertis;
 	private boolean conseil;
 	private boolean presentConseil;
@@ -28,21 +24,24 @@ public class AvertissementAbsence implements Serializable {
 	private Date dateAvertissement;
 	private Date dateConseil;
 	private Date dateEngagement;
-	private int idEtudiant;
-	private int idSemestre;
+
+	@ManyToOne
+	@JoinColumn(name = "idEtudiant", nullable = false)
+	private EtudiantAnnee etudiantAnnee;
+
+	@ManyToOne
+	@JoinColumn(name = "idSemestre", nullable = false)
+	private SemestreNiveau semestreNiveau;
 
 	public AvertissementAbsence() {
 		super();
 	}
 
-	public AvertissementAbsence(int idAvertissement, int absAvertissement, int absConseil, int absEngage,
-			boolean avertis, boolean conseil, boolean presentConseil, boolean engage, boolean fin,
-			Date dateAvertissement, Date dateConseil, Date dateEngagement, int idEtudiant, int idSemestre) {
+	public AvertissementAbsence(int idAvertissement, boolean avertis, boolean conseil, boolean presentConseil,
+			boolean engage, boolean fin, Date dateAvertissement, Date dateConseil, Date dateEngagement,
+			EtudiantAnnee etudiantAnnee, SemestreNiveau semestreNiveau) {
 		super();
 		this.idAvertissement = idAvertissement;
-		this.absAvertissement = absAvertissement;
-		this.absConseil = absConseil;
-		this.absEngage = absEngage;
 		this.avertis = avertis;
 		this.conseil = conseil;
 		this.presentConseil = presentConseil;
@@ -51,8 +50,8 @@ public class AvertissementAbsence implements Serializable {
 		this.dateAvertissement = dateAvertissement;
 		this.dateConseil = dateConseil;
 		this.dateEngagement = dateEngagement;
-		this.idEtudiant = idEtudiant;
-		this.idSemestre = idSemestre;
+		this.etudiantAnnee = etudiantAnnee;
+		this.semestreNiveau = semestreNiveau;
 	}
 
 	public int getIdAvertissement() {
@@ -61,30 +60,6 @@ public class AvertissementAbsence implements Serializable {
 
 	public void setIdAvertissement(int idAvertissement) {
 		this.idAvertissement = idAvertissement;
-	}
-
-	public int getAbsAvertissement() {
-		return absAvertissement;
-	}
-
-	public void setAbsAvertissement(int absAvertissement) {
-		this.absAvertissement = absAvertissement;
-	}
-
-	public int getAbsConseil() {
-		return absConseil;
-	}
-
-	public void setAbsConseil(int absConseil) {
-		this.absConseil = absConseil;
-	}
-
-	public int getAbsEngage() {
-		return absEngage;
-	}
-
-	public void setAbsEngage(int absEngage) {
-		this.absEngage = absEngage;
 	}
 
 	public boolean isAvertis() {
@@ -151,20 +126,20 @@ public class AvertissementAbsence implements Serializable {
 		this.dateEngagement = dateEngagement;
 	}
 
-	public int getIdEtudiant() {
-		return idEtudiant;
+	public EtudiantAnnee getEtudiantAnnee() {
+		return etudiantAnnee;
 	}
 
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
+	public void setEtudiantAnnee(EtudiantAnnee etudiantAnnee) {
+		this.etudiantAnnee = etudiantAnnee;
 	}
 
-	public int getIdSemestre() {
-		return idSemestre;
+	public SemestreNiveau getSemestreNiveau() {
+		return semestreNiveau;
 	}
 
-	public void setIdSemestre(int idSemestre) {
-		this.idSemestre = idSemestre;
+	public void setSemestreNiveau(SemestreNiveau semestreNiveau) {
+		this.semestreNiveau = semestreNiveau;
 	}
 
 }

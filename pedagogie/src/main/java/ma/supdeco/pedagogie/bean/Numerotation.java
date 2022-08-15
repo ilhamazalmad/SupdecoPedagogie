@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "numerotation")
-public class Numerotation implements Serializable {
+public class Numerotation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "jour")
-
 public class Jour {
 
 	@Id

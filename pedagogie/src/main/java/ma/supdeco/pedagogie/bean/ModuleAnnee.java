@@ -1,7 +1,6 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,24 +9,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "matiere")
-public class Matiere {
+@Table(name = "moduleAnnee")
+public class ModuleAnnee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String codeMatiere;
-	private String titreMatiere;
+	private int idModuleAnnee;
+	private String codeModule;
 
 	public java.util.Collection<MatiereAnnee> matiereAnnee;
 
-	public Matiere() {
+	public ModuleAnnee() {
 		super();
 	}
 
-	public Matiere(String codeMatiere, String titreMatiere, Collection<MatiereAnnee> matiereAnnee) {
+	public ModuleAnnee(int idModuleAnnee, String codeModule, Collection<MatiereAnnee> matiereAnnee) {
 		super();
-		this.codeMatiere = codeMatiere;
-		this.titreMatiere = titreMatiere;
+		this.idModuleAnnee = idModuleAnnee;
+		this.codeModule = codeModule;
 		this.matiereAnnee = matiereAnnee;
 	}
 
@@ -86,19 +85,20 @@ public class Matiere {
 			matiereAnnee.clear();
 	}
 
-	public String getCodeMatiere() {
-		return codeMatiere;
+	public int getIdModuleAnnee() {
+		return idModuleAnnee;
 	}
 
-	public void setCodeMatiere(String codeMatiere) {
-		this.codeMatiere = codeMatiere;
+	public void setIdModuleAnnee(int idModuleAnnee) {
+		this.idModuleAnnee = idModuleAnnee;
 	}
 
-	public String getTitreMatiere() {
-		return titreMatiere;
+	public String getCodeModule() {
+		return codeModule;
 	}
 
-	public void setTitreMatiere(String titreMatiere) {
-		this.titreMatiere = titreMatiere;
+	public void setCodeModule(String codeModule) {
+		this.codeModule = codeModule;
 	}
+
 }
