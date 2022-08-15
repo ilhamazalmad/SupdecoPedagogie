@@ -3,10 +3,14 @@ package ma.supdeco.pedagogie.bean;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
@@ -33,27 +37,77 @@ public class Etudiant {
 	private Date dateInscription;
 	private String situation;
 	private int anneeBac;
-	private String lyceeBac;
-	private String typeLycee;
-	private String specialiteDiplome;
 	private int anneeDiplome;
-	private String etablissementDiplome;
-	private String typeEtablissement;
 	private boolean boursier;
 	private boolean resident;
 	private boolean handicape;
 	private boolean fonctionnaire;
+	private String documentsFournis;
 	private String posteOccupe;
+	private Date dateDepart;
 
-	public EtudiantAnnee[] etudiantAnnee;
-	public java.util.Collection<Tuteur> tuteur;
+	@OneToMany(mappedBy="etudiant",cascade = CascadeType.MERGE)
+	private EtudiantAnnee etudiantAnnee;
+	
+	@OneToMany(mappedBy="etudiant",cascade = CascadeType.MERGE)
+	private List<Tuteur> tuteur;
+
+	@ManyToOne
+	@JoinColumn(name="idSession", nullable=false)
+	private Mois Session;
+	
+	@ManyToOne
+	@JoinColumn(name="idNiveauAdmission", nullable=false)
+	private NiveauAdmission niveauAdmission;
+	
+	@ManyToOne
+	@JoinColumn(name="idResponsable", nullable=false)
+	private ResponsableInscription responsableInscription;
+	
+	@ManyToOne
+	@JoinColumn(name="idMentionBac", nullable=false)
+	private Mention mentionBac;
+	
+	@ManyToOne
+	@JoinColumn(name="idMentionDiplome", nullable=true)
+	private Mention mentionDiplome;
+	
+	@ManyToOne
+	@JoinColumn(name="idVilleNaissance", nullable=false)
+	private Ville villeNaissance;
+	
+	@ManyToOne
+	@JoinColumn(name="idVille", nullable=false)
+	private Ville ville;
+	
+	@ManyToOne
+	@JoinColumn(name="IdlyceeBac", nullable=false)
+	private Lycee lyceeBac;
+	
+	@ManyToOne
+	@JoinColumn(name="idEtablissementDiplome", nullable=true)
+	private Etablissement etablissementDiplome;
+	
+	@ManyToOne
+	@JoinColumn(name="idSerieBac", nullable=false)
+	private SerieBac serieBac;
+	
+	@ManyToOne
+	@JoinColumn(name="idSpecialiteDiplome", nullable=true)
+	private SpecialiteDiplome specialiteDiplome;
+
+	public Etudiant() {
+		super();
+	}
 
 	public Etudiant(int ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
 			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance,
-			int lieuDeNaissance, Date dateInscription, String situation, int anneeBac, String lyceeBac,
-			String typeLycee, String specialiteDiplome, int anneeDiplome, String etablissementDiplome,
-			String typeEtablissement, boolean boursier, boolean resident, boolean handicape, boolean fonctionnaire,
-			String posteOccupe, EtudiantAnnee[] etudiantAnnee, Collection<Tuteur> tuteur) {
+			int lieuDeNaissance, Date dateInscription, String situation, int anneeBac, int anneeDiplome,
+			boolean boursier, boolean resident, boolean handicape, boolean fonctionnaire, String documentsFournis,
+			String posteOccupe, Date dateDepart, EtudiantAnnee etudiantAnnee, List<Tuteur> tuteur, Mois session,
+			NiveauAdmission niveauAdmission, ResponsableInscription responsableInscription, Mention mentionBac,
+			Mention mentionDiplome, Ville villeNaissance, Ville ville, Lycee lyceeBac,
+			Etablissement etablissementDiplome, SerieBac serieBac, SpecialiteDiplome specialiteDiplome) {
 		super();
 		this.ins = ins;
 		this.nom = nom;
@@ -71,78 +125,27 @@ public class Etudiant {
 		this.dateInscription = dateInscription;
 		this.situation = situation;
 		this.anneeBac = anneeBac;
-		this.lyceeBac = lyceeBac;
-		this.typeLycee = typeLycee;
-		this.specialiteDiplome = specialiteDiplome;
 		this.anneeDiplome = anneeDiplome;
-		this.etablissementDiplome = etablissementDiplome;
-		this.typeEtablissement = typeEtablissement;
 		this.boursier = boursier;
 		this.resident = resident;
 		this.handicape = handicape;
 		this.fonctionnaire = fonctionnaire;
+		this.documentsFournis = documentsFournis;
 		this.posteOccupe = posteOccupe;
+		this.dateDepart = dateDepart;
 		this.etudiantAnnee = etudiantAnnee;
 		this.tuteur = tuteur;
-	}
-
-	public Etudiant() {
-		super();
-	}
-
-	/** @pdGenerated default getter */
-	public java.util.Collection<Tuteur> getTuteur() {
-		if (tuteur == null)
-			tuteur = new java.util.HashSet<Tuteur>();
-		return tuteur;
-	}
-
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorTuteur() {
-		if (tuteur == null)
-			tuteur = new java.util.HashSet<Tuteur>();
-		return tuteur.iterator();
-	}
-
-	/**
-	 * @pdGenerated default setter
-	 * @param newTuteur
-	 */
-	public void setTuteur(java.util.Collection<Tuteur> newTuteur) {
-		removeAllTuteur();
-		for (java.util.Iterator iter = newTuteur.iterator(); iter.hasNext();)
-			addTuteur((Tuteur) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newTuteur
-	 */
-	public void addTuteur(Tuteur newTuteur) {
-		if (newTuteur == null)
-			return;
-		if (this.tuteur == null)
-			this.tuteur = new java.util.HashSet<Tuteur>();
-		if (!this.tuteur.contains(newTuteur))
-			this.tuteur.add(newTuteur);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldTuteur
-	 */
-	public void removeTuteur(Tuteur oldTuteur) {
-		if (oldTuteur == null)
-			return;
-		if (this.tuteur != null)
-			if (this.tuteur.contains(oldTuteur))
-				this.tuteur.remove(oldTuteur);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllTuteur() {
-		if (tuteur != null)
-			tuteur.clear();
+		Session = session;
+		this.niveauAdmission = niveauAdmission;
+		this.responsableInscription = responsableInscription;
+		this.mentionBac = mentionBac;
+		this.mentionDiplome = mentionDiplome;
+		this.villeNaissance = villeNaissance;
+		this.ville = ville;
+		this.lyceeBac = lyceeBac;
+		this.etablissementDiplome = etablissementDiplome;
+		this.serieBac = serieBac;
+		this.specialiteDiplome = specialiteDiplome;
 	}
 
 	public int getIns() {
@@ -273,52 +276,12 @@ public class Etudiant {
 		this.anneeBac = anneeBac;
 	}
 
-	public String getLyceeBac() {
-		return lyceeBac;
-	}
-
-	public void setLyceeBac(String lyceeBac) {
-		this.lyceeBac = lyceeBac;
-	}
-
-	public String getTypeLycee() {
-		return typeLycee;
-	}
-
-	public void setTypeLycee(String typeLycee) {
-		this.typeLycee = typeLycee;
-	}
-
-	public String getSpecialiteDiplome() {
-		return specialiteDiplome;
-	}
-
-	public void setSpecialiteDiplome(String specialiteDiplome) {
-		this.specialiteDiplome = specialiteDiplome;
-	}
-
 	public int getAnneeDiplome() {
 		return anneeDiplome;
 	}
 
 	public void setAnneeDiplome(int anneeDiplome) {
 		this.anneeDiplome = anneeDiplome;
-	}
-
-	public String getEtablissementDiplome() {
-		return etablissementDiplome;
-	}
-
-	public void setEtablissementDiplome(String etablissementDiplome) {
-		this.etablissementDiplome = etablissementDiplome;
-	}
-
-	public String getTypeEtablissement() {
-		return typeEtablissement;
-	}
-
-	public void setTypeEtablissement(String typeEtablissement) {
-		this.typeEtablissement = typeEtablissement;
 	}
 
 	public boolean isBoursier() {
@@ -353,6 +316,14 @@ public class Etudiant {
 		this.fonctionnaire = fonctionnaire;
 	}
 
+	public String getDocumentsFournis() {
+		return documentsFournis;
+	}
+
+	public void setDocumentsFournis(String documentsFournis) {
+		this.documentsFournis = documentsFournis;
+	}
+
 	public String getPosteOccupe() {
 		return posteOccupe;
 	}
@@ -361,11 +332,121 @@ public class Etudiant {
 		this.posteOccupe = posteOccupe;
 	}
 
-	public EtudiantAnnee[] getEtudiantAnnee() {
+	public Date getDateDepart() {
+		return dateDepart;
+	}
+
+	public void setDateDepart(Date dateDepart) {
+		this.dateDepart = dateDepart;
+	}
+
+	public EtudiantAnnee getEtudiantAnnee() {
 		return etudiantAnnee;
 	}
 
-	public void setEtudiantAnnee(EtudiantAnnee[] etudiantAnnee) {
+	public void setEtudiantAnnee(EtudiantAnnee etudiantAnnee) {
 		this.etudiantAnnee = etudiantAnnee;
 	}
+
+	public List<Tuteur> getTuteur() {
+		return tuteur;
+	}
+
+	public void setTuteur(List<Tuteur> tuteur) {
+		this.tuteur = tuteur;
+	}
+
+	public Mois getSession() {
+		return Session;
+	}
+
+	public void setSession(Mois session) {
+		Session = session;
+	}
+
+	public NiveauAdmission getNiveauAdmission() {
+		return niveauAdmission;
+	}
+
+	public void setNiveauAdmission(NiveauAdmission niveauAdmission) {
+		this.niveauAdmission = niveauAdmission;
+	}
+
+	public ResponsableInscription getResponsableInscription() {
+		return responsableInscription;
+	}
+
+	public void setResponsableInscription(ResponsableInscription responsableInscription) {
+		this.responsableInscription = responsableInscription;
+	}
+
+	public Mention getMentionBac() {
+		return mentionBac;
+	}
+
+	public void setMentionBac(Mention mentionBac) {
+		this.mentionBac = mentionBac;
+	}
+
+	public Mention getMentionDiplome() {
+		return mentionDiplome;
+	}
+
+	public void setMentionDiplome(Mention mentionDiplome) {
+		this.mentionDiplome = mentionDiplome;
+	}
+
+	public Ville getVilleNaissance() {
+		return villeNaissance;
+	}
+
+	public void setVilleNaissance(Ville villeNaissance) {
+		this.villeNaissance = villeNaissance;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public Lycee getLyceeBac() {
+		return lyceeBac;
+	}
+
+	public void setLyceeBac(Lycee lyceeBac) {
+		this.lyceeBac = lyceeBac;
+	}
+
+	public Etablissement getEtablissementDiplome() {
+		return etablissementDiplome;
+	}
+
+	public void setEtablissementDiplome(Etablissement etablissementDiplome) {
+		this.etablissementDiplome = etablissementDiplome;
+	}
+
+	public SerieBac getSerieBac() {
+		return serieBac;
+	}
+
+	public void setSerieBac(SerieBac serieBac) {
+		this.serieBac = serieBac;
+	}
+
+	public SpecialiteDiplome getSpecialiteDiplome() {
+		return specialiteDiplome;
+	}
+
+	public void setSpecialiteDiplome(SpecialiteDiplome specialiteDiplome) {
+		this.specialiteDiplome = specialiteDiplome;
+	}
+	
+	
+
+	
+	
+
 }
