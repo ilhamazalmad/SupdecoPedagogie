@@ -1,12 +1,13 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,72 +19,18 @@ public class Matiere {
 	private String codeMatiere;
 	private String titreMatiere;
 
-	public java.util.Collection<MatiereAnnee> matiereAnnee;
+	@OneToMany(mappedBy = "matiere", cascade = CascadeType.MERGE)
+	private List<MatiereAnnee> matiereAnnee;
 
 	public Matiere() {
 		super();
 	}
 
-	public Matiere(String codeMatiere, String titreMatiere, Collection<MatiereAnnee> matiereAnnee) {
+	public Matiere(String codeMatiere, String titreMatiere, List<MatiereAnnee> matiereAnnee) {
 		super();
 		this.codeMatiere = codeMatiere;
 		this.titreMatiere = titreMatiere;
 		this.matiereAnnee = matiereAnnee;
-	}
-
-	/** @pdGenerated default getter */
-	public java.util.Collection<MatiereAnnee> getMatiereAnnee() {
-		if (matiereAnnee == null)
-			matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		return matiereAnnee;
-	}
-
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorMatiereAnnee() {
-		if (matiereAnnee == null)
-			matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		return matiereAnnee.iterator();
-	}
-
-	/**
-	 * @pdGenerated default setter
-	 * @param newMatiereAnnee
-	 */
-	public void setMatiereAnnee(java.util.Collection<MatiereAnnee> newMatiereAnnee) {
-		removeAllMatiereAnnee();
-		for (java.util.Iterator iter = newMatiereAnnee.iterator(); iter.hasNext();)
-			addMatiereAnnee((MatiereAnnee) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newMatiereAnnee
-	 */
-	public void addMatiereAnnee(MatiereAnnee newMatiereAnnee) {
-		if (newMatiereAnnee == null)
-			return;
-		if (this.matiereAnnee == null)
-			this.matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		if (!this.matiereAnnee.contains(newMatiereAnnee))
-			this.matiereAnnee.add(newMatiereAnnee);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldMatiereAnnee
-	 */
-	public void removeMatiereAnnee(MatiereAnnee oldMatiereAnnee) {
-		if (oldMatiereAnnee == null)
-			return;
-		if (this.matiereAnnee != null)
-			if (this.matiereAnnee.contains(oldMatiereAnnee))
-				this.matiereAnnee.remove(oldMatiereAnnee);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllMatiereAnnee() {
-		if (matiereAnnee != null)
-			matiereAnnee.clear();
 	}
 
 	public String getCodeMatiere() {
@@ -101,4 +48,13 @@ public class Matiere {
 	public void setTitreMatiere(String titreMatiere) {
 		this.titreMatiere = titreMatiere;
 	}
+
+	public List<MatiereAnnee> getMatiereAnnee() {
+		return matiereAnnee;
+	}
+
+	public void setMatiereAnnee(List<MatiereAnnee> matiereAnnee) {
+		this.matiereAnnee = matiereAnnee;
+	}
+
 }

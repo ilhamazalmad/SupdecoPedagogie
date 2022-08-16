@@ -1,8 +1,5 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,16 +19,32 @@ public class Examen {
 	private boolean absence;
 	private boolean fraude;
 
+	@ManyToOne
+	@JoinColumn(name = "idEtudiant", nullable = false)
+	private Etudiant etudiant;
+
+	@ManyToOne
+	@JoinColumn(name = "idMatiere", nullable = false)
+	private MatiereAnnee matiereAnnee;
+
+	@ManyToOne
+	@JoinColumn(name = "idSession", nullable = false)
+	private Session session;
+
 	public Examen() {
 		super();
 	}
 
-	public Examen(int idExamen, float noteExamen, boolean absence, boolean fraude) {
+	public Examen(int idExamen, float noteExamen, boolean absence, boolean fraude, Etudiant etudiant,
+			MatiereAnnee matiereAnnee, Session session) {
 		super();
 		this.idExamen = idExamen;
 		this.noteExamen = noteExamen;
 		this.absence = absence;
 		this.fraude = fraude;
+		this.etudiant = etudiant;
+		this.matiereAnnee = matiereAnnee;
+		this.session = session;
 	}
 
 	public int getIdExamen() {
@@ -65,4 +78,29 @@ public class Examen {
 	public void setFraude(boolean fraude) {
 		this.fraude = fraude;
 	}
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
+	}
+
+	public MatiereAnnee getMatiereAnnee() {
+		return matiereAnnee;
+	}
+
+	public void setMatiereAnnee(MatiereAnnee matiereAnnee) {
+		this.matiereAnnee = matiereAnnee;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
 }

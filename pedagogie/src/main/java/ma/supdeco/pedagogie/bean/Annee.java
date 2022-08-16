@@ -21,28 +21,28 @@ public class Annee {
 	private boolean active;
 
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<ProfesseurAnnee> professeurAnnees;
+	private List<ProfesseurAnnee> professeurAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<EtudiantAnnee> etudiantAnnees;
+	private List<EtudiantAnnee> etudiantAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<GroupeAnnee> groupeAnnees;
+	private List<GroupeAnnee> groupeAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<SousGroupeAnnee> sousGroupeAnnees;
+	private List<SousGroupeAnnee> sousGroupeAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<OptionAnnee> optionAnnees;
+	private List<OptionAnnee> optionAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<ModuleAnnee> moduleAnnees;
+	private List<ModuleAnnee> moduleAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<MatiereAnnee> matiereAnnees;
+	private List<MatiereAnnee> matiereAnnees;
 	
 	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	public List<SurveillantAnnee> surveillantsAnnees;
+	private List<SurveillantAnnee> surveillantsAnnees;
 
 	
 	

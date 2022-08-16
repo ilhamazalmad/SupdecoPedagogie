@@ -1,8 +1,8 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -27,17 +25,27 @@ public class Fiche {
 	private Date dateFiche;
 	private Boolean absenceProf;
 
+	@ManyToOne
+	@JoinColumn(name = "idSeance", nullable = false)
+	private Seance seance;
+
+	@OneToMany(mappedBy = "fiche", cascade = CascadeType.MERGE)
+	private List<AbsenceEtudiant> absenceEtudiants;
+
 	public Fiche() {
 		super();
 	}
 
-	public Fiche(int codeFiche, String message, Date dateFiche, Boolean absenceProf) {
+	public Fiche(int codeFiche, String message, Date dateFiche, Boolean absenceProf, Seance seance,
+			List<AbsenceEtudiant> absenceEtudiants) {
 		super();
 		this.codeFiche = codeFiche;
 		this.message = message;
 		this.dateFiche = dateFiche;
 		this.absenceProf = absenceProf;
-	}	
+		this.seance = seance;
+		this.absenceEtudiants = absenceEtudiants;
+	}
 
 	public int getCodeFiche() {
 		return codeFiche;
@@ -69,6 +77,22 @@ public class Fiche {
 
 	public void setAbsenceProf(Boolean absenceProf) {
 		this.absenceProf = absenceProf;
+	}
+
+	public Seance getSeance() {
+		return seance;
+	}
+
+	public void setSeance(Seance seance) {
+		this.seance = seance;
+	}
+
+	public List<AbsenceEtudiant> getAbsenceEtudiants() {
+		return absenceEtudiants;
+	}
+
+	public void setAbsenceEtudiants(List<AbsenceEtudiant> absenceEtudiants) {
+		this.absenceEtudiants = absenceEtudiants;
 	}
 
 }

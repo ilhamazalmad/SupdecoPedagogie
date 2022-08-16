@@ -21,22 +21,25 @@ public class Etablissement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idEtablissement;
 	private String nomEtablissement;
+	private String typeEtablissement;
 
 	@ManyToMany
 	@JoinTable(name = "etablissement_ville", joinColumns = @JoinColumn(name = "idEtablissement"), inverseJoinColumns = @JoinColumn(name = "idVille"))
 	private List<Ville> villes;
 
-	@OneToMany(mappedBy = "etablissement", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "etablissementBac", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
 	public Etablissement() {
 		super();
 	}
 
-	public Etablissement(int idEtablissement, String nomEtablissement, List<Ville> villes, List<Etudiant> etudiants) {
+	public Etablissement(int idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
+			List<Etudiant> etudiants) {
 		super();
 		this.idEtablissement = idEtablissement;
 		this.nomEtablissement = nomEtablissement;
+		this.typeEtablissement = typeEtablissement;
 		this.villes = villes;
 		this.etudiants = etudiants;
 	}
@@ -71,6 +74,14 @@ public class Etablissement {
 
 	public void setEtudiants(List<Etudiant> etudiants) {
 		this.etudiants = etudiants;
+	}
+
+	public String getTypeEtablissement() {
+		return typeEtablissement;
+	}
+
+	public void setTypeEtablissement(String typeEtablissement) {
+		this.typeEtablissement = typeEtablissement;
 	}
 
 }

@@ -1,9 +1,13 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +19,18 @@ public class MotifArret {
 	private int idMotif;
 	private int motifArret;
 
+	@OneToMany(mappedBy = "motifArret", cascade = CascadeType.MERGE)
+	private List<ArretCours> arretsCours;
+
 	public MotifArret() {
 		super();
 	}
 
-	public MotifArret(int idMotif, int motifArret) {
+	public MotifArret(int idMotif, int motifArret, List<ArretCours> arretsCours) {
 		super();
 		this.idMotif = idMotif;
 		this.motifArret = motifArret;
+		this.arretsCours = arretsCours;
 	}
 
 	public int getIdMotif() {
@@ -40,4 +48,13 @@ public class MotifArret {
 	public void setMotifArret(int motifArret) {
 		this.motifArret = motifArret;
 	}
+
+	public List<ArretCours> getArretsCours() {
+		return arretsCours;
+	}
+
+	public void setArretsCours(List<ArretCours> arretsCours) {
+		this.arretsCours = arretsCours;
+	}
+
 }

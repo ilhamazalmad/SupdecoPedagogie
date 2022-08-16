@@ -2,10 +2,14 @@ package ma.supdeco.pedagogie.bean;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,74 +19,34 @@ public class ModuleAnnee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idModuleAnnee;
-	private String codeModule;
 
-	public java.util.Collection<MatiereAnnee> matiereAnnee;
+	@ManyToOne
+	@JoinColumn(name = "idAnnee", nullable = false)
+	private Annee annee;
+
+	@ManyToOne
+	@JoinColumn(name = "idModule", nullable = false)
+	private Module module;
+
+	@ManyToOne
+	@JoinColumn(name = "idSemestre", nullable = false)
+	private SemestreNiveau semestreNiveau;
+
+	@OneToMany(mappedBy = "moduleAnnee", cascade = CascadeType.MERGE)
+	private List<MatiereAnnee> matiereAnnees;
 
 	public ModuleAnnee() {
 		super();
 	}
 
-	public ModuleAnnee(int idModuleAnnee, String codeModule, Collection<MatiereAnnee> matiereAnnee) {
+	public ModuleAnnee(int idModuleAnnee, Annee annee, Module module, SemestreNiveau semestreNiveau,
+			List<MatiereAnnee> matiereAnnees) {
 		super();
 		this.idModuleAnnee = idModuleAnnee;
-		this.codeModule = codeModule;
-		this.matiereAnnee = matiereAnnee;
-	}
-
-	/** @pdGenerated default getter */
-	public java.util.Collection<MatiereAnnee> getMatiereAnnee() {
-		if (matiereAnnee == null)
-			matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		return matiereAnnee;
-	}
-
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorMatiereAnnee() {
-		if (matiereAnnee == null)
-			matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		return matiereAnnee.iterator();
-	}
-
-	/**
-	 * @pdGenerated default setter
-	 * @param newMatiereAnnee
-	 */
-	public void setMatiereAnnee(java.util.Collection<MatiereAnnee> newMatiereAnnee) {
-		removeAllMatiereAnnee();
-		for (java.util.Iterator iter = newMatiereAnnee.iterator(); iter.hasNext();)
-			addMatiereAnnee((MatiereAnnee) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newMatiereAnnee
-	 */
-	public void addMatiereAnnee(MatiereAnnee newMatiereAnnee) {
-		if (newMatiereAnnee == null)
-			return;
-		if (this.matiereAnnee == null)
-			this.matiereAnnee = new java.util.HashSet<MatiereAnnee>();
-		if (!this.matiereAnnee.contains(newMatiereAnnee))
-			this.matiereAnnee.add(newMatiereAnnee);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldMatiereAnnee
-	 */
-	public void removeMatiereAnnee(MatiereAnnee oldMatiereAnnee) {
-		if (oldMatiereAnnee == null)
-			return;
-		if (this.matiereAnnee != null)
-			if (this.matiereAnnee.contains(oldMatiereAnnee))
-				this.matiereAnnee.remove(oldMatiereAnnee);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllMatiereAnnee() {
-		if (matiereAnnee != null)
-			matiereAnnee.clear();
+		this.annee = annee;
+		this.module = module;
+		this.semestreNiveau = semestreNiveau;
+		this.matiereAnnees = matiereAnnees;
 	}
 
 	public int getIdModuleAnnee() {
@@ -93,12 +57,36 @@ public class ModuleAnnee {
 		this.idModuleAnnee = idModuleAnnee;
 	}
 
-	public String getCodeModule() {
-		return codeModule;
+	public Annee getAnnee() {
+		return annee;
 	}
 
-	public void setCodeModule(String codeModule) {
-		this.codeModule = codeModule;
+	public void setAnnee(Annee annee) {
+		this.annee = annee;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	public SemestreNiveau getSemestreNiveau() {
+		return semestreNiveau;
+	}
+
+	public void setSemestreNiveau(SemestreNiveau semestreNiveau) {
+		this.semestreNiveau = semestreNiveau;
+	}
+
+	public List<MatiereAnnee> getMatiereAnnees() {
+		return matiereAnnees;
+	}
+
+	public void setMatiereAnnees(List<MatiereAnnee> matiereAnnees) {
+		this.matiereAnnees = matiereAnnees;
 	}
 
 }

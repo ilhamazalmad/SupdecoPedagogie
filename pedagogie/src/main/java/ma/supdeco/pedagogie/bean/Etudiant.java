@@ -52,7 +52,7 @@ public class Etudiant {
 
 	@ManyToOne
 	@JoinColumn(name = "idSession", nullable = false)
-	private Mois Session;
+	private Mois session;
 
 	@ManyToOne
 	@JoinColumn(name = "idNiveauAdmission", nullable = false)
@@ -133,7 +133,7 @@ public class Etudiant {
 		this.dateDepart = dateDepart;
 		this.etudiantAnnees = etudiantAnnees;
 		this.tuteurs = tuteurs;
-		Session = session;
+		this.session = session;
 		this.niveauAdmission = niveauAdmission;
 		this.responsableInscription = responsableInscription;
 		this.mentionBac = mentionBac;
@@ -355,11 +355,11 @@ public class Etudiant {
 	}
 
 	public Mois getSession() {
-		return Session;
+		return session;
 	}
 
 	public void setSession(Mois session) {
-		Session = session;
+		this.session = session;
 	}
 
 	public NiveauAdmission getNiveauAdmission() {
@@ -441,7 +441,5 @@ public class Etudiant {
 	public void setSpecialiteDiplome(SpecialiteDiplome specialiteDiplome) {
 		this.specialiteDiplome = specialiteDiplome;
 	}
-
-	
 
 }
