@@ -20,7 +20,7 @@ public class Niveau {
 	private String niveau;
 
 	@OneToMany(mappedBy = "niveau", cascade = CascadeType.MERGE)
-	public SemestreNiveau semestreNiveau;
+	public List<SemestreNiveau> semestreNiveaux;
 
 	@OneToMany(mappedBy = "niveau", cascade = CascadeType.MERGE)
 	private List<EtudiantAnnee> etudiantAnnees;
@@ -35,12 +35,12 @@ public class Niveau {
 		super();
 	}
 
-	public Niveau(int idNiveau, String niveau, SemestreNiveau semestreNiveau, List<EtudiantAnnee> etudiantAnnees,
+	public Niveau(int idNiveau, String niveau, List<SemestreNiveau> semestreNiveaux, List<EtudiantAnnee> etudiantAnnees,
 			List<SousGroupeAnnee> sousGroupeAnnees, List<GroupeAnnee> groupeAnnees) {
 		super();
 		this.idNiveau = idNiveau;
 		this.niveau = niveau;
-		this.semestreNiveau = semestreNiveau;
+		this.semestreNiveaux = semestreNiveaux;
 		this.etudiantAnnees = etudiantAnnees;
 		this.sousGroupeAnnees = sousGroupeAnnees;
 		this.groupeAnnees = groupeAnnees;
@@ -62,12 +62,12 @@ public class Niveau {
 		this.niveau = niveau;
 	}
 
-	public SemestreNiveau getSemestreNiveau() {
-		return semestreNiveau;
+	public List<SemestreNiveau> getSemestreNiveaux() {
+		return semestreNiveaux;
 	}
 
-	public void setSemestreNiveau(SemestreNiveau semestreNiveau) {
-		this.semestreNiveau = semestreNiveau;
+	public void setSemestreNiveaux(List<SemestreNiveau> semestreNiveaux) {
+		this.semestreNiveaux = semestreNiveaux;
 	}
 
 	public List<EtudiantAnnee> getEtudiantAnnees() {

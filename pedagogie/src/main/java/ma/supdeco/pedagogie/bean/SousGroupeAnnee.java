@@ -34,8 +34,9 @@ public class SousGroupeAnnee {
 	@JoinColumn(name = "idSousGroupe", nullable = false)
 	private SousGroupe sousGroupe;
 
-	@OneToMany(mappedBy = "sousGroupeAnnee", cascade = CascadeType.MERGE)
-	private List<EtudiantAnnee> etudiantAnnees;
+	@ManyToMany
+	@JoinTable(name = "etudiantSousGroupe", joinColumns = @JoinColumn(name = "idSousGroupe"), inverseJoinColumns = @JoinColumn(name = "idEtudiant"))
+	private List<EtudiantAnnee> etudiantAnnees = new ArrayList<>();
 
 	@ManyToMany
 	@JoinTable(name = "affectationSousGroupe", joinColumns = @JoinColumn(name = "idSousGroupe"), inverseJoinColumns = @JoinColumn(name = "idAffectation"))

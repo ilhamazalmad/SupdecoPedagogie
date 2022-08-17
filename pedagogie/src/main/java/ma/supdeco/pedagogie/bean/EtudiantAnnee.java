@@ -42,7 +42,7 @@ public class EtudiantAnnee {
 
 	@ManyToMany
 	@JoinTable(name = "etudiantSousGroupe", joinColumns = @JoinColumn(name = "idEtudiant"), inverseJoinColumns = @JoinColumn(name = "idSousGroupe"))
-	private SousGroupeAnnee sousGroupe;
+	private List<SousGroupeAnnee> sousGroupeAnnees = new ArrayList<>();
 
 	@OneToMany(mappedBy = "etudiantAnnee", cascade = CascadeType.MERGE)
 	private List<Controle> controles;
@@ -70,7 +70,7 @@ public class EtudiantAnnee {
 	}
 
 	public EtudiantAnnee(int idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Annee annee,
-			Groupe groupe, OptionAnnee optionAnnee, SousGroupeAnnee sousGroupe, List<Controle> controles,
+			Groupe groupe, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees, List<Controle> controles,
 			List<Examen> examens, List<Rachetage> rachetages, List<Numerotation> numerotations,
 			List<AbsenceEtudiant> absenceEtudiants, List<ArretCours> arretCours,
 			List<AvertissementAbsence> avertissementAbsences) {
@@ -82,7 +82,7 @@ public class EtudiantAnnee {
 		this.annee = annee;
 		this.groupe = groupe;
 		this.optionAnnee = optionAnnee;
-		this.sousGroupe = sousGroupe;
+		this.sousGroupeAnnees = sousGroupeAnnees;
 		this.controles = controles;
 		this.examens = examens;
 		this.rachetages = rachetages;
@@ -148,12 +148,12 @@ public class EtudiantAnnee {
 		this.optionAnnee = optionAnnee;
 	}
 
-	public SousGroupeAnnee getSousGroupe() {
-		return sousGroupe;
+	public List<SousGroupeAnnee> getSousGroupeAnnees() {
+		return sousGroupeAnnees;
 	}
 
-	public void setSousGroupe(SousGroupeAnnee sousGroupe) {
-		this.sousGroupe = sousGroupe;
+	public void setSousGroupeAnnees(List<SousGroupeAnnee> sousGroupeAnnees) {
+		this.sousGroupeAnnees = sousGroupeAnnees;
 	}
 
 	public List<Controle> getControles() {
