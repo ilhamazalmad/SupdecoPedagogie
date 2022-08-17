@@ -33,8 +33,8 @@ public class EtudiantAnnee {
 	private Annee annee;
 
 	@ManyToOne
-	@JoinColumn(name = "idNiveau", nullable = false)
-	private Niveau niveau;
+	@JoinColumn(name = "idGroupe", nullable = false)
+	private Groupe groupe;
 
 	@ManyToOne
 	@JoinColumn(name = "idOption", nullable = true)
@@ -42,7 +42,7 @@ public class EtudiantAnnee {
 
 	@ManyToMany
 	@JoinTable(name = "etudiantSousGroupe", joinColumns = @JoinColumn(name = "idEtudiant"), inverseJoinColumns = @JoinColumn(name = "idSousGroupe"))
-	private SousGroupeAnnee sousGroupeAnnee;
+	private SousGroupeAnnee sousGroupe;
 
 	@OneToMany(mappedBy = "etudiantAnnee", cascade = CascadeType.MERGE)
 	private List<Controle> controles;
@@ -70,7 +70,7 @@ public class EtudiantAnnee {
 	}
 
 	public EtudiantAnnee(int idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Annee annee,
-			Niveau niveau, OptionAnnee optionAnnee, SousGroupeAnnee sousGroupeAnnee, List<Controle> controles,
+			Groupe groupe, OptionAnnee optionAnnee, SousGroupeAnnee sousGroupe, List<Controle> controles,
 			List<Examen> examens, List<Rachetage> rachetages, List<Numerotation> numerotations,
 			List<AbsenceEtudiant> absenceEtudiants, List<ArretCours> arretCours,
 			List<AvertissementAbsence> avertissementAbsences) {
@@ -80,9 +80,9 @@ public class EtudiantAnnee {
 		this.dateDepart = dateDepart;
 		this.etudiant = etudiant;
 		this.annee = annee;
-		this.niveau = niveau;
+		this.groupe = groupe;
 		this.optionAnnee = optionAnnee;
-		this.sousGroupeAnnee = sousGroupeAnnee;
+		this.sousGroupe = sousGroupe;
 		this.controles = controles;
 		this.examens = examens;
 		this.rachetages = rachetages;
@@ -132,12 +132,12 @@ public class EtudiantAnnee {
 		this.annee = annee;
 	}
 
-	public Niveau getNiveau() {
-		return niveau;
+	public Groupe getGroupe() {
+		return groupe;
 	}
 
-	public void setNiveau(Niveau niveau) {
-		this.niveau = niveau;
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 
 	public OptionAnnee getOptionAnnee() {
@@ -148,12 +148,12 @@ public class EtudiantAnnee {
 		this.optionAnnee = optionAnnee;
 	}
 
-	public SousGroupeAnnee getSousGroupeAnnee() {
-		return sousGroupeAnnee;
+	public SousGroupeAnnee getSousGroupe() {
+		return sousGroupe;
 	}
 
-	public void setSousGroupeAnnee(SousGroupeAnnee sousGroupeAnnee) {
-		this.sousGroupeAnnee = sousGroupeAnnee;
+	public void setSousGroupe(SousGroupeAnnee sousGroupe) {
+		this.sousGroupe = sousGroupe;
 	}
 
 	public List<Controle> getControles() {

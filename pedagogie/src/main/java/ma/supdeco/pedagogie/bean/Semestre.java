@@ -1,7 +1,8 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,30 +16,21 @@ public class Semestre {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSemestre;
 	private String codeSemestre;
 	private String titreSemestre;
 
-	public SemestreNiveau[] semestreNiveau;
+	@OneToMany(mappedBy = "semestre", cascade = CascadeType.MERGE)
+	private List<SemestreNiveau> semestreNiveau;
 
 	public Semestre() {
 		super();
 	}
 
-	public Semestre(int idSemestre, String codeSemestre, String titreSemestre, SemestreNiveau[] semestreNiveau) {
+	public Semestre(String codeSemestre, String titreSemestre, List<SemestreNiveau> semestreNiveau) {
 		super();
-		this.idSemestre = idSemestre;
 		this.codeSemestre = codeSemestre;
 		this.titreSemestre = titreSemestre;
 		this.semestreNiveau = semestreNiveau;
-	}
-
-	public int getIdSemestre() {
-		return idSemestre;
-	}
-
-	public void setIdSemestre(int idSemestre) {
-		this.idSemestre = idSemestre;
 	}
 
 	public String getCodeSemestre() {
@@ -57,12 +49,14 @@ public class Semestre {
 		this.titreSemestre = titreSemestre;
 	}
 
-	public SemestreNiveau[] getSemestreNiveau() {
+	public List<SemestreNiveau> getSemestreNiveau() {
 		return semestreNiveau;
 	}
 
-	public void setSemestreNiveau(SemestreNiveau[] semestreNiveau) {
+	public void setSemestreNiveau(List<SemestreNiveau> semestreNiveau) {
 		this.semestreNiveau = semestreNiveau;
 	}
+	
+	
 
 }

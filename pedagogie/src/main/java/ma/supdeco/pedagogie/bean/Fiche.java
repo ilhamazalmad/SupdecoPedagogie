@@ -23,7 +23,8 @@ public class Fiche {
 	private int codeFiche;
 	private String message;
 	private Date dateFiche;
-	private Boolean absenceProf;
+	private Date dateRattrapage;
+	private Boolean seanceFaite;
 
 	@ManyToOne
 	@JoinColumn(name = "idSeance", nullable = false)
@@ -36,13 +37,14 @@ public class Fiche {
 		super();
 	}
 
-	public Fiche(int codeFiche, String message, Date dateFiche, Boolean absenceProf, Seance seance,
+	public Fiche(int codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite, Seance seance,
 			List<AbsenceEtudiant> absenceEtudiants) {
 		super();
 		this.codeFiche = codeFiche;
 		this.message = message;
 		this.dateFiche = dateFiche;
-		this.absenceProf = absenceProf;
+		this.dateRattrapage = dateRattrapage;
+		this.seanceFaite = seanceFaite;
 		this.seance = seance;
 		this.absenceEtudiants = absenceEtudiants;
 	}
@@ -71,12 +73,20 @@ public class Fiche {
 		this.dateFiche = dateFiche;
 	}
 
-	public Boolean getAbsenceProf() {
-		return absenceProf;
+	public Date getDateRattrapage() {
+		return dateRattrapage;
 	}
 
-	public void setAbsenceProf(Boolean absenceProf) {
-		this.absenceProf = absenceProf;
+	public void setDateRattrapage(Date dateRattrapage) {
+		this.dateRattrapage = dateRattrapage;
+	}
+
+	public Boolean getSeanceFaite() {
+		return seanceFaite;
+	}
+
+	public void setSeanceFaite(Boolean seanceFaite) {
+		this.seanceFaite = seanceFaite;
 	}
 
 	public Seance getSeance() {

@@ -1,11 +1,15 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +25,21 @@ public class Surveillant {
 	private String civilite;
 	private String telephone;
 	private String email;
+	private String adresse;
+
+	@ManyToOne
+	@JoinColumn(name = "idVille", nullable = false)
+	private Ville ville;
+
+	@OneToMany(mappedBy = "surveillant", cascade = CascadeType.MERGE)
+	private List<SurveillantAnnee> surveillantAnnees;
 
 	public Surveillant() {
 		super();
 	}
 
 	public Surveillant(int idSurveillant, String nom, String prenom, String cin, String civilite, String telephone,
-			String email) {
+			String email, String adresse, Ville ville, List<SurveillantAnnee> surveillantAnnees) {
 		super();
 		this.idSurveillant = idSurveillant;
 		this.nom = nom;
@@ -36,6 +48,9 @@ public class Surveillant {
 		this.civilite = civilite;
 		this.telephone = telephone;
 		this.email = email;
+		this.adresse = adresse;
+		this.ville = ville;
+		this.surveillantAnnees = surveillantAnnees;
 	}
 
 	public int getIdSurveillant() {
@@ -93,4 +108,29 @@ public class Surveillant {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public List<SurveillantAnnee> getSurveillantAnnees() {
+		return surveillantAnnees;
+	}
+
+	public void setSurveillantAnnees(List<SurveillantAnnee> surveillantAnnees) {
+		this.surveillantAnnees = surveillantAnnees;
+	}
+
 }

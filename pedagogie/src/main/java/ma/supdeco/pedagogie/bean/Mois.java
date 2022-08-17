@@ -19,7 +19,7 @@ public class Mois {
 	private int idMois;
 	private String mois;
 
-	@OneToMany(mappedBy = "session", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "sessionBac", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
 	public Mois() {

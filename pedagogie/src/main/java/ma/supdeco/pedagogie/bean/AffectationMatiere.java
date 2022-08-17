@@ -1,5 +1,6 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,25 +26,42 @@ public class AffectationMatiere {
 	@OneToMany(mappedBy = "affecationMatiere", cascade = CascadeType.MERGE)
 	private List<Seance> seances;
 
-	@ManyToOne
-	@JoinColumn(name = "idGroupe", nullable = false)
-	private GroupeAnnee groupeAnnee;
+	@ManyToMany
+	@JoinTable(name = "affectationGroupe", joinColumns = @JoinColumn(name = "idAffectation"), inverseJoinColumns = @JoinColumn(name = "idGroupe"))
+	private List<GroupeAnnee> groupeAnnees = new ArrayList<>();
 
 	@ManyToOne
 	@JoinColumn(name = "idProfesseur", nullable = false)
 	private ProfesseurAnnee professeurAnnee;
 
-	@ManyToOne
-	@JoinColumn(name = "idOption", nullable = false)
-	private OptionAnnee optionAnnee;
+	@ManyToMany
+	@JoinTable(name = "affectationOption", joinColumns = @JoinColumn(name = "idAffectation"), inverseJoinColumns = @JoinColumn(name = "idOption"))
+	private List<OptionAnnee> optionAnnees = new ArrayList<>();
 
-	@ManyToOne
-	@JoinColumn(name = "idSousGroupe", nullable = false)
-	private SousGroupeAnnee sousGroupeAnnee;
+	@ManyToMany
+	@JoinTable(name = "affectationSousGroupe", joinColumns = @JoinColumn(name = "idAffectation"), inverseJoinColumns = @JoinColumn(name = "idSousGroupe"))
+	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
 
 	@ManyToOne
 	@JoinColumn(name = "idMatiere", nullable = false)
 	private MatiereAnnee matiereAnnee;
+
+	public AffectationMatiere() {
+		super();
+	}
+
+	public AffectationMatiere(int idAffectation, List<Seance> seances, List<GroupeAnnee> groupeAnnees,
+			ProfesseurAnnee professeurAnnee, List<OptionAnnee> optionAnnees,
+			List<AffectationMatiere> affectationMatieres, MatiereAnnee matiereAnnee) {
+		super();
+		this.idAffectation = idAffectation;
+		this.seances = seances;
+		this.groupeAnnees = groupeAnnees;
+		this.professeurAnnee = professeurAnnee;
+		this.optionAnnees = optionAnnees;
+		this.affectationMatieres = affectationMatieres;
+		this.matiereAnnee = matiereAnnee;
+	}
 
 	public int getIdAffectation() {
 		return idAffectation;
@@ -59,12 +79,12 @@ public class AffectationMatiere {
 		this.seances = seances;
 	}
 
-	public GroupeAnnee getGroupeAnnee() {
-		return groupeAnnee;
+	public List<GroupeAnnee> getGroupeAnnees() {
+		return groupeAnnees;
 	}
 
-	public void setGroupeAnnee(GroupeAnnee groupeAnnee) {
-		this.groupeAnnee = groupeAnnee;
+	public void setGroupeAnnees(List<GroupeAnnee> groupeAnnees) {
+		this.groupeAnnees = groupeAnnees;
 	}
 
 	public ProfesseurAnnee getProfesseurAnnee() {
@@ -75,20 +95,20 @@ public class AffectationMatiere {
 		this.professeurAnnee = professeurAnnee;
 	}
 
-	public OptionAnnee getOptionAnnee() {
-		return optionAnnee;
+	public List<OptionAnnee> getOptionAnnees() {
+		return optionAnnees;
 	}
 
-	public void setOptionAnnee(OptionAnnee optionAnnee) {
-		this.optionAnnee = optionAnnee;
+	public void setOptionAnnees(List<OptionAnnee> optionAnnees) {
+		this.optionAnnees = optionAnnees;
 	}
 
-	public SousGroupeAnnee getSousGroupeAnnee() {
-		return sousGroupeAnnee;
+	public List<AffectationMatiere> getAffectationMatieres() {
+		return affectationMatieres;
 	}
 
-	public void setSousGroupeAnnee(SousGroupeAnnee sousGroupeAnnee) {
-		this.sousGroupeAnnee = sousGroupeAnnee;
+	public void setAffectationMatieres(List<AffectationMatiere> affectationMatieres) {
+		this.affectationMatieres = affectationMatieres;
 	}
 
 	public MatiereAnnee getMatiereAnnee() {
@@ -97,23 +117,6 @@ public class AffectationMatiere {
 
 	public void setMatiereAnnee(MatiereAnnee matiereAnnee) {
 		this.matiereAnnee = matiereAnnee;
-	}
-
-	public AffectationMatiere(int idAffectation, List<Seance> seances, GroupeAnnee groupeAnnee,
-			ProfesseurAnnee professeurAnnee, OptionAnnee optionAnnee, SousGroupeAnnee sousGroupeAnnee,
-			MatiereAnnee matiereAnnee) {
-		super();
-		this.idAffectation = idAffectation;
-		this.seances = seances;
-		this.groupeAnnee = groupeAnnee;
-		this.professeurAnnee = professeurAnnee;
-		this.optionAnnee = optionAnnee;
-		this.sousGroupeAnnee = sousGroupeAnnee;
-		this.matiereAnnee = matiereAnnee;
-	}
-
-	public AffectationMatiere() {
-		super();
 	}
 
 }

@@ -1,11 +1,11 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.util.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,18 +15,24 @@ public class SurveillantAnnee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSurveillantAnnee;
-	private int idSurveillant;
-	private int idAnnee;
+
+	@ManyToOne
+	@JoinColumn(name = "idSurveillant", nullable = false)
+	private Surveillant surveillant;
+
+	@ManyToOne
+	@JoinColumn(name = "idAnnee", nullable = false)
+	private Annee annee;
 
 	public SurveillantAnnee() {
 		super();
 	}
 
-	public SurveillantAnnee(int idSurveillantAnnee, int idSurveillant, int idAnnee) {
+	public SurveillantAnnee(int idSurveillantAnnee, Surveillant surveillant, Annee annee) {
 		super();
 		this.idSurveillantAnnee = idSurveillantAnnee;
-		this.idSurveillant = idSurveillant;
-		this.idAnnee = idAnnee;
+		this.surveillant = surveillant;
+		this.annee = annee;
 	}
 
 	public int getIdSurveillantAnnee() {
@@ -37,20 +43,20 @@ public class SurveillantAnnee {
 		this.idSurveillantAnnee = idSurveillantAnnee;
 	}
 
-	public int getIdSurveillant() {
-		return idSurveillant;
+	public Surveillant getSurveillant() {
+		return surveillant;
 	}
 
-	public void setIdSurveillant(int idSurveillant) {
-		this.idSurveillant = idSurveillant;
+	public void setSurveillant(Surveillant surveillant) {
+		this.surveillant = surveillant;
 	}
 
-	public int getIdAnnee() {
-		return idAnnee;
+	public Annee getAnnee() {
+		return annee;
 	}
 
-	public void setIdAnnee(int idAnnee) {
-		this.idAnnee = idAnnee;
+	public void setAnnee(Annee annee) {
+		this.annee = annee;
 	}
 
 }

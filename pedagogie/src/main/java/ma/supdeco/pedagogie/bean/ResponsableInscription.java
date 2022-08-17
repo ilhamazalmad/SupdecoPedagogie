@@ -1,9 +1,13 @@
 package ma.supdeco.pedagogie.bean;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,17 +19,18 @@ public class ResponsableInscription {
 	private int idResponsable;
 	private String nom;
 
-	public Etudiant[] etudiant;
+	@OneToMany(mappedBy = "responsableInscription", cascade = CascadeType.MERGE)
+	private List<EtudiantAnnee> etudiantAnnees;
 
 	public ResponsableInscription() {
 		super();
 	}
 
-	public ResponsableInscription(int idResponsable, String nom, Etudiant[] etudiant) {
+	public ResponsableInscription(int idResponsable, String nom, List<EtudiantAnnee> etudiantAnnees) {
 		super();
 		this.idResponsable = idResponsable;
 		this.nom = nom;
-		this.etudiant = etudiant;
+		this.etudiantAnnees = etudiantAnnees;
 	}
 
 	public int getIdResponsable() {
@@ -44,11 +49,12 @@ public class ResponsableInscription {
 		this.nom = nom;
 	}
 
-	public Etudiant[] getEtudiant() {
-		return etudiant;
+	public List<EtudiantAnnee> getEtudiantAnnees() {
+		return etudiantAnnees;
 	}
 
-	public void setEtudiant(Etudiant[] etudiant) {
-		this.etudiant = etudiant;
+	public void setEtudiantAnnees(List<EtudiantAnnee> etudiantAnnees) {
+		this.etudiantAnnees = etudiantAnnees;
 	}
+
 }

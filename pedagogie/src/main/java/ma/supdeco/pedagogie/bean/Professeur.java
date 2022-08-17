@@ -1,12 +1,15 @@
 package ma.supdeco.pedagogie.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,15 +26,30 @@ public class Professeur {
 	private String telephone;
 	private String email;
 	private String adresse;
+	private String cin;
+	private String cv;
+	private String diplome;
+	private String engagement;
+	private String contrat;
 
-	public java.util.Collection<ProfesseurAnnee> professeurAnnee;
+	@ManyToOne
+	@JoinColumn(name = "idVille", nullable = false)
+	private Ville ville;
+
+	@ManyToOne
+	@JoinColumn(name = "idtitreDiplome", nullable = false)
+	private Diplome titreDiplome;
+
+	@OneToMany(mappedBy = "professeur", cascade = CascadeType.MERGE)
+	private List<ProfesseurAnnee> professeurAnnees;
 
 	public Professeur() {
 		super();
 	}
 
 	public Professeur(int idProfesseur, String nom, String prenom, String civilite, String statut, String telephone,
-			String email, String adresse, Collection<ProfesseurAnnee> professeurAnnee) {
+			String email, String adresse, Ville ville, String cin, String cv, String diplome, String engagement,
+			String contrat, Diplome titreDiplome, List<ProfesseurAnnee> professeurAnnees) {
 		super();
 		this.idProfesseur = idProfesseur;
 		this.nom = nom;
@@ -41,62 +59,14 @@ public class Professeur {
 		this.telephone = telephone;
 		this.email = email;
 		this.adresse = adresse;
-		this.professeurAnnee = professeurAnnee;
-	}
-
-	/** @pdGenerated default getter */
-	public java.util.Collection<ProfesseurAnnee> getProfesseurAnnee() {
-		if (professeurAnnee == null)
-			professeurAnnee = new java.util.HashSet<ProfesseurAnnee>();
-		return professeurAnnee;
-	}
-
-	/** @pdGenerated default iterator getter */
-	public java.util.Iterator getIteratorProfesseurAnnee() {
-		if (professeurAnnee == null)
-			professeurAnnee = new java.util.HashSet<ProfesseurAnnee>();
-		return professeurAnnee.iterator();
-	}
-
-	/**
-	 * @pdGenerated default setter
-	 * @param newProfesseurAnnee
-	 */
-	public void setProfesseurAnnee(java.util.Collection<ProfesseurAnnee> newProfesseurAnnee) {
-		removeAllProfesseurAnnee();
-		for (java.util.Iterator iter = newProfesseurAnnee.iterator(); iter.hasNext();)
-			addProfesseurAnnee((ProfesseurAnnee) iter.next());
-	}
-
-	/**
-	 * @pdGenerated default add
-	 * @param newProfesseurAnnee
-	 */
-	public void addProfesseurAnnee(ProfesseurAnnee newProfesseurAnnee) {
-		if (newProfesseurAnnee == null)
-			return;
-		if (this.professeurAnnee == null)
-			this.professeurAnnee = new java.util.HashSet<ProfesseurAnnee>();
-		if (!this.professeurAnnee.contains(newProfesseurAnnee))
-			this.professeurAnnee.add(newProfesseurAnnee);
-	}
-
-	/**
-	 * @pdGenerated default remove
-	 * @param oldProfesseurAnnee
-	 */
-	public void removeProfesseurAnnee(ProfesseurAnnee oldProfesseurAnnee) {
-		if (oldProfesseurAnnee == null)
-			return;
-		if (this.professeurAnnee != null)
-			if (this.professeurAnnee.contains(oldProfesseurAnnee))
-				this.professeurAnnee.remove(oldProfesseurAnnee);
-	}
-
-	/** @pdGenerated default removeAll */
-	public void removeAllProfesseurAnnee() {
-		if (professeurAnnee != null)
-			professeurAnnee.clear();
+		this.ville = ville;
+		this.cin = cin;
+		this.cv = cv;
+		this.diplome = diplome;
+		this.engagement = engagement;
+		this.contrat = contrat;
+		this.titreDiplome = titreDiplome;
+		this.professeurAnnees = professeurAnnees;
 	}
 
 	public int getIdProfesseur() {
@@ -161,6 +131,70 @@ public class Professeur {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public String getCin() {
+		return cin;
+	}
+
+	public void setCin(String cin) {
+		this.cin = cin;
+	}
+
+	public String getCv() {
+		return cv;
+	}
+
+	public void setCv(String cv) {
+		this.cv = cv;
+	}
+
+	public String getDiplome() {
+		return diplome;
+	}
+
+	public void setDiplome(String diplome) {
+		this.diplome = diplome;
+	}
+
+	public String getEngagement() {
+		return engagement;
+	}
+
+	public void setEngagement(String engagement) {
+		this.engagement = engagement;
+	}
+
+	public String getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(String contrat) {
+		this.contrat = contrat;
+	}
+
+	public Diplome getTitreDiplome() {
+		return titreDiplome;
+	}
+
+	public void setTitreDiplome(Diplome titreDiplome) {
+		this.titreDiplome = titreDiplome;
+	}
+
+	public List<ProfesseurAnnee> getProfesseurAnnees() {
+		return professeurAnnees;
+	}
+
+	public void setProfesseurAnnees(List<ProfesseurAnnee> professeurAnnees) {
+		this.professeurAnnees = professeurAnnees;
 	}
 
 }

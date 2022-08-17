@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,17 +20,22 @@ public class Tuteur {
 	private String civilite;
 	private String cin;
 	private String telephone;
+	private String telephoneProfessionnel;
 	private String fixe;
 	private String profession;
 	private String email;
 	private String adresse;
 
+	@ManyToOne
+	@JoinColumn(name = "idVille", nullable = false)
+	private Ville ville;
+
 	public Tuteur() {
 		super();
 	}
 
-	public Tuteur(int idTuteur, String nom, String prenom, String civilite, String cin, String telephone, String fixe,
-			String profession, String email, String adresse) {
+	public Tuteur(int idTuteur, String nom, String prenom, String civilite, String cin, String telephone,
+			String telephoneProfessionnel, String fixe, String profession, String email, String adresse, Ville ville) {
 		super();
 		this.idTuteur = idTuteur;
 		this.nom = nom;
@@ -36,10 +43,12 @@ public class Tuteur {
 		this.civilite = civilite;
 		this.cin = cin;
 		this.telephone = telephone;
+		this.telephoneProfessionnel = telephoneProfessionnel;
 		this.fixe = fixe;
 		this.profession = profession;
 		this.email = email;
 		this.adresse = adresse;
+		this.ville = ville;
 	}
 
 	public int getIdTuteur() {
@@ -90,6 +99,14 @@ public class Tuteur {
 		this.telephone = telephone;
 	}
 
+	public String getTelephoneProfessionnel() {
+		return telephoneProfessionnel;
+	}
+
+	public void setTelephoneProfessionnel(String telephoneProfessionnel) {
+		this.telephoneProfessionnel = telephoneProfessionnel;
+	}
+
 	public String getFixe() {
 		return fixe;
 	}
@@ -120,6 +137,14 @@ public class Tuteur {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
 	}
 
 }

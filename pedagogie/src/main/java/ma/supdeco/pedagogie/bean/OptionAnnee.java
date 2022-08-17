@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,8 +33,9 @@ public class OptionAnnee {
 	@OneToMany(mappedBy = "optionAnnee", cascade = CascadeType.MERGE)
 	private List<EtudiantAnnee> etudiantAnnees;
 
-	@OneToMany(mappedBy = "optionAnnee", cascade = CascadeType.MERGE)
-	private List<AffectationMatiere> affectationMatieres;
+	@ManyToMany
+	@JoinTable(name = "affectationOption", joinColumns = @JoinColumn(name = "idOption"), inverseJoinColumns = @JoinColumn(name = "idAffectation"))
+	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
 
 	public OptionAnnee() {
 		super();

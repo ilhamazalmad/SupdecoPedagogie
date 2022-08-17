@@ -31,7 +31,7 @@ public class Etudiant {
 	private String email;
 	private String emailSupdeco;
 	private Date dateNaissance;
-	private int lieuDeNaissance;
+	private int lieuNaissance;
 	private Date dateInscription;
 	private String situation;
 	private int anneeBac;
@@ -44,6 +44,11 @@ public class Etudiant {
 	private String posteOccupe;
 	private Date dateDepart;
 
+	// arabe
+	private String nomArabe;
+	private String prenomArabe;
+	private String lieuNaissanceArabe;
+
 	@OneToMany(mappedBy = "etudiant", cascade = CascadeType.MERGE)
 	private List<EtudiantAnnee> etudiantAnnees;
 
@@ -51,8 +56,12 @@ public class Etudiant {
 	private List<Tuteur> tuteurs;
 
 	@ManyToOne
-	@JoinColumn(name = "idSession", nullable = false)
-	private Mois session;
+	@JoinColumn(name = "idSessionBac", nullable = false)
+	private Mois sessionBac;
+
+	@ManyToOne
+	@JoinColumn(name = "idNationalite", nullable = false)
+	private Pays nationalite;
 
 	@ManyToOne
 	@JoinColumn(name = "idNiveauAdmission", nullable = false)
@@ -99,13 +108,14 @@ public class Etudiant {
 	}
 
 	public Etudiant(int ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
-			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance,
-			int lieuDeNaissance, Date dateInscription, String situation, int anneeBac, int anneeDiplome,
-			boolean boursier, boolean resident, boolean handicape, boolean fonctionnaire, String documentsFournis,
-			String posteOccupe, Date dateDepart, List<EtudiantAnnee> etudiantAnnees, List<Tuteur> tuteurs, Mois session,
-			NiveauAdmission niveauAdmission, ResponsableInscription responsableInscription, Mention mentionBac,
-			Mention mentionDiplome, Ville villeNaissance, Ville ville, Lycee lyceeBac,
-			Etablissement etablissementDiplome, SerieBac serieBac, SpecialiteDiplome specialiteDiplome) {
+			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance, int lieuNaissance,
+			Date dateInscription, String situation, int anneeBac, int anneeDiplome, boolean boursier, boolean resident,
+			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
+			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
+			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
+			ResponsableInscription responsableInscription, Mention mentionBac, Mention mentionDiplome,
+			Ville villeNaissance, Ville ville, Lycee lyceeBac, Etablissement etablissementDiplome, SerieBac serieBac,
+			SpecialiteDiplome specialiteDiplome) {
 		super();
 		this.ins = ins;
 		this.nom = nom;
@@ -119,7 +129,7 @@ public class Etudiant {
 		this.email = email;
 		this.emailSupdeco = emailSupdeco;
 		this.dateNaissance = dateNaissance;
-		this.lieuDeNaissance = lieuDeNaissance;
+		this.lieuNaissance = lieuNaissance;
 		this.dateInscription = dateInscription;
 		this.situation = situation;
 		this.anneeBac = anneeBac;
@@ -131,9 +141,13 @@ public class Etudiant {
 		this.documentsFournis = documentsFournis;
 		this.posteOccupe = posteOccupe;
 		this.dateDepart = dateDepart;
+		this.nomArabe = nomArabe;
+		this.prenomArabe = prenomArabe;
+		this.lieuNaissanceArabe = lieuNaissanceArabe;
 		this.etudiantAnnees = etudiantAnnees;
 		this.tuteurs = tuteurs;
-		this.session = session;
+		this.sessionBac = sessionBac;
+		this.nationalite = nationalite;
 		this.niveauAdmission = niveauAdmission;
 		this.responsableInscription = responsableInscription;
 		this.mentionBac = mentionBac;
@@ -242,12 +256,12 @@ public class Etudiant {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public int getLieuDeNaissance() {
-		return lieuDeNaissance;
+	public int getLieuNaissance() {
+		return lieuNaissance;
 	}
 
-	public void setLieuDeNaissance(int lieuDeNaissance) {
-		this.lieuDeNaissance = lieuDeNaissance;
+	public void setLieuNaissance(int lieuNaissance) {
+		this.lieuNaissance = lieuNaissance;
 	}
 
 	public Date getDateInscription() {
@@ -338,6 +352,30 @@ public class Etudiant {
 		this.dateDepart = dateDepart;
 	}
 
+	public String getNomArabe() {
+		return nomArabe;
+	}
+
+	public void setNomArabe(String nomArabe) {
+		this.nomArabe = nomArabe;
+	}
+
+	public String getPrenomArabe() {
+		return prenomArabe;
+	}
+
+	public void setPrenomArabe(String prenomArabe) {
+		this.prenomArabe = prenomArabe;
+	}
+
+	public String getLieuNaissanceArabe() {
+		return lieuNaissanceArabe;
+	}
+
+	public void setLieuNaissanceArabe(String lieuNaissanceArabe) {
+		this.lieuNaissanceArabe = lieuNaissanceArabe;
+	}
+
 	public List<EtudiantAnnee> getEtudiantAnnees() {
 		return etudiantAnnees;
 	}
@@ -354,12 +392,20 @@ public class Etudiant {
 		this.tuteurs = tuteurs;
 	}
 
-	public Mois getSession() {
-		return session;
+	public Mois getSessionBac() {
+		return sessionBac;
 	}
 
-	public void setSession(Mois session) {
-		this.session = session;
+	public void setSessionBac(Mois sessionBac) {
+		this.sessionBac = sessionBac;
+	}
+
+	public Pays getNationalite() {
+		return nationalite;
+	}
+
+	public void setNationalite(Pays nationalite) {
+		this.nationalite = nationalite;
 	}
 
 	public NiveauAdmission getNiveauAdmission() {

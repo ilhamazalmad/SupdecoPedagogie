@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +23,7 @@ public class Role {
 
 	@ManyToMany
 	@JoinTable(name = "roleUtilisateur", joinColumns = @JoinColumn(name = "idRole"), inverseJoinColumns = @JoinColumn(name = "idUtilisateur"))
-	public List<Utilisateur> utilisateurs = new ArrayList<>();
+	private List<Utilisateur> utilisateurs = new ArrayList<>();
 
 	public Role() {
 		super();
