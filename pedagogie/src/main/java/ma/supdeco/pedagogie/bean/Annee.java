@@ -20,32 +20,30 @@ public class Annee {
 	private String annee;
 	private boolean active;
 
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
 	private List<ProfesseurAnnee> professeurAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<EtudiantAnnee> etudiantAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<GroupeAnnee> groupeAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<SousGroupeAnnee> sousGroupeAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<OptionAnnee> optionAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<ModuleAnnee> moduleAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<MatiereAnnee> matiereAnnees;
-	
-	@OneToMany(mappedBy="annee",cascade = CascadeType.MERGE)
-	private List<SurveillantAnnee> surveillantsAnnees;
 
-	
-	
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<EtudiantAnnee> etudiantAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<GroupeAnnee> groupeAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<SousGroupeAnnee> sousGroupeAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<OptionAnnee> optionAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<ModuleAnnee> moduleAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<MatiereAnnee> matiereAnnees;
+
+	@OneToMany(mappedBy = "annee", cascade = CascadeType.MERGE)
+	private List<SurveillantAnnee> surveillantAnnees;
+
 	public Annee() {
 		super();
 	}
@@ -53,7 +51,7 @@ public class Annee {
 	public Annee(int idAnnee, String annee, boolean active, List<ProfesseurAnnee> professeurAnnees,
 			List<EtudiantAnnee> etudiantAnnees, List<GroupeAnnee> groupeAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<OptionAnnee> optionAnnees, List<ModuleAnnee> moduleAnnees, List<MatiereAnnee> matiereAnnees,
-			List<SurveillantAnnee> surveillantsAnnees) {
+			List<SurveillantAnnee> surveillantAnnees) {
 		super();
 		this.idAnnee = idAnnee;
 		this.annee = annee;
@@ -65,7 +63,7 @@ public class Annee {
 		this.optionAnnees = optionAnnees;
 		this.moduleAnnees = moduleAnnees;
 		this.matiereAnnees = matiereAnnees;
-		this.surveillantsAnnees = surveillantsAnnees;
+		this.surveillantAnnees = surveillantAnnees;
 	}
 
 	public int getIdAnnee() {
@@ -148,14 +146,12 @@ public class Annee {
 		this.matiereAnnees = matiereAnnees;
 	}
 
-	public List<SurveillantAnnee> getSurveillantsAnnees() {
-		return surveillantsAnnees;
+	public List<SurveillantAnnee> getSurveillantAnnees() {
+		return surveillantAnnees;
 	}
 
-	public void setSurveillantsAnnees(List<SurveillantAnnee> surveillantsAnnees) {
-		this.surveillantsAnnees = surveillantsAnnees;
+	public void setSurveillantAnnees(List<SurveillantAnnee> surveillantAnnees) {
+		this.surveillantAnnees = surveillantAnnees;
 	}
-	
-	
 
 }

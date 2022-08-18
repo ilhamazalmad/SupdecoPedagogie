@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "rachetage")
-public class Rachetage {
+public class Rachetage extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

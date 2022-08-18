@@ -24,7 +24,7 @@ public class Lycee {
 	private String typeLycee;
 	
 	@ManyToMany
-	@JoinTable(name = "lycee_ville", joinColumns = @JoinColumn(name = "idlycee"), inverseJoinColumns = @JoinColumn(name = "idVille"))
+	@JoinTable(name = "lycee_ville", joinColumns = @JoinColumn(name = "idLycee"), inverseJoinColumns = @JoinColumn(name = "idVille"))
 	private List<Ville> villes;
 
 	@OneToMany(mappedBy = "lyceeBac", cascade = CascadeType.MERGE)

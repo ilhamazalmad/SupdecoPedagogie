@@ -12,9 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "seance")
-public class Seance {
+public class Seance extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +37,10 @@ public class Seance {
 	private Jour jour;
 
 	@ManyToOne
+	@JoinColumn(name = "idSalle", nullable = false)
+	private Salle salle;
+
+	@ManyToOne
 	@JoinColumn(name = "IdTypeSeance", nullable = false)
 	private TypeSeance typeSeance;
 
@@ -43,14 +49,14 @@ public class Seance {
 	private AffectationMatiere affectationMatiere;
 
 	@OneToMany(mappedBy = "seance", cascade = CascadeType.MERGE)
-	private List<Fiche> fiche;
+	private List<Fiche> fiches;
 
 	public Seance() {
 		super();
 	}
 
 	public Seance(int idSeance, String disponibilite, boolean stop, HeureSeance heureDebut, HeureSeance heureFin,
-			Jour jour, TypeSeance typeSeance, AffectationMatiere affectationMatiere, List<Fiche> fiche) {
+			Jour jour, Salle salle, TypeSeance typeSeance, AffectationMatiere affectationMatiere, List<Fiche> fiches) {
 		super();
 		this.idSeance = idSeance;
 		this.disponibilite = disponibilite;
@@ -58,9 +64,10 @@ public class Seance {
 		this.heureDebut = heureDebut;
 		this.heureFin = heureFin;
 		this.jour = jour;
+		this.salle = salle;
 		this.typeSeance = typeSeance;
 		this.affectationMatiere = affectationMatiere;
-		this.fiche = fiche;
+		this.fiches = fiches;
 	}
 
 	public int getIdSeance() {
@@ -111,6 +118,14 @@ public class Seance {
 		this.jour = jour;
 	}
 
+	public Salle getSalle() {
+		return salle;
+	}
+
+	public void setSalle(Salle salle) {
+		this.salle = salle;
+	}
+
 	public TypeSeance getTypeSeance() {
 		return typeSeance;
 	}
@@ -127,12 +142,12 @@ public class Seance {
 		this.affectationMatiere = affectationMatiere;
 	}
 
-	public List<Fiche> getFiche() {
-		return fiche;
+	public List<Fiche> getFiches() {
+		return fiches;
 	}
 
-	public void setFiche(List<Fiche> fiche) {
-		this.fiche = fiche;
+	public void setFiches(List<Fiche> fiches) {
+		this.fiches = fiches;
 	}
 
 }

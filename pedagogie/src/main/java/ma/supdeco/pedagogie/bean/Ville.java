@@ -44,7 +44,7 @@ public class Ville {
 
 	@ManyToMany
 	@JoinTable(name = "etablissement_ville", joinColumns = @JoinColumn(name = "idVille"), inverseJoinColumns = @JoinColumn(name = "idEtablissement"))
-	private List<Etablissement> etablissements;
+	private List<EtablissementDiplome> etablissements;
 
 	@ManyToMany
 	@JoinTable(name = "lycee_ville", joinColumns = @JoinColumn(name = "idVille"), inverseJoinColumns = @JoinColumn(name = "idLycee"))
@@ -56,7 +56,7 @@ public class Ville {
 
 	public Ville(int idVille, String ville, List<Etudiant> etudiants, List<Etudiant> etudiantsNaissances,
 			List<Professeur> professeurs, List<Tuteur> tuteurs, List<Surveillant> surveillants, Pays pays,
-			List<Etablissement> etablissements, List<Lycee> lycees) {
+			List<EtablissementDiplome> etablissements, List<Lycee> lycees) {
 		super();
 		this.idVille = idVille;
 		this.ville = ville;
@@ -134,11 +134,11 @@ public class Ville {
 		this.pays = pays;
 	}
 
-	public List<Etablissement> getEtablissements() {
+	public List<EtablissementDiplome> getEtablissements() {
 		return etablissements;
 	}
 
-	public void setEtablissements(List<Etablissement> etablissements) {
+	public void setEtablissements(List<EtablissementDiplome> etablissements) {
 		this.etablissements = etablissements;
 	}
 

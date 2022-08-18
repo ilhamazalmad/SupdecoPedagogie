@@ -20,17 +20,17 @@ public class ResponsableInscription {
 	private String nom;
 
 	@OneToMany(mappedBy = "responsableInscription", cascade = CascadeType.MERGE)
-	private List<EtudiantAnnee> etudiantAnnees;
+	private List<Etudiant> etudiants;
 
 	public ResponsableInscription() {
 		super();
 	}
 
-	public ResponsableInscription(int idResponsable, String nom, List<EtudiantAnnee> etudiantAnnees) {
+	public ResponsableInscription(int idResponsable, String nom, List<Etudiant> etudiants) {
 		super();
 		this.idResponsable = idResponsable;
 		this.nom = nom;
-		this.etudiantAnnees = etudiantAnnees;
+		this.etudiants = etudiants;
 	}
 
 	public int getIdResponsable() {
@@ -49,12 +49,12 @@ public class ResponsableInscription {
 		this.nom = nom;
 	}
 
-	public List<EtudiantAnnee> getEtudiantAnnees() {
-		return etudiantAnnees;
+	public List<Etudiant> getEtudiants() {
+		return etudiants;
 	}
 
-	public void setEtudiantAnnees(List<EtudiantAnnee> etudiantAnnees) {
-		this.etudiantAnnees = etudiantAnnees;
+	public void setEtudiants(List<Etudiant> etudiants) {
+		this.etudiants = etudiants;
 	}
 
 }

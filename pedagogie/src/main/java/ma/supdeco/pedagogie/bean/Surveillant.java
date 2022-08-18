@@ -12,9 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "surveillant")
-public class Surveillant {
+public class Surveillant extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

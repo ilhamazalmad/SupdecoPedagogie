@@ -14,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "etudiantAnnee")
-public class EtudiantAnnee {
+public class EtudiantAnnee extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,11 +32,15 @@ public class EtudiantAnnee {
 
 	@ManyToOne
 	@JoinColumn(name = "idNiveau", nullable = false)
+	private Niveau niveau;
+
+	@ManyToOne
+	@JoinColumn(name = "idAnnee", nullable = false)
 	private Annee annee;
 
 	@ManyToOne
 	@JoinColumn(name = "idGroupe", nullable = false)
-	private Groupe groupe;
+	private GroupeAnnee groupeAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idOption", nullable = true)
@@ -69,18 +75,19 @@ public class EtudiantAnnee {
 		super();
 	}
 
-	public EtudiantAnnee(int idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Annee annee,
-			Groupe groupe, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees, List<Controle> controles,
-			List<Examen> examens, List<Rachetage> rachetages, List<Numerotation> numerotations,
-			List<AbsenceEtudiant> absenceEtudiants, List<ArretCours> arretCours,
+	public EtudiantAnnee(int idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Niveau niveau,
+			Annee annee, GroupeAnnee groupeAnnee, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees,
+			List<Controle> controles, List<Examen> examens, List<Rachetage> rachetages,
+			List<Numerotation> numerotations, List<AbsenceEtudiant> absenceEtudiants, List<ArretCours> arretCours,
 			List<AvertissementAbsence> avertissementAbsences) {
 		super();
 		this.idEtudiantAnnee = idEtudiantAnnee;
 		this.depart = depart;
 		this.dateDepart = dateDepart;
 		this.etudiant = etudiant;
+		this.niveau = niveau;
 		this.annee = annee;
-		this.groupe = groupe;
+		this.groupeAnnee = groupeAnnee;
 		this.optionAnnee = optionAnnee;
 		this.sousGroupeAnnees = sousGroupeAnnees;
 		this.controles = controles;
@@ -124,6 +131,14 @@ public class EtudiantAnnee {
 		this.etudiant = etudiant;
 	}
 
+	public Niveau getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(Niveau niveau) {
+		this.niveau = niveau;
+	}
+
 	public Annee getAnnee() {
 		return annee;
 	}
@@ -132,12 +147,12 @@ public class EtudiantAnnee {
 		this.annee = annee;
 	}
 
-	public Groupe getGroupe() {
-		return groupe;
+	public GroupeAnnee getGroupeAnnee() {
+		return groupeAnnee;
 	}
 
-	public void setGroupe(Groupe groupe) {
-		this.groupe = groupe;
+	public void setGroupeAnnee(GroupeAnnee groupeAnnee) {
+		this.groupeAnnee = groupeAnnee;
 	}
 
 	public OptionAnnee getOptionAnnee() {

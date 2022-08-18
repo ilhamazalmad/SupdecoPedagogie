@@ -11,11 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 import java.util.Date;
 
 @Entity
 @Table(name = "etudiant")
-public class Etudiant {
+public class Etudiant extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,6 +79,10 @@ public class Etudiant {
 	private Mention mentionBac;
 
 	@ManyToOne
+	@JoinColumn(name = "idDiplome", nullable = true)
+	private Diplome diplome;
+
+	@ManyToOne
 	@JoinColumn(name = "idMentionDiplome", nullable = true)
 	private Mention mentionDiplome;
 
@@ -93,7 +100,7 @@ public class Etudiant {
 
 	@ManyToOne
 	@JoinColumn(name = "idEtablissementDiplome", nullable = true)
-	private Etablissement etablissementDiplome;
+	private EtablissementDiplome etablissementDiplome;
 
 	@ManyToOne
 	@JoinColumn(name = "idSerieBac", nullable = false)
@@ -113,8 +120,8 @@ public class Etudiant {
 			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
 			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
 			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
-			ResponsableInscription responsableInscription, Mention mentionBac, Mention mentionDiplome,
-			Ville villeNaissance, Ville ville, Lycee lyceeBac, Etablissement etablissementDiplome, SerieBac serieBac,
+			ResponsableInscription responsableInscription, Mention mentionBac, Diplome diplome, Mention mentionDiplome,
+			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome, SerieBac serieBac,
 			SpecialiteDiplome specialiteDiplome) {
 		super();
 		this.ins = ins;
@@ -151,6 +158,7 @@ public class Etudiant {
 		this.niveauAdmission = niveauAdmission;
 		this.responsableInscription = responsableInscription;
 		this.mentionBac = mentionBac;
+		this.diplome = diplome;
 		this.mentionDiplome = mentionDiplome;
 		this.villeNaissance = villeNaissance;
 		this.ville = ville;
@@ -432,6 +440,14 @@ public class Etudiant {
 		this.mentionBac = mentionBac;
 	}
 
+	public Diplome getDiplome() {
+		return diplome;
+	}
+
+	public void setDiplome(Diplome diplome) {
+		this.diplome = diplome;
+	}
+
 	public Mention getMentionDiplome() {
 		return mentionDiplome;
 	}
@@ -464,11 +480,11 @@ public class Etudiant {
 		this.lyceeBac = lyceeBac;
 	}
 
-	public Etablissement getEtablissementDiplome() {
+	public EtablissementDiplome getEtablissementDiplome() {
 		return etablissementDiplome;
 	}
 
-	public void setEtablissementDiplome(Etablissement etablissementDiplome) {
+	public void setEtablissementDiplome(EtablissementDiplome etablissementDiplome) {
 		this.etablissementDiplome = etablissementDiplome;
 	}
 

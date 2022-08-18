@@ -9,9 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "arretCours")
-public class ArretCours {
+public class ArretCours extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +28,7 @@ public class ArretCours {
 
 	@ManyToOne
 	@JoinColumn(name = "idEtudiant", nullable = false)
-	private EtudiantAnnee etudiant;
+	private EtudiantAnnee etudiantAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idUtilisateur", nullable = false)
@@ -37,14 +39,14 @@ public class ArretCours {
 	}
 
 	public ArretCours(int idArret, Date dateDebut, Date dateFin, boolean active, MotifArret motifArret,
-			EtudiantAnnee etudiant, Utilisateur utilisateur) {
+			EtudiantAnnee etudiantAnnee, Utilisateur utilisateur) {
 		super();
 		this.idArret = idArret;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.active = active;
 		this.motifArret = motifArret;
-		this.etudiant = etudiant;
+		this.etudiantAnnee = etudiantAnnee;
 		this.utilisateur = utilisateur;
 	}
 
@@ -88,12 +90,12 @@ public class ArretCours {
 		this.motifArret = motifArret;
 	}
 
-	public EtudiantAnnee getEtudiant() {
-		return etudiant;
+	public EtudiantAnnee getEtudiantAnnee() {
+		return etudiantAnnee;
 	}
 
-	public void setEtudiant(EtudiantAnnee etudiant) {
-		this.etudiant = etudiant;
+	public void setEtudiantAnnee(EtudiantAnnee etudiantAnnee) {
+		this.etudiantAnnee = etudiantAnnee;
 	}
 
 	public Utilisateur getUtilisateur() {

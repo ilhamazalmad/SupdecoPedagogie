@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "tuteur")
-public class Tuteur {
+public class Tuteur extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +31,10 @@ public class Tuteur {
 	@ManyToOne
 	@JoinColumn(name = "idVille", nullable = false)
 	private Ville ville;
+	
+	@ManyToOne
+	@JoinColumn(name = "idEtudiant", nullable = false)
+	private Etudiant etudiant;
 
 	public Tuteur() {
 		super();

@@ -15,15 +15,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "affectationMatiere")
-public class AffectationMatiere {
+public class AffectationMatiere extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAffectation;
 
-	@OneToMany(mappedBy = "affecationMatiere", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "affectationMatiere", cascade = CascadeType.MERGE)
 	private List<Seance> seances;
 
 	@ManyToMany
@@ -40,7 +42,7 @@ public class AffectationMatiere {
 
 	@ManyToMany
 	@JoinTable(name = "affectationSousGroupe", joinColumns = @JoinColumn(name = "idAffectation"), inverseJoinColumns = @JoinColumn(name = "idSousGroupe"))
-	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
+	private List<SousGroupeAnnee> sousGroupeAnnees = new ArrayList<>();
 
 	@ManyToOne
 	@JoinColumn(name = "idMatiere", nullable = false)
@@ -51,15 +53,15 @@ public class AffectationMatiere {
 	}
 
 	public AffectationMatiere(int idAffectation, List<Seance> seances, List<GroupeAnnee> groupeAnnees,
-			ProfesseurAnnee professeurAnnee, List<OptionAnnee> optionAnnees,
-			List<AffectationMatiere> affectationMatieres, MatiereAnnee matiereAnnee) {
+			ProfesseurAnnee professeurAnnee, List<OptionAnnee> optionAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
+			MatiereAnnee matiereAnnee) {
 		super();
 		this.idAffectation = idAffectation;
 		this.seances = seances;
 		this.groupeAnnees = groupeAnnees;
 		this.professeurAnnee = professeurAnnee;
 		this.optionAnnees = optionAnnees;
-		this.affectationMatieres = affectationMatieres;
+		this.sousGroupeAnnees = sousGroupeAnnees;
 		this.matiereAnnee = matiereAnnee;
 	}
 
@@ -103,12 +105,12 @@ public class AffectationMatiere {
 		this.optionAnnees = optionAnnees;
 	}
 
-	public List<AffectationMatiere> getAffectationMatieres() {
-		return affectationMatieres;
+	public List<SousGroupeAnnee> getSousGroupeAnnees() {
+		return sousGroupeAnnees;
 	}
 
-	public void setAffectationMatieres(List<AffectationMatiere> affectationMatieres) {
-		this.affectationMatieres = affectationMatieres;
+	public void setSousGroupeAnnees(List<SousGroupeAnnee> sousGroupeAnnees) {
+		this.sousGroupeAnnees = sousGroupeAnnees;
 	}
 
 	public MatiereAnnee getMatiereAnnee() {

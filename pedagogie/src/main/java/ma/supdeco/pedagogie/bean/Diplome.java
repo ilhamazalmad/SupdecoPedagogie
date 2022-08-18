@@ -57,6 +57,4 @@ public class Diplome {
 		this.etudiants = etudiants;
 	}
 
-	
-
 }

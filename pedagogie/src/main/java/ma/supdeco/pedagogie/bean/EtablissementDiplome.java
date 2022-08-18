@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "etablissement")
-public class Etablissement {
+public class EtablissementDiplome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,14 +27,14 @@ public class Etablissement {
 	@JoinTable(name = "etablissement_ville", joinColumns = @JoinColumn(name = "idEtablissement"), inverseJoinColumns = @JoinColumn(name = "idVille"))
 	private List<Ville> villes;
 
-	@OneToMany(mappedBy = "etablissementBac", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "etablissementDiplome", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
-	public Etablissement() {
+	public EtablissementDiplome() {
 		super();
 	}
 
-	public Etablissement(int idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
+	public EtablissementDiplome(int idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
 			List<Etudiant> etudiants) {
 		super();
 		this.idEtablissement = idEtablissement;

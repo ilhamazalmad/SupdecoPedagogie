@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ma.supdeco.pedagogie.bean.util.Auditable;
+
 @Entity
 @Table(name = "examen")
-public class Examen {
+public class Examen extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +23,7 @@ public class Examen {
 
 	@ManyToOne
 	@JoinColumn(name = "idEtudiant", nullable = false)
-	private Etudiant etudiant;
+	private EtudiantAnnee etudiantAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idMatiere", nullable = false)
@@ -35,14 +37,14 @@ public class Examen {
 		super();
 	}
 
-	public Examen(int idExamen, float noteExamen, boolean absence, boolean fraude, Etudiant etudiant,
+	public Examen(int idExamen, float noteExamen, boolean absence, boolean fraude, EtudiantAnnee etudiantAnnee,
 			MatiereAnnee matiereAnnee, Session session) {
 		super();
 		this.idExamen = idExamen;
 		this.noteExamen = noteExamen;
 		this.absence = absence;
 		this.fraude = fraude;
-		this.etudiant = etudiant;
+		this.etudiantAnnee = etudiantAnnee;
 		this.matiereAnnee = matiereAnnee;
 		this.session = session;
 	}
@@ -79,12 +81,12 @@ public class Examen {
 		this.fraude = fraude;
 	}
 
-	public Etudiant getEtudiant() {
-		return etudiant;
+	public EtudiantAnnee getEtudiantAnnee() {
+		return etudiantAnnee;
 	}
 
-	public void setEtudiant(Etudiant etudiant) {
-		this.etudiant = etudiant;
+	public void setEtudiantAnnee(EtudiantAnnee etudiantAnnee) {
+		this.etudiantAnnee = etudiantAnnee;
 	}
 
 	public MatiereAnnee getMatiereAnnee() {
