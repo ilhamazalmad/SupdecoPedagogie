@@ -16,7 +16,7 @@ public class HeureSeance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idHeure;
+	private Long idHeure;
 	private String heure;
 
 	@OneToMany(mappedBy = "heureDebut", cascade = CascadeType.MERGE)
@@ -29,7 +29,7 @@ public class HeureSeance {
 		super();
 	}
 
-	public HeureSeance(int idHeure, String heure, List<Seance> seancesDebuts, List<Seance> seancesFins) {
+	public HeureSeance(Long idHeure, String heure, List<Seance> seancesDebuts, List<Seance> seancesFins) {
 		super();
 		this.idHeure = idHeure;
 		this.heure = heure;
@@ -37,11 +37,11 @@ public class HeureSeance {
 		this.seancesFins = seancesFins;
 	}
 
-	public int getIdHeure() {
+	public Long getIdHeure() {
 		return idHeure;
 	}
 
-	public void setIdHeure(int idHeure) {
+	public void setIdHeure(Long idHeure) {
 		this.idHeure = idHeure;
 	}
 

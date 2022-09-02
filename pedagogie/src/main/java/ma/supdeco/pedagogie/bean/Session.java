@@ -16,7 +16,7 @@ public class Session {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSession;
+	private Long idSession;
 	private String session;
 	private boolean active;
 
@@ -33,7 +33,7 @@ public class Session {
 		super();
 	}
 
-	public Session(int idSession, String session, boolean active, List<Examen> examens, List<Rachetage> rachetages,
+	public Session(Long idSession, String session, boolean active, List<Examen> examens, List<Rachetage> rachetages,
 			List<Numerotation> numerotations) {
 		super();
 		this.idSession = idSession;
@@ -44,11 +44,11 @@ public class Session {
 		this.numerotations = numerotations;
 	}
 
-	public int getIdSession() {
+	public Long getIdSession() {
 		return idSession;
 	}
 
-	public void setIdSession(int idSession) {
+	public void setIdSession(Long idSession) {
 		this.idSession = idSession;
 	}
 

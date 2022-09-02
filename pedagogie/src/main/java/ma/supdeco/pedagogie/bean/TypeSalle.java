@@ -16,7 +16,7 @@ public class TypeSalle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idType;
+	private Long idType;
 	private String typeSalle;
 
 	@OneToMany(mappedBy = "typeSalle", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class TypeSalle {
 		super();
 	}
 
-	public TypeSalle(int idType, String typeSalle, List<Salle> salles) {
+	public TypeSalle(Long idType, String typeSalle, List<Salle> salles) {
 		super();
 		this.idType = idType;
 		this.typeSalle = typeSalle;
 		this.salles = salles;
 	}
 
-	public int getIdType() {
+	public Long getIdType() {
 		return idType;
 	}
 
-	public void setIdType(int idType) {
+	public void setIdType(Long idType) {
 		this.idType = idType;
 	}
 

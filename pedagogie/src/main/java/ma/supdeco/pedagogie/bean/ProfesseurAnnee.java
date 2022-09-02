@@ -16,11 +16,11 @@ import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "professeurAnnee")
-public class ProfesseurAnnee extends Auditable{
+public class ProfesseurAnnee extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idProfesseurAnnee;
+	private Long idProfesseurAnnee;
 
 	@OneToMany(mappedBy = "professeurAnnee", cascade = CascadeType.MERGE)
 	private List<AffectationMatiere> affectationMatieres;
@@ -37,7 +37,7 @@ public class ProfesseurAnnee extends Auditable{
 		super();
 	}
 
-	public ProfesseurAnnee(int idProfesseurAnnee, List<AffectationMatiere> affectationMatieres, Professeur professeur,
+	public ProfesseurAnnee(Long idProfesseurAnnee, List<AffectationMatiere> affectationMatieres, Professeur professeur,
 			Annee annee) {
 		super();
 		this.idProfesseurAnnee = idProfesseurAnnee;
@@ -46,11 +46,11 @@ public class ProfesseurAnnee extends Auditable{
 		this.annee = annee;
 	}
 
-	public int getIdProfesseurAnnee() {
+	public Long getIdProfesseurAnnee() {
 		return idProfesseurAnnee;
 	}
 
-	public void setIdProfesseurAnnee(int idProfesseurAnnee) {
+	public void setIdProfesseurAnnee(Long idProfesseurAnnee) {
 		this.idProfesseurAnnee = idProfesseurAnnee;
 	}
 

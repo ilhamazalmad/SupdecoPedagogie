@@ -16,7 +16,7 @@ public class Controle extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idControle;
+	private Long idControle;
 	private float note16;
 	private float note4;
 	private boolean absence;
@@ -34,7 +34,7 @@ public class Controle extends Auditable{
 		super();
 	}
 
-	public Controle(int idControle, float note16, float note4, boolean absence, boolean fraude,
+	public Controle(Long idControle, float note16, float note4, boolean absence, boolean fraude,
 			MatiereAnnee matiereAnnee, EtudiantAnnee etudiantAnnee) {
 		super();
 		this.idControle = idControle;
@@ -46,11 +46,11 @@ public class Controle extends Auditable{
 		this.etudiantAnnee = etudiantAnnee;
 	}
 
-	public int getIdControle() {
+	public Long getIdControle() {
 		return idControle;
 	}
 
-	public void setIdControle(int idControle) {
+	public void setIdControle(Long idControle) {
 		this.idControle = idControle;
 	}
 

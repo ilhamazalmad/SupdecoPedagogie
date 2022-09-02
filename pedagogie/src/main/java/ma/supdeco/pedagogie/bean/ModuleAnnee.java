@@ -20,7 +20,7 @@ public class ModuleAnnee extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idModuleAnnee;
+	private Long idModuleAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idAnnee", nullable = false)
@@ -41,7 +41,7 @@ public class ModuleAnnee extends Auditable{
 		super();
 	}
 
-	public ModuleAnnee(int idModuleAnnee, Annee annee, Module module, SemestreNiveau semestreNiveau,
+	public ModuleAnnee(Long idModuleAnnee, Annee annee, Module module, SemestreNiveau semestreNiveau,
 			List<MatiereAnnee> matiereAnnees) {
 		super();
 		this.idModuleAnnee = idModuleAnnee;
@@ -51,11 +51,11 @@ public class ModuleAnnee extends Auditable{
 		this.matiereAnnees = matiereAnnees;
 	}
 
-	public int getIdModuleAnnee() {
+	public Long getIdModuleAnnee() {
 		return idModuleAnnee;
 	}
 
-	public void setIdModuleAnnee(int idModuleAnnee) {
+	public void setIdModuleAnnee(Long idModuleAnnee) {
 		this.idModuleAnnee = idModuleAnnee;
 	}
 

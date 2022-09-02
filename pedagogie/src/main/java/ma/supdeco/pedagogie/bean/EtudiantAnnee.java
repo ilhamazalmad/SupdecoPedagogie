@@ -22,7 +22,7 @@ public class EtudiantAnnee extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idEtudiantAnnee;
+	private Long idEtudiantAnnee;
 	private boolean depart;
 	private Date dateDepart;
 
@@ -63,7 +63,7 @@ public class EtudiantAnnee extends Auditable{
 	private List<Numerotation> numerotations;
 
 	@OneToMany(mappedBy = "etudiantAnnee", cascade = CascadeType.MERGE)
-	private List<AbsenceEtudiant> absenceEtudiants;
+	private List<Absence> absences;
 
 	@OneToMany(mappedBy = "etudiantAnnee", cascade = CascadeType.MERGE)
 	private List<ArretCours> arretCours;
@@ -75,10 +75,10 @@ public class EtudiantAnnee extends Auditable{
 		super();
 	}
 
-	public EtudiantAnnee(int idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Niveau niveau,
+	public EtudiantAnnee(Long idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Niveau niveau,
 			Annee annee, GroupeAnnee groupeAnnee, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<Controle> controles, List<Examen> examens, List<Rachetage> rachetages,
-			List<Numerotation> numerotations, List<AbsenceEtudiant> absenceEtudiants, List<ArretCours> arretCours,
+			List<Numerotation> numerotations, List<Absence> absences, List<ArretCours> arretCours,
 			List<AvertissementAbsence> avertissementAbsences) {
 		super();
 		this.idEtudiantAnnee = idEtudiantAnnee;
@@ -94,16 +94,16 @@ public class EtudiantAnnee extends Auditable{
 		this.examens = examens;
 		this.rachetages = rachetages;
 		this.numerotations = numerotations;
-		this.absenceEtudiants = absenceEtudiants;
+		this.absences = absences;
 		this.arretCours = arretCours;
 		this.avertissementAbsences = avertissementAbsences;
 	}
 
-	public int getIdEtudiantAnnee() {
+	public Long getIdEtudiantAnnee() {
 		return idEtudiantAnnee;
 	}
 
-	public void setIdEtudiantAnnee(int idEtudiantAnnee) {
+	public void setIdEtudiantAnnee(Long idEtudiantAnnee) {
 		this.idEtudiantAnnee = idEtudiantAnnee;
 	}
 
@@ -203,12 +203,12 @@ public class EtudiantAnnee extends Auditable{
 		this.numerotations = numerotations;
 	}
 
-	public List<AbsenceEtudiant> getAbsenceEtudiants() {
-		return absenceEtudiants;
+	public List<Absence> getAbsenceEtudiants() {
+		return absences;
 	}
 
-	public void setAbsenceEtudiants(List<AbsenceEtudiant> absenceEtudiants) {
-		this.absenceEtudiants = absenceEtudiants;
+	public void setAbsenceEtudiants(List<Absence> absences) {
+		this.absences = absences;
 	}
 
 	public List<ArretCours> getArretCours() {

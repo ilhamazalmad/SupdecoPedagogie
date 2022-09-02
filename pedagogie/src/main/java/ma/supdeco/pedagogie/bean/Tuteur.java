@@ -16,7 +16,7 @@ public class Tuteur extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idTuteur;
+	private Long idTuteur;
 	private String nom;
 	private String prenom;
 	private String civilite;
@@ -40,7 +40,7 @@ public class Tuteur extends Auditable{
 		super();
 	}
 
-	public Tuteur(int idTuteur, String nom, String prenom, String civilite, String cin, String telephone,
+	public Tuteur(Long idTuteur, String nom, String prenom, String civilite, String cin, String telephone,
 			String telephoneProfessionnel, String fixe, String profession, String email, String adresse, Ville ville) {
 		super();
 		this.idTuteur = idTuteur;
@@ -57,11 +57,11 @@ public class Tuteur extends Auditable{
 		this.ville = ville;
 	}
 
-	public int getIdTuteur() {
+	public Long getIdTuteur() {
 		return idTuteur;
 	}
 
-	public void setIdTuteur(int idTuteur) {
+	public void setIdTuteur(Long idTuteur) {
 		this.idTuteur = idTuteur;
 	}
 

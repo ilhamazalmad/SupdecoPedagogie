@@ -19,7 +19,7 @@ public class EtablissementDiplome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idEtablissement;
+	private Long idEtablissement;
 	private String nomEtablissement;
 	private String typeEtablissement;
 
@@ -34,7 +34,7 @@ public class EtablissementDiplome {
 		super();
 	}
 
-	public EtablissementDiplome(int idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
+	public EtablissementDiplome(Long idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
 			List<Etudiant> etudiants) {
 		super();
 		this.idEtablissement = idEtablissement;
@@ -44,11 +44,11 @@ public class EtablissementDiplome {
 		this.etudiants = etudiants;
 	}
 
-	public int getIdEtablissement() {
+	public Long getIdEtablissement() {
 		return idEtablissement;
 	}
 
-	public void setIdEtablissement(int idEtablissement) {
+	public void setIdEtablissement(Long idEtablissement) {
 		this.idEtablissement = idEtablissement;
 	}
 

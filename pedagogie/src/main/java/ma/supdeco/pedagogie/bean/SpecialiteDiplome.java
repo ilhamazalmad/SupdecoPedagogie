@@ -16,7 +16,7 @@ public class SpecialiteDiplome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSpecialite;
+	private Long idSpecialite;
 	private String specialiteDiplome;
 	private String description;
 
@@ -27,7 +27,7 @@ public class SpecialiteDiplome {
 		super();
 	}
 
-	public SpecialiteDiplome(int idSpecialite, String specialiteDiplome, String description, List<Etudiant> etudiants) {
+	public SpecialiteDiplome(Long idSpecialite, String specialiteDiplome, String description, List<Etudiant> etudiants) {
 		super();
 		this.idSpecialite = idSpecialite;
 		this.specialiteDiplome = specialiteDiplome;
@@ -35,11 +35,11 @@ public class SpecialiteDiplome {
 		this.etudiants = etudiants;
 	}
 
-	public int getIdSpecialite() {
+	public Long getIdSpecialite() {
 		return idSpecialite;
 	}
 
-	public void setIdSpecialite(int idSpecialite) {
+	public void setIdSpecialite(Long idSpecialite) {
 		this.idSpecialite = idSpecialite;
 	}
 

@@ -16,26 +16,25 @@ public class Pays {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idPays;
-	private String pays;
 	private String codeIso3;
+	private String pays;
 
-	@OneToMany(mappedBy="pays",cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "pays", cascade = CascadeType.MERGE)
 	private List<Ville> villes;
-	
-	@OneToMany(mappedBy="nationalite",cascade = CascadeType.MERGE)
+
+	@OneToMany(mappedBy = "nationalite", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
 	public Pays() {
 		super();
 	}
 
-	public int getIdPays() {
-		return idPays;
-	}
-
-	public void setIdPays(int idPays) {
-		this.idPays = idPays;
+	public Pays(String codeIso3, String pays, List<Ville> villes, List<Etudiant> etudiants) {
+		super();
+		this.codeIso3 = codeIso3;
+		this.pays = pays;
+		this.villes = villes;
+		this.etudiants = etudiants;
 	}
 
 	public String getPays() {
@@ -69,7 +68,5 @@ public class Pays {
 	public void setEtudiants(List<Etudiant> etudiants) {
 		this.etudiants = etudiants;
 	}
-	
-	
 
 }

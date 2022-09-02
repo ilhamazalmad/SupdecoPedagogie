@@ -22,7 +22,7 @@ public class Etudiant extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int ins;
+	private Long ins;
 	private String nom;
 	private String prenom;
 	private String cin;
@@ -114,7 +114,7 @@ public class Etudiant extends Auditable{
 		super();
 	}
 
-	public Etudiant(int ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
+	public Etudiant(Long ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
 			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance, int lieuNaissance,
 			Date dateInscription, String situation, int anneeBac, int anneeDiplome, boolean boursier, boolean resident,
 			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
@@ -168,11 +168,11 @@ public class Etudiant extends Auditable{
 		this.specialiteDiplome = specialiteDiplome;
 	}
 
-	public int getIns() {
+	public Long getIns() {
 		return ins;
 	}
 
-	public void setIns(int ins) {
+	public void setIns(Long ins) {
 		this.ins = ins;
 	}
 

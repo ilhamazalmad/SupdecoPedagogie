@@ -20,7 +20,7 @@ public class Seance extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSeance;
+	private Long idSeance;
 	private String disponibilite; // (une fois au toujours )
 	private boolean stop;
 
@@ -55,7 +55,7 @@ public class Seance extends Auditable{
 		super();
 	}
 
-	public Seance(int idSeance, String disponibilite, boolean stop, HeureSeance heureDebut, HeureSeance heureFin,
+	public Seance(Long idSeance, String disponibilite, boolean stop, HeureSeance heureDebut, HeureSeance heureFin,
 			Jour jour, Salle salle, TypeSeance typeSeance, AffectationMatiere affectationMatiere, List<Fiche> fiches) {
 		super();
 		this.idSeance = idSeance;
@@ -70,11 +70,11 @@ public class Seance extends Auditable{
 		this.fiches = fiches;
 	}
 
-	public int getIdSeance() {
+	public Long getIdSeance() {
 		return idSeance;
 	}
 
-	public void setIdSeance(int idSeance) {
+	public void setIdSeance(Long idSeance) {
 		this.idSeance = idSeance;
 	}
 

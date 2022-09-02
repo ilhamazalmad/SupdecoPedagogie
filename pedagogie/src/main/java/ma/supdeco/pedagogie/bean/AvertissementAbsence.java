@@ -18,7 +18,7 @@ public class AvertissementAbsence extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAvertissement;
+	private Long idAvertissement;
 	private boolean avertis;
 	private boolean conseil;
 	private boolean presentConseil;
@@ -40,7 +40,7 @@ public class AvertissementAbsence extends Auditable{
 		super();
 	}
 
-	public AvertissementAbsence(int idAvertissement, boolean avertis, boolean conseil, boolean presentConseil,
+	public AvertissementAbsence(Long idAvertissement, boolean avertis, boolean conseil, boolean presentConseil,
 			boolean engage, boolean fin, Date dateAvertissement, Date dateConseil, Date dateEngagement,
 			EtudiantAnnee etudiantAnnee, SemestreNiveau semestreNiveau) {
 		super();
@@ -57,11 +57,11 @@ public class AvertissementAbsence extends Auditable{
 		this.semestreNiveau = semestreNiveau;
 	}
 
-	public int getIdAvertissement() {
+	public Long getIdAvertissement() {
 		return idAvertissement;
 	}
 
-	public void setIdAvertissement(int idAvertissement) {
+	public void setIdAvertissement(Long idAvertissement) {
 		this.idAvertissement = idAvertissement;
 	}
 

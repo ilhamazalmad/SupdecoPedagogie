@@ -19,7 +19,7 @@ public class Lycee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idLycee;
+	private Long idLycee;
 	private String nomLycee;
 	private String typeLycee;
 	
@@ -34,7 +34,7 @@ public class Lycee {
 		super();
 	}
 
-	public Lycee(int idLycee, String nomLycee, String typeLycee, List<Ville> villes, List<Etudiant> etudiants) {
+	public Lycee(Long idLycee, String nomLycee, String typeLycee, List<Ville> villes, List<Etudiant> etudiants) {
 		super();
 		this.idLycee = idLycee;
 		this.nomLycee = nomLycee;
@@ -43,11 +43,11 @@ public class Lycee {
 		this.etudiants = etudiants;
 	}
 
-	public int getIdLycee() {
+	public Long getIdLycee() {
 		return idLycee;
 	}
 
-	public void setIdLycee(int idLycee) {
+	public void setIdLycee(Long idLycee) {
 		this.idLycee = idLycee;
 	}
 

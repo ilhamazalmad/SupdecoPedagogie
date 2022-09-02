@@ -18,7 +18,7 @@ public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idRole;
+	private Long idRole;
 	private String role;
 
 	@ManyToMany
@@ -29,24 +29,24 @@ public class Role {
 		super();
 	}
 
-	public Role(int idRole, String role) {
+	public Role(Long idRole, String role) {
 		super();
 		this.idRole = idRole;
 		this.role = role;
 	}
 
-	public Role(int idRole, String role, List<Utilisateur> utilisateurs) {
+	public Role(Long idRole, String role, List<Utilisateur> utilisateurs) {
 		super();
 		this.idRole = idRole;
 		this.role = role;
 		this.utilisateurs = utilisateurs;
 	}
 
-	public int getIdRole() {
+	public Long getIdRole() {
 		return idRole;
 	}
 
-	public void setIdRole(int idRole) {
+	public void setIdRole(Long idRole) {
 		this.idRole = idRole;
 	}
 

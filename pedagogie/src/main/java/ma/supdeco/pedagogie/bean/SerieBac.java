@@ -16,7 +16,7 @@ public class SerieBac {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSerie;
+	private Long idSerie;
 	private String serieBac;
 	private String description;
 
@@ -27,7 +27,7 @@ public class SerieBac {
 		super();
 	}
 
-	public SerieBac(int idSerie, String serieBac, String description, List<Etudiant> etudiants) {
+	public SerieBac(Long idSerie, String serieBac, String description, List<Etudiant> etudiants) {
 		super();
 		this.idSerie = idSerie;
 		this.serieBac = serieBac;
@@ -35,11 +35,11 @@ public class SerieBac {
 		this.etudiants = etudiants;
 	}
 
-	public int getIdSerie() {
+	public Long getIdSerie() {
 		return idSerie;
 	}
 
-	public void setIdSerie(int idSerie) {
+	public void setIdSerie(Long idSerie) {
 		this.idSerie = idSerie;
 	}
 

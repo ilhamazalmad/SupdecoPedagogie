@@ -12,11 +12,11 @@ import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "absenceEtudiant")
-public class AbsenceEtudiant extends Auditable{
+public class Absence extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAbsence;
+	private Long idAbsence;
 	private boolean absent;
 	private boolean justifiee;
 	private String cause1;
@@ -30,11 +30,11 @@ public class AbsenceEtudiant extends Auditable{
 	@JoinColumn(name = "codeFiche", nullable = false)
 	private Fiche fiche;
 
-	public AbsenceEtudiant() {
+	public Absence() {
 		super();
 	}
 
-	public AbsenceEtudiant(int idAbsence, boolean absent, boolean justifiee, String cause1, String cause2,
+	public Absence(Long idAbsence, boolean absent, boolean justifiee, String cause1, String cause2,
 			EtudiantAnnee etudiantAnnee, Fiche fiche) {
 		super();
 		this.idAbsence = idAbsence;
@@ -46,11 +46,11 @@ public class AbsenceEtudiant extends Auditable{
 		this.fiche = fiche;
 	}
 
-	public int getIdAbsence() {
+	public Long getIdAbsence() {
 		return idAbsence;
 	}
 
-	public void setIdAbsence(int idAbsence) {
+	public void setIdAbsence(Long idAbsence) {
 		this.idAbsence = idAbsence;
 	}
 

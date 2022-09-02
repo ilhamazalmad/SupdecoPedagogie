@@ -16,7 +16,7 @@ public class ResponsableInscription {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idResponsable;
+	private Long idResponsable;
 	private String nom;
 
 	@OneToMany(mappedBy = "responsableInscription", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class ResponsableInscription {
 		super();
 	}
 
-	public ResponsableInscription(int idResponsable, String nom, List<Etudiant> etudiants) {
+	public ResponsableInscription(Long idResponsable, String nom, List<Etudiant> etudiants) {
 		super();
 		this.idResponsable = idResponsable;
 		this.nom = nom;
 		this.etudiants = etudiants;
 	}
 
-	public int getIdResponsable() {
+	public Long getIdResponsable() {
 		return idResponsable;
 	}
 
-	public void setIdResponsable(int idResponsable) {
+	public void setIdResponsable(Long idResponsable) {
 		this.idResponsable = idResponsable;
 	}
 

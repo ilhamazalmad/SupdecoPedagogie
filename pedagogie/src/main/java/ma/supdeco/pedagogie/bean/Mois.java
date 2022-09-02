@@ -16,7 +16,7 @@ public class Mois {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idMois;
+	private Long idMois;
 	private String mois;
 
 	@OneToMany(mappedBy = "sessionBac", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class Mois {
 		super();
 	}
 
-	public Mois(int idMois, String mois, List<Etudiant> etudiants) {
+	public Mois(Long idMois, String mois, List<Etudiant> etudiants) {
 		super();
 		this.idMois = idMois;
 		this.mois = mois;
 		this.etudiants = etudiants;
 	}
 
-	public int getIdMois() {
+	public Long getIdMois() {
 		return idMois;
 	}
 
-	public void setIdMois(int idMois) {
+	public void setIdMois(Long idMois) {
 		this.idMois = idMois;
 	}
 

@@ -16,7 +16,7 @@ public class Examen extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idExamen;
+	private Long idExamen;
 	private float noteExamen;
 	private boolean absence;
 	private boolean fraude;
@@ -37,7 +37,7 @@ public class Examen extends Auditable{
 		super();
 	}
 
-	public Examen(int idExamen, float noteExamen, boolean absence, boolean fraude, EtudiantAnnee etudiantAnnee,
+	public Examen(Long idExamen, float noteExamen, boolean absence, boolean fraude, EtudiantAnnee etudiantAnnee,
 			MatiereAnnee matiereAnnee, Session session) {
 		super();
 		this.idExamen = idExamen;
@@ -49,11 +49,11 @@ public class Examen extends Auditable{
 		this.session = session;
 	}
 
-	public int getIdExamen() {
+	public Long getIdExamen() {
 		return idExamen;
 	}
 
-	public void setIdExamen(int idExamen) {
+	public void setIdExamen(Long idExamen) {
 		this.idExamen = idExamen;
 	}
 

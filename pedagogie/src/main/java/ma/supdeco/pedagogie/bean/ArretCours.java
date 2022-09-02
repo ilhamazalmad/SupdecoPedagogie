@@ -17,7 +17,7 @@ public class ArretCours extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idArret;
+	private Long idArret;
 	private Date dateDebut;
 	private Date dateFin;
 	private boolean active;
@@ -38,7 +38,7 @@ public class ArretCours extends Auditable{
 		super();
 	}
 
-	public ArretCours(int idArret, Date dateDebut, Date dateFin, boolean active, MotifArret motifArret,
+	public ArretCours(Long idArret, Date dateDebut, Date dateFin, boolean active, MotifArret motifArret,
 			EtudiantAnnee etudiantAnnee, Utilisateur utilisateur) {
 		super();
 		this.idArret = idArret;
@@ -50,11 +50,11 @@ public class ArretCours extends Auditable{
 		this.utilisateur = utilisateur;
 	}
 
-	public int getIdArret() {
+	public Long getIdArret() {
 		return idArret;
 	}
 
-	public void setIdArret(int idArret) {
+	public void setIdArret(Long idArret) {
 		this.idArret = idArret;
 	}
 

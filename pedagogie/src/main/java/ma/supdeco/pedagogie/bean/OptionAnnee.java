@@ -20,7 +20,7 @@ public class OptionAnnee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idOptionAnnee;
+	private Long idOptionAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idOption", nullable = false)
@@ -41,7 +41,7 @@ public class OptionAnnee {
 		super();
 	}
 
-	public OptionAnnee(int idOptionAnnee, Option option, Annee annee, List<EtudiantAnnee> etudiantAnnees,
+	public OptionAnnee(Long idOptionAnnee, Option option, Annee annee, List<EtudiantAnnee> etudiantAnnees,
 			List<AffectationMatiere> affectationMatieres) {
 		super();
 		this.idOptionAnnee = idOptionAnnee;
@@ -51,11 +51,11 @@ public class OptionAnnee {
 		this.affectationMatieres = affectationMatieres;
 	}
 
-	public int getIdOptionAnnee() {
+	public Long getIdOptionAnnee() {
 		return idOptionAnnee;
 	}
 
-	public void setIdOptionAnnee(int idOptionAnnee) {
+	public void setIdOptionAnnee(Long idOptionAnnee) {
 		this.idOptionAnnee = idOptionAnnee;
 	}
 

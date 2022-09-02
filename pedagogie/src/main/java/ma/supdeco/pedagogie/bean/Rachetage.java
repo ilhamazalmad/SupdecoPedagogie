@@ -16,7 +16,7 @@ public class Rachetage extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idRachetage;
+	private Long idRachetage;
 	private boolean rachetage;
 
 	@ManyToOne
@@ -35,7 +35,7 @@ public class Rachetage extends Auditable{
 		super();
 	}
 
-	public Rachetage(int idRachetage, boolean rachetage, Session session, MatiereAnnee matiereAnnee,
+	public Rachetage(Long idRachetage, boolean rachetage, Session session, MatiereAnnee matiereAnnee,
 			EtudiantAnnee etudiantAnnee) {
 		super();
 		this.idRachetage = idRachetage;
@@ -45,11 +45,11 @@ public class Rachetage extends Auditable{
 		this.etudiantAnnee = etudiantAnnee;
 	}
 
-	public int getIdRachetage() {
+	public Long getIdRachetage() {
 		return idRachetage;
 	}
 
-	public void setIdRachetage(int idRachetage) {
+	public void setIdRachetage(Long idRachetage) {
 		this.idRachetage = idRachetage;
 	}
 

@@ -16,7 +16,7 @@ public class NiveauAdmission {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAdmission;
+	private Long idAdmission;
 	private String niveauAdmission;
 
 	@OneToMany(mappedBy = "niveauAdmission", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class NiveauAdmission {
 		super();
 	}
 
-	public NiveauAdmission(int idAdmission, String niveauAdmission, List<Etudiant> etudiants) {
+	public NiveauAdmission(Long idAdmission, String niveauAdmission, List<Etudiant> etudiants) {
 		super();
 		this.idAdmission = idAdmission;
 		this.niveauAdmission = niveauAdmission;
 		this.etudiants = etudiants;
 	}
 
-	public int getIdAdmission() {
+	public Long getIdAdmission() {
 		return idAdmission;
 	}
 
-	public void setIdAdmission(int idAdmission) {
+	public void setIdAdmission(Long idAdmission) {
 		this.idAdmission = idAdmission;
 	}
 

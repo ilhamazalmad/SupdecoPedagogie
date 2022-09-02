@@ -19,11 +19,11 @@ import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "affectationMatiere")
-public class AffectationMatiere extends Auditable{
+public class AffectationMatiere extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAffectation;
+	private Long idAffectation;
 
 	@OneToMany(mappedBy = "affectationMatiere", cascade = CascadeType.MERGE)
 	private List<Seance> seances;
@@ -52,7 +52,7 @@ public class AffectationMatiere extends Auditable{
 		super();
 	}
 
-	public AffectationMatiere(int idAffectation, List<Seance> seances, List<GroupeAnnee> groupeAnnees,
+	public AffectationMatiere(Long idAffectation, List<Seance> seances, List<GroupeAnnee> groupeAnnees,
 			ProfesseurAnnee professeurAnnee, List<OptionAnnee> optionAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
 			MatiereAnnee matiereAnnee) {
 		super();
@@ -65,11 +65,11 @@ public class AffectationMatiere extends Auditable{
 		this.matiereAnnee = matiereAnnee;
 	}
 
-	public int getIdAffectation() {
+	public Long getIdAffectation() {
 		return idAffectation;
 	}
 
-	public void setIdAffectation(int idAffectation) {
+	public void setIdAffectation(Long idAffectation) {
 		this.idAffectation = idAffectation;
 	}
 

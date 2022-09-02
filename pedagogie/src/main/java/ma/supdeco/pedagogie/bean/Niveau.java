@@ -16,7 +16,7 @@ public class Niveau {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idNiveau;
+	private Long idNiveau;
 	private String niveau;
 
 	@OneToMany(mappedBy = "niveau", cascade = CascadeType.MERGE)
@@ -35,7 +35,7 @@ public class Niveau {
 		super();
 	}
 
-	public Niveau(int idNiveau, String niveau, List<SemestreNiveau> semestreNiveaux, List<EtudiantAnnee> etudiantAnnees,
+	public Niveau(Long idNiveau, String niveau, List<SemestreNiveau> semestreNiveaux, List<EtudiantAnnee> etudiantAnnees,
 			List<SousGroupeAnnee> sousGroupeAnnees, List<GroupeAnnee> groupeAnnees) {
 		super();
 		this.idNiveau = idNiveau;
@@ -46,11 +46,11 @@ public class Niveau {
 		this.groupeAnnees = groupeAnnees;
 	}
 
-	public int getIdNiveau() {
+	public Long getIdNiveau() {
 		return idNiveau;
 	}
 
-	public void setIdNiveau(int idNiveau) {
+	public void setIdNiveau(Long idNiveau) {
 		this.idNiveau = idNiveau;
 	}
 

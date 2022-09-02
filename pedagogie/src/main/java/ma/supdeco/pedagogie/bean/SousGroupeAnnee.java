@@ -20,7 +20,7 @@ public class SousGroupeAnnee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSsGroupeAnnee;
+	private Long idSsGroupeAnnee;
 
 	@ManyToOne
 	@JoinColumn(name = "idNiveau", nullable = false)
@@ -46,7 +46,7 @@ public class SousGroupeAnnee {
 		super();
 	}
 
-	public SousGroupeAnnee(int idSsGroupeAnnee, Niveau niveau, Annee annee, SousGroupe sousGroupe,
+	public SousGroupeAnnee(Long idSsGroupeAnnee, Niveau niveau, Annee annee, SousGroupe sousGroupe,
 			List<EtudiantAnnee> etudiantAnnees, List<AffectationMatiere> affectationMatieres) {
 		super();
 		this.idSsGroupeAnnee = idSsGroupeAnnee;
@@ -57,11 +57,11 @@ public class SousGroupeAnnee {
 		this.affectationMatieres = affectationMatieres;
 	}
 
-	public int getIdSsGroupeAnnee() {
+	public Long getIdSsGroupeAnnee() {
 		return idSsGroupeAnnee;
 	}
 
-	public void setIdSsGroupeAnnee(int idSsGroupeAnnee) {
+	public void setIdSsGroupeAnnee(Long idSsGroupeAnnee) {
 		this.idSsGroupeAnnee = idSsGroupeAnnee;
 	}
 

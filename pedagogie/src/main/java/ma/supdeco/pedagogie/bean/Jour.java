@@ -16,7 +16,7 @@ public class Jour {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idJour;
+	private Long idJour;
 	private String jour;
 
 	@OneToMany(mappedBy = "jour", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class Jour {
 		super();
 	}
 
-	public Jour(int idJour, String jour, List<Seance> seances) {
+	public Jour(Long idJour, String jour, List<Seance> seances) {
 		super();
 		this.idJour = idJour;
 		this.jour = jour;
 		this.seances = seances;
 	}
 
-	public int getIdJour() {
+	public Long getIdJour() {
 		return idJour;
 	}
 
-	public void setIdJour(int idJour) {
+	public void setIdJour(Long idJour) {
 		this.idJour = idJour;
 	}
 

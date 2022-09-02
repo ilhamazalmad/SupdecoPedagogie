@@ -16,7 +16,7 @@ public class Annee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAnnee;
+	private Long idAnnee;
 	private String annee;
 	private boolean active;
 
@@ -48,7 +48,7 @@ public class Annee {
 		super();
 	}
 
-	public Annee(int idAnnee, String annee, boolean active, List<ProfesseurAnnee> professeurAnnees,
+	public Annee(Long idAnnee, String annee, boolean active, List<ProfesseurAnnee> professeurAnnees,
 			List<EtudiantAnnee> etudiantAnnees, List<GroupeAnnee> groupeAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<OptionAnnee> optionAnnees, List<ModuleAnnee> moduleAnnees, List<MatiereAnnee> matiereAnnees,
 			List<SurveillantAnnee> surveillantAnnees) {
@@ -66,11 +66,11 @@ public class Annee {
 		this.surveillantAnnees = surveillantAnnees;
 	}
 
-	public int getIdAnnee() {
+	public Long getIdAnnee() {
 		return idAnnee;
 	}
 
-	public void setIdAnnee(int idAnnee) {
+	public void setIdAnnee(Long idAnnee) {
 		this.idAnnee = idAnnee;
 	}
 

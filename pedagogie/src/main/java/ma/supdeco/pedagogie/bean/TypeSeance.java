@@ -16,7 +16,7 @@ public class TypeSeance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int codeType;
+	private Long codeType;
 	private String typeSeance;
 
 	@OneToMany(mappedBy = "typeSeance", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class TypeSeance {
 		super();
 	}
 
-	public TypeSeance(int codeType, String typeSeance, List<Seance> seances) {
+	public TypeSeance(Long codeType, String typeSeance, List<Seance> seances) {
 		super();
 		this.codeType = codeType;
 		this.typeSeance = typeSeance;
 		this.seances = seances;
 	}
 
-	public int getCodeType() {
+	public Long getCodeType() {
 		return codeType;
 	}
 
-	public void setCodeType(int codeType) {
+	public void setCodeType(Long codeType) {
 		this.codeType = codeType;
 	}
 

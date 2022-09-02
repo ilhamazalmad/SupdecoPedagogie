@@ -16,11 +16,11 @@ import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "professeur")
-public class Professeur extends Auditable{
+public class Professeur extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idProfesseur;
+	private Long idProfesseur;
 	private String nom;
 	private String prenom;
 	private String civilite;
@@ -49,7 +49,7 @@ public class Professeur extends Auditable{
 		super();
 	}
 
-	public Professeur(int idProfesseur, String nom, String prenom, String civilite, String statut, String telephone,
+	public Professeur(Long idProfesseur, String nom, String prenom, String civilite, String statut, String telephone,
 			String email, String adresse, Ville ville, String cin, String cv, String diplome, String engagement,
 			String contrat, Diplome titreDiplome, List<ProfesseurAnnee> professeurAnnees) {
 		super();
@@ -71,11 +71,11 @@ public class Professeur extends Auditable{
 		this.professeurAnnees = professeurAnnees;
 	}
 
-	public int getIdProfesseur() {
+	public Long getIdProfesseur() {
 		return idProfesseur;
 	}
 
-	public void setIdProfesseur(int idProfesseur) {
+	public void setIdProfesseur(Long idProfesseur) {
 		this.idProfesseur = idProfesseur;
 	}
 

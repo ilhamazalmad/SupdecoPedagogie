@@ -18,7 +18,7 @@ public class Utilisateur extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idUtilisateur;
+	private Long idUtilisateur;
 	private String nom;
 	private String prenom;
 	private String motDePasse;
@@ -32,7 +32,7 @@ public class Utilisateur extends Auditable{
 		super();
 	}
 
-	public Utilisateur(int idUtilisateur, String nom, String prenom, String motDePasse, boolean active,
+	public Utilisateur(Long idUtilisateur, String nom, String prenom, String motDePasse, boolean active,
 			List<Role> roles) {
 		super();
 		this.idUtilisateur = idUtilisateur;
@@ -43,11 +43,11 @@ public class Utilisateur extends Auditable{
 		this.roles = roles;
 	}
 
-	public int getIdUtilisateur() {
+	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
+	public void setIdUtilisateur(Long idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 

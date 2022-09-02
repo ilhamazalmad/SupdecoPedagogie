@@ -16,7 +16,7 @@ public class Diplome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idDiplome;
+	private Long idDiplome;
 	private String titreDiplome;
 
 	@OneToMany(mappedBy = "diplome", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class Diplome {
 		super();
 	}
 
-	public Diplome(int idDiplome, String titreDiplome, List<Etudiant> etudiants) {
+	public Diplome(Long idDiplome, String titreDiplome, List<Etudiant> etudiants) {
 		super();
 		this.idDiplome = idDiplome;
 		this.titreDiplome = titreDiplome;
 		this.etudiants = etudiants;
 	}
 
-	public int getIdDiplome() {
+	public Long getIdDiplome() {
 		return idDiplome;
 	}
 
-	public void setIdDiplome(int idDiplome) {
+	public void setIdDiplome(Long idDiplome) {
 		this.idDiplome = idDiplome;
 	}
 

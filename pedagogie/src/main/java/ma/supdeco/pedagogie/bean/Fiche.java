@@ -22,7 +22,7 @@ public class Fiche extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int codeFiche;
+	private Long codeFiche;
 	private String message;
 	private Date dateFiche;
 	private Date dateRattrapage;
@@ -33,14 +33,14 @@ public class Fiche extends Auditable{
 	private Seance seance;
 
 	@OneToMany(mappedBy = "fiche", cascade = CascadeType.MERGE)
-	private List<AbsenceEtudiant> absenceEtudiants;
+	private List<Absence> absences;
 
 	public Fiche() {
 		super();
 	}
 
-	public Fiche(int codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite, Seance seance,
-			List<AbsenceEtudiant> absenceEtudiants) {
+	public Fiche(Long codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite, Seance seance,
+			List<Absence> absences) {
 		super();
 		this.codeFiche = codeFiche;
 		this.message = message;
@@ -48,14 +48,14 @@ public class Fiche extends Auditable{
 		this.dateRattrapage = dateRattrapage;
 		this.seanceFaite = seanceFaite;
 		this.seance = seance;
-		this.absenceEtudiants = absenceEtudiants;
+		this.absences = absences;
 	}
 
-	public int getCodeFiche() {
+	public Long getCodeFiche() {
 		return codeFiche;
 	}
 
-	public void setCodeFiche(int codeFiche) {
+	public void setCodeFiche(Long codeFiche) {
 		this.codeFiche = codeFiche;
 	}
 
@@ -99,12 +99,12 @@ public class Fiche extends Auditable{
 		this.seance = seance;
 	}
 
-	public List<AbsenceEtudiant> getAbsenceEtudiants() {
-		return absenceEtudiants;
+	public List<Absence> getAbsenceEtudiants() {
+		return absences;
 	}
 
-	public void setAbsenceEtudiants(List<AbsenceEtudiant> absenceEtudiants) {
-		this.absenceEtudiants = absenceEtudiants;
+	public void setAbsenceEtudiants(List<Absence> absences) {
+		this.absences = absences;
 	}
 
 }

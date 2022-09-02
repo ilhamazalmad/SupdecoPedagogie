@@ -20,7 +20,7 @@ public class Ville {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idVille;
+	private Long idVille;
 	private String ville;
 
 	@OneToMany(mappedBy = "ville", cascade = CascadeType.MERGE)
@@ -54,7 +54,7 @@ public class Ville {
 		super();
 	}
 
-	public Ville(int idVille, String ville, List<Etudiant> etudiants, List<Etudiant> etudiantsNaissances,
+	public Ville(Long idVille, String ville, List<Etudiant> etudiants, List<Etudiant> etudiantsNaissances,
 			List<Professeur> professeurs, List<Tuteur> tuteurs, List<Surveillant> surveillants, Pays pays,
 			List<EtablissementDiplome> etablissements, List<Lycee> lycees) {
 		super();
@@ -70,11 +70,11 @@ public class Ville {
 		this.lycees = lycees;
 	}
 
-	public int getIdVille() {
+	public Long getIdVille() {
 		return idVille;
 	}
 
-	public void setIdVille(int idVille) {
+	public void setIdVille(Long idVille) {
 		this.idVille = idVille;
 	}
 

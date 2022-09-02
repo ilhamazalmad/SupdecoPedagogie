@@ -16,7 +16,7 @@ public class MotifArret {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idMotif;
+	private Long idMotif;
 	private int motifArret;
 
 	@OneToMany(mappedBy = "motifArret", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class MotifArret {
 		super();
 	}
 
-	public MotifArret(int idMotif, int motifArret, List<ArretCours> arretsCours) {
+	public MotifArret(Long idMotif, int motifArret, List<ArretCours> arretsCours) {
 		super();
 		this.idMotif = idMotif;
 		this.motifArret = motifArret;
 		this.arretsCours = arretsCours;
 	}
 
-	public int getIdMotif() {
+	public Long getIdMotif() {
 		return idMotif;
 	}
 
-	public void setIdMotif(int idMotif) {
+	public void setIdMotif(Long idMotif) {
 		this.idMotif = idMotif;
 	}
 

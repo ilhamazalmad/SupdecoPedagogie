@@ -16,7 +16,7 @@ public class Numerotation extends Auditable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idNumerotation;
+	private Long idNumerotation;
 	private int numerotation;
 
 	@ManyToOne
@@ -39,7 +39,7 @@ public class Numerotation extends Auditable{
 		super();
 	}
 
-	public Numerotation(int idNumerotation, int numerotation, MatiereAnnee matiereAnnee, EtudiantAnnee etudiantAnnee,
+	public Numerotation(Long idNumerotation, int numerotation, MatiereAnnee matiereAnnee, EtudiantAnnee etudiantAnnee,
 			Salle salle, Session session) {
 		super();
 		this.idNumerotation = idNumerotation;
@@ -50,11 +50,11 @@ public class Numerotation extends Auditable{
 		this.session = session;
 	}
 
-	public int getIdNumerotation() {
+	public Long getIdNumerotation() {
 		return idNumerotation;
 	}
 
-	public void setIdNumerotation(int idNumerotation) {
+	public void setIdNumerotation(Long idNumerotation) {
 		this.idNumerotation = idNumerotation;
 	}
 

@@ -16,7 +16,7 @@ public class SousGroupe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idSsGroupe;
+	private Long idSsGroupe;
 	private String ssGroupe;
 
 	@OneToMany(mappedBy = "sousGroupe", cascade = CascadeType.MERGE)
@@ -26,18 +26,18 @@ public class SousGroupe {
 		super();
 	}
 
-	public SousGroupe(int idSsGroupe, String ssGroupe, List<SousGroupeAnnee> sousGroupeAnnees) {
+	public SousGroupe(Long idSsGroupe, String ssGroupe, List<SousGroupeAnnee> sousGroupeAnnees) {
 		super();
 		this.idSsGroupe = idSsGroupe;
 		this.ssGroupe = ssGroupe;
 		this.sousGroupeAnnees = sousGroupeAnnees;
 	}
 
-	public int getIdSsGroupe() {
+	public Long getIdSsGroupe() {
 		return idSsGroupe;
 	}
 
-	public void setIdSsGroupe(int idSsGroupe) {
+	public void setIdSsGroupe(Long idSsGroupe) {
 		this.idSsGroupe = idSsGroupe;
 	}
 
