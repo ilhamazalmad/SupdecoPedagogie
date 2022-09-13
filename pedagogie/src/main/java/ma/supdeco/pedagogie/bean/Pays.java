@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
-@Table(name = "pays")
+@Table(name = "optionAnnee")
+@SQLDelete(sql = "UPDATE optionAnnee SET deleted = true WHERE codeIso3=?")
+@Where(clause = "deleted=false")
 public class Pays {
 
 	@Id
@@ -25,6 +30,8 @@ public class Pays {
 	@OneToMany(mappedBy = "nationalite", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Pays() {
 		super();
 	}
@@ -35,6 +42,23 @@ public class Pays {
 		this.pays = pays;
 		this.villes = villes;
 		this.etudiants = etudiants;
+	}
+
+	public Pays(String codeIso3, String pays, List<Ville> villes, List<Etudiant> etudiants, boolean deleted) {
+		super();
+		this.codeIso3 = codeIso3;
+		this.pays = pays;
+		this.villes = villes;
+		this.etudiants = etudiants;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public String getPays() {

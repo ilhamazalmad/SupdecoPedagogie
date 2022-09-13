@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "specialiteDiplome")
+@SQLDelete(sql = "UPDATE specialiteDiplome SET deleted = true WHERE idSpecialite=?")
+@Where(clause = "deleted=false")
 public class SpecialiteDiplome {
 
 	@Id
@@ -23,16 +28,37 @@ public class SpecialiteDiplome {
 	@OneToMany(mappedBy = "specialiteDiplome", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public SpecialiteDiplome() {
 		super();
 	}
 
-	public SpecialiteDiplome(Long idSpecialite, String specialiteDiplome, String description, List<Etudiant> etudiants) {
+	public SpecialiteDiplome(Long idSpecialite, String specialiteDiplome, String description,
+			List<Etudiant> etudiants) {
 		super();
 		this.idSpecialite = idSpecialite;
 		this.specialiteDiplome = specialiteDiplome;
 		this.description = description;
 		this.etudiants = etudiants;
+	}
+
+	public SpecialiteDiplome(Long idSpecialite, String specialiteDiplome, String description, List<Etudiant> etudiants,
+			boolean deleted) {
+		super();
+		this.idSpecialite = idSpecialite;
+		this.specialiteDiplome = specialiteDiplome;
+		this.description = description;
+		this.etudiants = etudiants;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSpecialite() {

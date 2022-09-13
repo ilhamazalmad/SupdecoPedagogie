@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "annee")
+@SQLDelete(sql = "UPDATE annee SET deleted = true WHERE idAnnee=?")
+@Where(clause = "deleted=false")
 public class Annee {
 
 	@Id
@@ -48,6 +53,8 @@ public class Annee {
 		super();
 	}
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Annee(Long idAnnee, String annee, boolean active, List<ProfesseurAnnee> professeurAnnees,
 			List<EtudiantAnnee> etudiantAnnees, List<GroupeAnnee> groupeAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<OptionAnnee> optionAnnees, List<ModuleAnnee> moduleAnnees, List<MatiereAnnee> matiereAnnees,
@@ -64,6 +71,33 @@ public class Annee {
 		this.moduleAnnees = moduleAnnees;
 		this.matiereAnnees = matiereAnnees;
 		this.surveillantAnnees = surveillantAnnees;
+	}
+
+	public Annee(Long idAnnee, String annee, boolean active, List<ProfesseurAnnee> professeurAnnees,
+			List<EtudiantAnnee> etudiantAnnees, List<GroupeAnnee> groupeAnnees, List<SousGroupeAnnee> sousGroupeAnnees,
+			List<OptionAnnee> optionAnnees, List<ModuleAnnee> moduleAnnees, List<MatiereAnnee> matiereAnnees,
+			List<SurveillantAnnee> surveillantAnnees, boolean deleted) {
+		super();
+		this.idAnnee = idAnnee;
+		this.annee = annee;
+		this.active = active;
+		this.professeurAnnees = professeurAnnees;
+		this.etudiantAnnees = etudiantAnnees;
+		this.groupeAnnees = groupeAnnees;
+		this.sousGroupeAnnees = sousGroupeAnnees;
+		this.optionAnnees = optionAnnees;
+		this.moduleAnnees = moduleAnnees;
+		this.matiereAnnees = matiereAnnees;
+		this.surveillantAnnees = surveillantAnnees;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdAnnee() {

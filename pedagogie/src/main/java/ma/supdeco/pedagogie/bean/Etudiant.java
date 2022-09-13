@@ -12,13 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "etudiant")
-public class Etudiant extends Auditable{
+@SQLDelete(sql = "UPDATE etudiant SET deleted = true WHERE ins=?")
+@Where(clause = "deleted=false")
+public class Etudiant extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -110,6 +115,8 @@ public class Etudiant extends Auditable{
 	@JoinColumn(name = "idSpecialiteDiplome", nullable = true)
 	private SpecialiteDiplome specialiteDiplome;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Etudiant() {
 		super();
 	}
@@ -121,8 +128,8 @@ public class Etudiant extends Auditable{
 			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
 			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
 			ResponsableInscription responsableInscription, Mention mentionBac, Diplome diplome, Mention mentionDiplome,
-			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome, SerieBac serieBac,
-			SpecialiteDiplome specialiteDiplome) {
+			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome,
+			SerieBac serieBac, SpecialiteDiplome specialiteDiplome) {
 		super();
 		this.ins = ins;
 		this.nom = nom;
@@ -166,6 +173,69 @@ public class Etudiant extends Auditable{
 		this.etablissementDiplome = etablissementDiplome;
 		this.serieBac = serieBac;
 		this.specialiteDiplome = specialiteDiplome;
+	}
+
+	public Etudiant(Long ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
+			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance, int lieuNaissance,
+			Date dateInscription, String situation, int anneeBac, int anneeDiplome, boolean boursier, boolean resident,
+			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
+			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
+			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
+			ResponsableInscription responsableInscription, Mention mentionBac, Diplome diplome, Mention mentionDiplome,
+			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome,
+			SerieBac serieBac, SpecialiteDiplome specialiteDiplome, boolean deleted) {
+		super();
+		this.ins = ins;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.cin = cin;
+		this.cne = cne;
+		this.photo = photo;
+		this.sexe = sexe;
+		this.telephone = telephone;
+		this.adresse = adresse;
+		this.email = email;
+		this.emailSupdeco = emailSupdeco;
+		this.dateNaissance = dateNaissance;
+		this.lieuNaissance = lieuNaissance;
+		this.dateInscription = dateInscription;
+		this.situation = situation;
+		this.anneeBac = anneeBac;
+		this.anneeDiplome = anneeDiplome;
+		this.boursier = boursier;
+		this.resident = resident;
+		this.handicape = handicape;
+		this.fonctionnaire = fonctionnaire;
+		this.documentsFournis = documentsFournis;
+		this.posteOccupe = posteOccupe;
+		this.dateDepart = dateDepart;
+		this.nomArabe = nomArabe;
+		this.prenomArabe = prenomArabe;
+		this.lieuNaissanceArabe = lieuNaissanceArabe;
+		this.etudiantAnnees = etudiantAnnees;
+		this.tuteurs = tuteurs;
+		this.sessionBac = sessionBac;
+		this.nationalite = nationalite;
+		this.niveauAdmission = niveauAdmission;
+		this.responsableInscription = responsableInscription;
+		this.mentionBac = mentionBac;
+		this.diplome = diplome;
+		this.mentionDiplome = mentionDiplome;
+		this.villeNaissance = villeNaissance;
+		this.ville = ville;
+		this.lyceeBac = lyceeBac;
+		this.etablissementDiplome = etablissementDiplome;
+		this.serieBac = serieBac;
+		this.specialiteDiplome = specialiteDiplome;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIns() {

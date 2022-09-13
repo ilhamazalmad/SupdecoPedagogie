@@ -14,11 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "etudiantAnnee")
-public class EtudiantAnnee extends Auditable{
+@SQLDelete(sql = "UPDATE etudiantAnnee SET deleted = true WHERE idEtudiantAnnee=?")
+@Where(clause = "deleted=false")
+public class EtudiantAnnee extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,6 +76,8 @@ public class EtudiantAnnee extends Auditable{
 	@OneToMany(mappedBy = "etudiantAnnee", cascade = CascadeType.MERGE)
 	private List<AvertissementAbsence> avertissementAbsences;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public EtudiantAnnee() {
 		super();
 	}
@@ -97,6 +104,47 @@ public class EtudiantAnnee extends Auditable{
 		this.absences = absences;
 		this.arretCours = arretCours;
 		this.avertissementAbsences = avertissementAbsences;
+	}
+
+	public EtudiantAnnee(Long idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Niveau niveau,
+			Annee annee, GroupeAnnee groupeAnnee, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees,
+			List<Controle> controles, List<Examen> examens, List<Rachetage> rachetages,
+			List<Numerotation> numerotations, List<Absence> absences, List<ArretCours> arretCours,
+			List<AvertissementAbsence> avertissementAbsences, boolean deleted) {
+		super();
+		this.idEtudiantAnnee = idEtudiantAnnee;
+		this.depart = depart;
+		this.dateDepart = dateDepart;
+		this.etudiant = etudiant;
+		this.niveau = niveau;
+		this.annee = annee;
+		this.groupeAnnee = groupeAnnee;
+		this.optionAnnee = optionAnnee;
+		this.sousGroupeAnnees = sousGroupeAnnees;
+		this.controles = controles;
+		this.examens = examens;
+		this.rachetages = rachetages;
+		this.numerotations = numerotations;
+		this.absences = absences;
+		this.arretCours = arretCours;
+		this.avertissementAbsences = avertissementAbsences;
+		this.deleted = deleted;
+	}
+
+	public List<Absence> getAbsences() {
+		return absences;
+	}
+
+	public void setAbsences(List<Absence> absences) {
+		this.absences = absences;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdEtudiantAnnee() {

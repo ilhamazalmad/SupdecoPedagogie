@@ -8,11 +8,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "tuteur")
-public class Tuteur extends Auditable{
+@SQLDelete(sql = "UPDATE tuteur SET deleted = true WHERE idTuteur=?")
+@Where(clause = "deleted=false")
+public class Tuteur extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,10 +36,12 @@ public class Tuteur extends Auditable{
 	@ManyToOne
 	@JoinColumn(name = "idVille", nullable = false)
 	private Ville ville;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idEtudiant", nullable = false)
 	private Etudiant etudiant;
+
+	private boolean deleted = Boolean.FALSE;
 
 	public Tuteur() {
 		super();
@@ -55,6 +62,34 @@ public class Tuteur extends Auditable{
 		this.email = email;
 		this.adresse = adresse;
 		this.ville = ville;
+	}
+
+	public Tuteur(Long idTuteur, String nom, String prenom, String civilite, String cin, String telephone,
+			String telephoneProfessionnel, String fixe, String profession, String email, String adresse, Ville ville,
+			Etudiant etudiant, boolean deleted) {
+		super();
+		this.idTuteur = idTuteur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.civilite = civilite;
+		this.cin = cin;
+		this.telephone = telephone;
+		this.telephoneProfessionnel = telephoneProfessionnel;
+		this.fixe = fixe;
+		this.profession = profession;
+		this.email = email;
+		this.adresse = adresse;
+		this.ville = ville;
+		this.etudiant = etudiant;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdTuteur() {
@@ -151,6 +186,14 @@ public class Tuteur extends Auditable{
 
 	public void setVille(Ville ville) {
 		this.ville = ville;
+	}
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
 	}
 
 }

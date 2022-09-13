@@ -10,11 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "module")
-public class Module extends Auditable{
+@SQLDelete(sql = "UPDATE module SET deleted = true WHERE codeModule=?")
+@Where(clause = "deleted=false")
+public class Module extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +28,8 @@ public class Module extends Auditable{
 
 	@OneToMany(mappedBy = "module", cascade = CascadeType.MERGE)
 	private List<ModuleAnnee> moduleAnnees;
+
+	private boolean deleted = Boolean.FALSE;
 
 	public Module() {
 		super();
@@ -33,6 +40,22 @@ public class Module extends Auditable{
 		this.codeModule = codeModule;
 		this.nomModule = nomModule;
 		this.moduleAnnees = moduleAnnees;
+	}
+
+	public Module(String codeModule, String nomModule, List<ModuleAnnee> moduleAnnees, boolean deleted) {
+		super();
+		this.codeModule = codeModule;
+		this.nomModule = nomModule;
+		this.moduleAnnees = moduleAnnees;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public String getCodeModule() {

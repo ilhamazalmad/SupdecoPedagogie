@@ -12,10 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "professeur")
+@SQLDelete(sql = "UPDATE professeur SET deleted = true WHERE idProfesseur=?")
+@Where(clause = "deleted=false")
 public class Professeur extends Auditable {
 
 	@Id
@@ -45,6 +50,8 @@ public class Professeur extends Auditable {
 	@OneToMany(mappedBy = "professeur", cascade = CascadeType.MERGE)
 	private List<ProfesseurAnnee> professeurAnnees;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Professeur() {
 		super();
 	}
@@ -69,6 +76,37 @@ public class Professeur extends Auditable {
 		this.contrat = contrat;
 		this.titreDiplome = titreDiplome;
 		this.professeurAnnees = professeurAnnees;
+	}
+
+	public Professeur(Long idProfesseur, String nom, String prenom, String civilite, String statut, String telephone,
+			String email, String adresse, String cin, String cv, String diplome, String engagement, String contrat,
+			Ville ville, Diplome titreDiplome, List<ProfesseurAnnee> professeurAnnees, boolean deleted) {
+		super();
+		this.idProfesseur = idProfesseur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.civilite = civilite;
+		this.statut = statut;
+		this.telephone = telephone;
+		this.email = email;
+		this.adresse = adresse;
+		this.cin = cin;
+		this.cv = cv;
+		this.diplome = diplome;
+		this.engagement = engagement;
+		this.contrat = contrat;
+		this.ville = ville;
+		this.titreDiplome = titreDiplome;
+		this.professeurAnnees = professeurAnnees;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdProfesseur() {

@@ -10,11 +10,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur extends Auditable{
+@SQLDelete(sql = "UPDATE utilisateur SET deleted = true WHERE idUtilisateur=?")
+@Where(clause = "deleted=false")
+public class Utilisateur extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +32,8 @@ public class Utilisateur extends Auditable{
 	@ManyToMany
 	@JoinTable(name = "roleUtilisateur", joinColumns = @JoinColumn(name = "idUtilisateur"), inverseJoinColumns = @JoinColumn(name = "idRole"))
 	private List<Role> roles;
+
+	private boolean deleted = Boolean.FALSE;
 
 	public Utilisateur() {
 		super();
@@ -41,6 +48,26 @@ public class Utilisateur extends Auditable{
 		this.motDePasse = motDePasse;
 		this.active = active;
 		this.roles = roles;
+	}
+
+	public Utilisateur(Long idUtilisateur, String nom, String prenom, String motDePasse, boolean active,
+			List<Role> roles, boolean deleted) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.motDePasse = motDePasse;
+		this.active = active;
+		this.roles = roles;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdUtilisateur() {

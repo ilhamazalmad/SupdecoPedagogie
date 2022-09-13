@@ -14,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "groupeAnnee")
+@SQLDelete(sql = "UPDATE groupeAnnee SET deleted = true WHERE idGroupeAnnee=?")
+@Where(clause = "deleted=false")
 public class GroupeAnnee {
 
 	@Id
@@ -41,12 +46,14 @@ public class GroupeAnnee {
 	@JoinTable(name = "affectationGroupe", joinColumns = @JoinColumn(name = "idGroupe"), inverseJoinColumns = @JoinColumn(name = "idAffectation"))
 	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
 
+	private boolean deleted = Boolean.FALSE;
+
 	public GroupeAnnee() {
 		super();
 	}
 
-	public GroupeAnnee(Long idGroupeAnnee, Niveau niveau, Annee annee, Groupe groupe, List<EtudiantAnnee> etudiantAnnees,
-			List<AffectationMatiere> affectationMatieres) {
+	public GroupeAnnee(Long idGroupeAnnee, Niveau niveau, Annee annee, Groupe groupe,
+			List<EtudiantAnnee> etudiantAnnees, List<AffectationMatiere> affectationMatieres) {
 		super();
 		this.idGroupeAnnee = idGroupeAnnee;
 		this.niveau = niveau;
@@ -54,6 +61,26 @@ public class GroupeAnnee {
 		this.groupe = groupe;
 		this.etudiantAnnees = etudiantAnnees;
 		this.affectationMatieres = affectationMatieres;
+	}
+
+	public GroupeAnnee(Long idGroupeAnnee, Niveau niveau, Annee annee, Groupe groupe,
+			List<EtudiantAnnee> etudiantAnnees, List<AffectationMatiere> affectationMatieres, boolean deleted) {
+		super();
+		this.idGroupeAnnee = idGroupeAnnee;
+		this.niveau = niveau;
+		this.annee = annee;
+		this.groupe = groupe;
+		this.etudiantAnnees = etudiantAnnees;
+		this.affectationMatieres = affectationMatieres;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdGroupeAnnee() {

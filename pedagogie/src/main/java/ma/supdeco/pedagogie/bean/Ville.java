@@ -14,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "ville")
+@SQLDelete(sql = "UPDATE ville SET deleted = true WHERE idVille=?")
+@Where(clause = "deleted=false")
 public class Ville {
 
 	@Id
@@ -50,6 +55,8 @@ public class Ville {
 	@JoinTable(name = "lycee_ville", joinColumns = @JoinColumn(name = "idVille"), inverseJoinColumns = @JoinColumn(name = "idLycee"))
 	private List<Lycee> lycees;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Ville() {
 		super();
 	}
@@ -68,6 +75,31 @@ public class Ville {
 		this.pays = pays;
 		this.etablissements = etablissements;
 		this.lycees = lycees;
+	}
+
+	public Ville(Long idVille, String ville, List<Etudiant> etudiants, List<Etudiant> etudiantsNaissances,
+			List<Professeur> professeurs, List<Tuteur> tuteurs, List<Surveillant> surveillants, Pays pays,
+			List<EtablissementDiplome> etablissements, List<Lycee> lycees, boolean deleted) {
+		super();
+		this.idVille = idVille;
+		this.ville = ville;
+		this.etudiants = etudiants;
+		this.etudiantsNaissances = etudiantsNaissances;
+		this.professeurs = professeurs;
+		this.tuteurs = tuteurs;
+		this.surveillants = surveillants;
+		this.pays = pays;
+		this.etablissements = etablissements;
+		this.lycees = lycees;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdVille() {

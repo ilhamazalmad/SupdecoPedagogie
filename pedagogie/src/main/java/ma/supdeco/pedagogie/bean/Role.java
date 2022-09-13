@@ -12,8 +12,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "role")
+@SQLDelete(sql = "UPDATE role SET deleted = true WHERE idRole=?")
+@Where(clause = "deleted=false")
 public class Role {
 
 	@Id
@@ -24,6 +29,8 @@ public class Role {
 	@ManyToMany
 	@JoinTable(name = "roleUtilisateur", joinColumns = @JoinColumn(name = "idRole"), inverseJoinColumns = @JoinColumn(name = "idUtilisateur"))
 	private List<Utilisateur> utilisateurs = new ArrayList<>();
+
+	private boolean deleted = Boolean.FALSE;
 
 	public Role() {
 		super();
@@ -40,6 +47,22 @@ public class Role {
 		this.idRole = idRole;
 		this.role = role;
 		this.utilisateurs = utilisateurs;
+	}
+
+	public Role(Long idRole, String role, List<Utilisateur> utilisateurs, boolean deleted) {
+		super();
+		this.idRole = idRole;
+		this.role = role;
+		this.utilisateurs = utilisateurs;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdRole() {

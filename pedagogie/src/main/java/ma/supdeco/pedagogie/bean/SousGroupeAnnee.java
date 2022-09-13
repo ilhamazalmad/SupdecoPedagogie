@@ -2,7 +2,6 @@ package ma.supdeco.pedagogie.bean;
 
 import java.util.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "sousGroupeAnnee")
+@SQLDelete(sql = "UPDATE sousGroupeAnnee SET deleted = true WHERE idSsGroupeAnnee=?")
+@Where(clause = "deleted=false")
 public class SousGroupeAnnee {
 
 	@Id
@@ -42,6 +45,8 @@ public class SousGroupeAnnee {
 	@JoinTable(name = "affectationSousGroupe", joinColumns = @JoinColumn(name = "idSousGroupe"), inverseJoinColumns = @JoinColumn(name = "idAffectation"))
 	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
 
+	private boolean deleted = Boolean.FALSE;
+
 	public SousGroupeAnnee() {
 		super();
 	}
@@ -55,6 +60,26 @@ public class SousGroupeAnnee {
 		this.sousGroupe = sousGroupe;
 		this.etudiantAnnees = etudiantAnnees;
 		this.affectationMatieres = affectationMatieres;
+	}
+
+	public SousGroupeAnnee(Long idSsGroupeAnnee, Niveau niveau, Annee annee, SousGroupe sousGroupe,
+			List<EtudiantAnnee> etudiantAnnees, List<AffectationMatiere> affectationMatieres, boolean deleted) {
+		super();
+		this.idSsGroupeAnnee = idSsGroupeAnnee;
+		this.niveau = niveau;
+		this.annee = annee;
+		this.sousGroupe = sousGroupe;
+		this.etudiantAnnees = etudiantAnnees;
+		this.affectationMatieres = affectationMatieres;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSsGroupeAnnee() {

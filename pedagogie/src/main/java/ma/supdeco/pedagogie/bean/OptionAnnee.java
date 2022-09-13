@@ -14,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "optionAnnee")
+@SQLDelete(sql = "UPDATE optionAnnee SET deleted = true WHERE idOptionAnnee=?")
+@Where(clause = "deleted=false")
 public class OptionAnnee {
 
 	@Id
@@ -37,6 +42,8 @@ public class OptionAnnee {
 	@JoinTable(name = "affectationOption", joinColumns = @JoinColumn(name = "idOption"), inverseJoinColumns = @JoinColumn(name = "idAffectation"))
 	private List<AffectationMatiere> affectationMatieres = new ArrayList<>();
 
+	private boolean deleted = Boolean.FALSE;
+
 	public OptionAnnee() {
 		super();
 	}
@@ -49,6 +56,25 @@ public class OptionAnnee {
 		this.annee = annee;
 		this.etudiantAnnees = etudiantAnnees;
 		this.affectationMatieres = affectationMatieres;
+	}
+
+	public OptionAnnee(Long idOptionAnnee, Option option, Annee annee, List<EtudiantAnnee> etudiantAnnees,
+			List<AffectationMatiere> affectationMatieres, boolean deleted) {
+		super();
+		this.idOptionAnnee = idOptionAnnee;
+		this.option = option;
+		this.annee = annee;
+		this.etudiantAnnees = etudiantAnnees;
+		this.affectationMatieres = affectationMatieres;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdOptionAnnee() {

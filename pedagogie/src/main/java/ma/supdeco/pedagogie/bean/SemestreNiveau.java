@@ -12,8 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "semestreNiveau")
+@SQLDelete(sql = "UPDATE semestreNiveau SET deleted = true WHERE idSemestreNiveau=?")
+@Where(clause = "deleted=false")
 public class SemestreNiveau {
 
 	@Id
@@ -34,6 +39,8 @@ public class SemestreNiveau {
 	@JoinColumn(name = "idSemestre", nullable = false)
 	private Semestre semestre;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public SemestreNiveau() {
 		super();
 	}
@@ -46,6 +53,25 @@ public class SemestreNiveau {
 		this.avertissementAbsences = avertissementAbsences;
 		this.niveau = niveau;
 		this.semestre = semestre;
+	}
+
+	public SemestreNiveau(Long idSemestreNiveau, List<ModuleAnnee> moduleAnnees,
+			List<AvertissementAbsence> avertissementAbsences, Niveau niveau, Semestre semestre, boolean deleted) {
+		super();
+		this.idSemestreNiveau = idSemestreNiveau;
+		this.moduleAnnees = moduleAnnees;
+		this.avertissementAbsences = avertissementAbsences;
+		this.niveau = niveau;
+		this.semestre = semestre;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSemestreNiveau() {

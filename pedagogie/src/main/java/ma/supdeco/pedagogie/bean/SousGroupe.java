@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "sousGroupe")
+@SQLDelete(sql = "UPDATE sousGroupe SET deleted = true WHERE idSsGroupe=?")
+@Where(clause = "deleted=false")
 public class SousGroupe {
 
 	@Id
@@ -22,6 +27,8 @@ public class SousGroupe {
 	@OneToMany(mappedBy = "sousGroupe", cascade = CascadeType.MERGE)
 	private List<SousGroupeAnnee> sousGroupeAnnees;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public SousGroupe() {
 		super();
 	}
@@ -31,6 +38,30 @@ public class SousGroupe {
 		this.idSsGroupe = idSsGroupe;
 		this.ssGroupe = ssGroupe;
 		this.sousGroupeAnnees = sousGroupeAnnees;
+	}
+
+	public SousGroupe(Long idSsGroupe, String ssGroupe, List<SousGroupeAnnee> sousGroupeAnnees, boolean deleted) {
+		super();
+		this.idSsGroupe = idSsGroupe;
+		this.ssGroupe = ssGroupe;
+		this.sousGroupeAnnees = sousGroupeAnnees;
+		this.deleted = deleted;
+	}
+
+	public List<SousGroupeAnnee> getSousGroupeAnnees() {
+		return sousGroupeAnnees;
+	}
+
+	public void setSousGroupeAnnees(List<SousGroupeAnnee> sousGroupeAnnees) {
+		this.sousGroupeAnnees = sousGroupeAnnees;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSsGroupe() {

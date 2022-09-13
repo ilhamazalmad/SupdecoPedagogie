@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "mention")
+@SQLDelete(sql = "UPDATE mention SET deleted = true WHERE codeMention=?")
+@Where(clause = "deleted=false")
 public class Mention {
 
 	@Id
@@ -25,6 +30,8 @@ public class Mention {
 	@OneToMany(mappedBy = "mentionDiplome", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiantsDiplomes;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Mention() {
 		super();
 	}
@@ -35,6 +42,24 @@ public class Mention {
 		this.mention = mention;
 		this.etudiantsBacs = etudiantsBacs;
 		this.etudiantsDiplomes = etudiantsDiplomes;
+	}
+
+	public Mention(String codeMention, String mention, List<Etudiant> etudiantsBacs, List<Etudiant> etudiantsDiplomes,
+			boolean deleted) {
+		super();
+		this.codeMention = codeMention;
+		this.mention = mention;
+		this.etudiantsBacs = etudiantsBacs;
+		this.etudiantsDiplomes = etudiantsDiplomes;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public String getCodeMention() {

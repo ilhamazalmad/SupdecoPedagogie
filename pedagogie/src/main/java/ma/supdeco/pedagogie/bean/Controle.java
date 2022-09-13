@@ -8,11 +8,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "controle")
-public class Controle extends Auditable{
+@SQLDelete(sql = "UPDATE controle SET deleted = true WHERE idControle=?")
+@Where(clause = "deleted=false")
+public class Controle extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +35,8 @@ public class Controle extends Auditable{
 	@JoinColumn(name = "idEtudiant", nullable = false)
 	private EtudiantAnnee etudiantAnnee;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Controle() {
 		super();
 	}
@@ -44,6 +51,27 @@ public class Controle extends Auditable{
 		this.fraude = fraude;
 		this.matiereAnnee = matiereAnnee;
 		this.etudiantAnnee = etudiantAnnee;
+	}
+
+	public Controle(Long idControle, float note16, float note4, boolean absence, boolean fraude,
+			MatiereAnnee matiereAnnee, EtudiantAnnee etudiantAnnee, boolean deleted) {
+		super();
+		this.idControle = idControle;
+		this.note16 = note16;
+		this.note4 = note4;
+		this.absence = absence;
+		this.fraude = fraude;
+		this.matiereAnnee = matiereAnnee;
+		this.etudiantAnnee = etudiantAnnee;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdControle() {

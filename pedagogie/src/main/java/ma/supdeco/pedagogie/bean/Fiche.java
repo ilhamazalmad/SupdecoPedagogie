@@ -12,13 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "fiche")
-public class Fiche extends Auditable{
+@SQLDelete(sql = "UPDATE fiche SET deleted = true WHERE codeFiche=?")
+@Where(clause = "deleted=false")
+public class Fiche extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,12 +40,14 @@ public class Fiche extends Auditable{
 	@OneToMany(mappedBy = "fiche", cascade = CascadeType.MERGE)
 	private List<Absence> absences;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Fiche() {
 		super();
 	}
 
-	public Fiche(Long codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite, Seance seance,
-			List<Absence> absences) {
+	public Fiche(Long codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite,
+			Seance seance, List<Absence> absences) {
 		super();
 		this.codeFiche = codeFiche;
 		this.message = message;
@@ -49,6 +56,35 @@ public class Fiche extends Auditable{
 		this.seanceFaite = seanceFaite;
 		this.seance = seance;
 		this.absences = absences;
+	}
+
+	public Fiche(Long codeFiche, String message, Date dateFiche, Date dateRattrapage, Boolean seanceFaite,
+			Seance seance, List<Absence> absences, boolean deleted) {
+		super();
+		this.codeFiche = codeFiche;
+		this.message = message;
+		this.dateFiche = dateFiche;
+		this.dateRattrapage = dateRattrapage;
+		this.seanceFaite = seanceFaite;
+		this.seance = seance;
+		this.absences = absences;
+		this.deleted = deleted;
+	}
+
+	public List<Absence> getAbsences() {
+		return absences;
+	}
+
+	public void setAbsences(List<Absence> absences) {
+		this.absences = absences;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getCodeFiche() {

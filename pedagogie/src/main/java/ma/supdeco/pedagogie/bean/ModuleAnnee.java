@@ -12,11 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "moduleAnnee")
-public class ModuleAnnee extends Auditable{
+@SQLDelete(sql = "UPDATE moduleAnnee SET deleted = true WHERE idModuleAnnee=?")
+@Where(clause = "deleted=false")
+public class ModuleAnnee extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,6 +42,8 @@ public class ModuleAnnee extends Auditable{
 	@OneToMany(mappedBy = "moduleAnnee", cascade = CascadeType.MERGE)
 	private List<MatiereAnnee> matiereAnnees;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public ModuleAnnee() {
 		super();
 	}
@@ -49,6 +56,25 @@ public class ModuleAnnee extends Auditable{
 		this.module = module;
 		this.semestreNiveau = semestreNiveau;
 		this.matiereAnnees = matiereAnnees;
+	}
+
+	public ModuleAnnee(Long idModuleAnnee, Annee annee, Module module, SemestreNiveau semestreNiveau,
+			List<MatiereAnnee> matiereAnnees, boolean deleted) {
+		super();
+		this.idModuleAnnee = idModuleAnnee;
+		this.annee = annee;
+		this.module = module;
+		this.semestreNiveau = semestreNiveau;
+		this.matiereAnnees = matiereAnnees;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdModuleAnnee() {

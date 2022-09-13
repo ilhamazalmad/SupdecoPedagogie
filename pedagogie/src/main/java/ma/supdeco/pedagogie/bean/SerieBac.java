@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "serieBac")
+@SQLDelete(sql = "UPDATE serieBac SET deleted = true WHERE idSerie=?")
+@Where(clause = "deleted=false")
 public class SerieBac {
 
 	@Id
@@ -23,6 +28,8 @@ public class SerieBac {
 	@OneToMany(mappedBy = "serieBac", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public SerieBac() {
 		super();
 	}
@@ -33,6 +40,23 @@ public class SerieBac {
 		this.serieBac = serieBac;
 		this.description = description;
 		this.etudiants = etudiants;
+	}
+
+	public SerieBac(Long idSerie, String serieBac, String description, List<Etudiant> etudiants, boolean deleted) {
+		super();
+		this.idSerie = idSerie;
+		this.serieBac = serieBac;
+		this.description = description;
+		this.etudiants = etudiants;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSerie() {

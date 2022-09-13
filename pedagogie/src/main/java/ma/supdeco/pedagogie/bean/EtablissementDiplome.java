@@ -13,8 +13,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "etablissement")
+@SQLDelete(sql = "UPDATE etablissement SET deleted = true WHERE idEtablissement=?")
+@Where(clause = "deleted=false")
 public class EtablissementDiplome {
 
 	@Id
@@ -30,18 +35,39 @@ public class EtablissementDiplome {
 	@OneToMany(mappedBy = "etablissementDiplome", cascade = CascadeType.MERGE)
 	private List<Etudiant> etudiants;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public EtablissementDiplome() {
 		super();
 	}
 
-	public EtablissementDiplome(Long idEtablissement, String nomEtablissement, String typeEtablissement, List<Ville> villes,
-			List<Etudiant> etudiants) {
+	public EtablissementDiplome(Long idEtablissement, String nomEtablissement, String typeEtablissement,
+			List<Ville> villes, List<Etudiant> etudiants) {
 		super();
 		this.idEtablissement = idEtablissement;
 		this.nomEtablissement = nomEtablissement;
 		this.typeEtablissement = typeEtablissement;
 		this.villes = villes;
 		this.etudiants = etudiants;
+	}
+
+	public EtablissementDiplome(Long idEtablissement, String nomEtablissement, String typeEtablissement,
+			List<Ville> villes, List<Etudiant> etudiants, boolean deleted) {
+		super();
+		this.idEtablissement = idEtablissement;
+		this.nomEtablissement = nomEtablissement;
+		this.typeEtablissement = typeEtablissement;
+		this.villes = villes;
+		this.etudiants = etudiants;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdEtablissement() {

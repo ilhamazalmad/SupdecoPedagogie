@@ -8,11 +8,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 @Entity
 @Table(name = "rachetage")
-public class Rachetage extends Auditable{
+@SQLDelete(sql = "UPDATE rachetage SET deleted = true WHERE idRachetage=?")
+@Where(clause = "deleted=false")
+public class Rachetage extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +36,8 @@ public class Rachetage extends Auditable{
 	@JoinColumn(name = "idEtudiant", nullable = false)
 	private EtudiantAnnee etudiantAnnee;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Rachetage() {
 		super();
 	}
@@ -43,6 +50,25 @@ public class Rachetage extends Auditable{
 		this.session = session;
 		this.matiereAnnee = matiereAnnee;
 		this.etudiantAnnee = etudiantAnnee;
+	}
+
+	public Rachetage(Long idRachetage, boolean rachetage, Session session, MatiereAnnee matiereAnnee,
+			EtudiantAnnee etudiantAnnee, boolean deleted) {
+		super();
+		this.idRachetage = idRachetage;
+		this.rachetage = rachetage;
+		this.session = session;
+		this.matiereAnnee = matiereAnnee;
+		this.etudiantAnnee = etudiantAnnee;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdRachetage() {

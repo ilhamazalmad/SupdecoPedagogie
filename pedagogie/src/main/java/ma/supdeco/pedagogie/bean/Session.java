@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "session")
+@SQLDelete(sql = "UPDATE session SET deleted = true WHERE idSession=?")
+@Where(clause = "deleted=false")
 public class Session {
 
 	@Id
@@ -29,6 +34,8 @@ public class Session {
 	@OneToMany(mappedBy = "session", cascade = CascadeType.MERGE)
 	private List<Numerotation> numerotations;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public Session() {
 		super();
 	}
@@ -42,6 +49,26 @@ public class Session {
 		this.examens = examens;
 		this.rachetages = rachetages;
 		this.numerotations = numerotations;
+	}
+
+	public Session(Long idSession, String session, boolean active, List<Examen> examens, List<Rachetage> rachetages,
+			List<Numerotation> numerotations, boolean deleted) {
+		super();
+		this.idSession = idSession;
+		this.session = session;
+		this.active = active;
+		this.examens = examens;
+		this.rachetages = rachetages;
+		this.numerotations = numerotations;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdSession() {

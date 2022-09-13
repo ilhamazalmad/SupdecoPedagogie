@@ -8,13 +8,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import ma.supdeco.pedagogie.bean.util.Auditable;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "avertissementAbsence")
-public class AvertissementAbsence extends Auditable{
+@SQLDelete(sql = "UPDATE avertissementAbsence SET deleted = true WHERE idAvertissement=?")
+@Where(clause = "deleted=false")
+public class AvertissementAbsence extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,6 +41,8 @@ public class AvertissementAbsence extends Auditable{
 	@JoinColumn(name = "idSemestre", nullable = false)
 	private SemestreNiveau semestreNiveau;
 
+	private boolean deleted = Boolean.FALSE;
+
 	public AvertissementAbsence() {
 		super();
 	}
@@ -55,6 +62,32 @@ public class AvertissementAbsence extends Auditable{
 		this.dateEngagement = dateEngagement;
 		this.etudiantAnnee = etudiantAnnee;
 		this.semestreNiveau = semestreNiveau;
+	}
+
+	public AvertissementAbsence(Long idAvertissement, boolean avertis, boolean conseil, boolean presentConseil,
+			boolean engage, boolean fin, Date dateAvertissement, Date dateConseil, Date dateEngagement,
+			EtudiantAnnee etudiantAnnee, SemestreNiveau semestreNiveau, boolean deleted) {
+		super();
+		this.idAvertissement = idAvertissement;
+		this.avertis = avertis;
+		this.conseil = conseil;
+		this.presentConseil = presentConseil;
+		this.engage = engage;
+		this.fin = fin;
+		this.dateAvertissement = dateAvertissement;
+		this.dateConseil = dateConseil;
+		this.dateEngagement = dateEngagement;
+		this.etudiantAnnee = etudiantAnnee;
+		this.semestreNiveau = semestreNiveau;
+		this.deleted = deleted;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getIdAvertissement() {
