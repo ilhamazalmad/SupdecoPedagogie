@@ -30,6 +30,7 @@ public class EtudiantAnnee extends Auditable {
 	private Long idEtudiantAnnee;
 	private boolean depart;
 	private Date dateDepart;
+	private String situation;
 
 	@ManyToOne
 	@JoinColumn(name = "idEtudiant", nullable = false)
@@ -86,7 +87,7 @@ public class EtudiantAnnee extends Auditable {
 			Annee annee, GroupeAnnee groupeAnnee, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<Controle> controles, List<Examen> examens, List<Rachetage> rachetages,
 			List<Numerotation> numerotations, List<Absence> absences, List<ArretCours> arretCours,
-			List<AvertissementAbsence> avertissementAbsences) {
+			List<AvertissementAbsence> avertissementAbsences, String situation) {
 		super();
 		this.idEtudiantAnnee = idEtudiantAnnee;
 		this.depart = depart;
@@ -104,13 +105,15 @@ public class EtudiantAnnee extends Auditable {
 		this.absences = absences;
 		this.arretCours = arretCours;
 		this.avertissementAbsences = avertissementAbsences;
+		this.situation = situation;
+
 	}
 
 	public EtudiantAnnee(Long idEtudiantAnnee, boolean depart, Date dateDepart, Etudiant etudiant, Niveau niveau,
 			Annee annee, GroupeAnnee groupeAnnee, OptionAnnee optionAnnee, List<SousGroupeAnnee> sousGroupeAnnees,
 			List<Controle> controles, List<Examen> examens, List<Rachetage> rachetages,
 			List<Numerotation> numerotations, List<Absence> absences, List<ArretCours> arretCours,
-			List<AvertissementAbsence> avertissementAbsences, boolean deleted) {
+			List<AvertissementAbsence> avertissementAbsences, boolean deleted, String situation) {
 		super();
 		this.idEtudiantAnnee = idEtudiantAnnee;
 		this.depart = depart;
@@ -129,6 +132,8 @@ public class EtudiantAnnee extends Auditable {
 		this.arretCours = arretCours;
 		this.avertissementAbsences = avertissementAbsences;
 		this.deleted = deleted;
+		this.situation = situation;
+
 	}
 
 	public List<Absence> getAbsences() {
@@ -273,6 +278,14 @@ public class EtudiantAnnee extends Auditable {
 
 	public void setAvertissementAbsences(List<AvertissementAbsence> avertissementAbsences) {
 		this.avertissementAbsences = avertissementAbsences;
+	}
+
+	public String getSituation() {
+		return situation;
+	}
+
+	public void setSituation(String situation) {
+		this.situation = situation;
 	}
 
 }

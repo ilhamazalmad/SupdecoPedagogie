@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import ma.supdeco.pedagogie.bean.Absence;
 
 @Repository
-interface AbsenceDao extends JpaRepository<Absence, Long>{
+public interface AbsenceDao extends JpaRepository<Absence, Long>{
 
 
 }

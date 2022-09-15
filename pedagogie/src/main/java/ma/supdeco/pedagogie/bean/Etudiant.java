@@ -41,7 +41,6 @@ public class Etudiant extends Auditable {
 	private Date dateNaissance;
 	private int lieuNaissance;
 	private Date dateInscription;
-	private String situation;
 	private int anneeBac;
 	private int anneeDiplome;
 	private boolean boursier;
@@ -123,10 +122,10 @@ public class Etudiant extends Auditable {
 
 	public Etudiant(Long ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
 			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance, int lieuNaissance,
-			Date dateInscription, String situation, int anneeBac, int anneeDiplome, boolean boursier, boolean resident,
-			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
-			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
-			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
+			Date dateInscription, int anneeBac, int anneeDiplome, boolean boursier, boolean resident, boolean handicape,
+			boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart, String nomArabe,
+			String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees, List<Tuteur> tuteurs,
+			Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
 			ResponsableInscription responsableInscription, Mention mentionBac, Diplome diplome, Mention mentionDiplome,
 			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome,
 			SerieBac serieBac, SpecialiteDiplome specialiteDiplome) {
@@ -145,7 +144,6 @@ public class Etudiant extends Auditable {
 		this.dateNaissance = dateNaissance;
 		this.lieuNaissance = lieuNaissance;
 		this.dateInscription = dateInscription;
-		this.situation = situation;
 		this.anneeBac = anneeBac;
 		this.anneeDiplome = anneeDiplome;
 		this.boursier = boursier;
@@ -177,10 +175,10 @@ public class Etudiant extends Auditable {
 
 	public Etudiant(Long ins, String nom, String prenom, String cin, String cne, String photo, String sexe,
 			String telephone, String adresse, String email, String emailSupdeco, Date dateNaissance, int lieuNaissance,
-			Date dateInscription, String situation, int anneeBac, int anneeDiplome, boolean boursier, boolean resident,
-			boolean handicape, boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart,
-			String nomArabe, String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees,
-			List<Tuteur> tuteurs, Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
+			Date dateInscription, int anneeBac, int anneeDiplome, boolean boursier, boolean resident, boolean handicape,
+			boolean fonctionnaire, String documentsFournis, String posteOccupe, Date dateDepart, String nomArabe,
+			String prenomArabe, String lieuNaissanceArabe, List<EtudiantAnnee> etudiantAnnees, List<Tuteur> tuteurs,
+			Mois sessionBac, Pays nationalite, NiveauAdmission niveauAdmission,
 			ResponsableInscription responsableInscription, Mention mentionBac, Diplome diplome, Mention mentionDiplome,
 			Ville villeNaissance, Ville ville, Lycee lyceeBac, EtablissementDiplome etablissementDiplome,
 			SerieBac serieBac, SpecialiteDiplome specialiteDiplome, boolean deleted) {
@@ -199,7 +197,6 @@ public class Etudiant extends Auditable {
 		this.dateNaissance = dateNaissance;
 		this.lieuNaissance = lieuNaissance;
 		this.dateInscription = dateInscription;
-		this.situation = situation;
 		this.anneeBac = anneeBac;
 		this.anneeDiplome = anneeDiplome;
 		this.boursier = boursier;
@@ -348,14 +345,6 @@ public class Etudiant extends Auditable {
 
 	public void setDateInscription(Date dateInscription) {
 		this.dateInscription = dateInscription;
-	}
-
-	public String getSituation() {
-		return situation;
-	}
-
-	public void setSituation(String situation) {
-		this.situation = situation;
 	}
 
 	public int getAnneeBac() {
